@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+    
+   	<appender name = "stdout" class = "ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5p] [%thread] %caller{1}%m%n</pattern>
+			<charset>utf-8</charset>
+		</encoder>
+	</appender>
+	
+	
+	 <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/sd.log</file>
+        <!--滚动策略 (http://blog.csdn.net/wujianmin577/article/details/68922545)-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/sd.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>365</maxHistory>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        
+        
+        <!--  输出格式 -->
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>%date %level [%thread] %logger{36} [%file : %line] %n %n%msg%n</pattern>
+        </encoder>
+    </appender>
+
+   
+    <root level="INFO">
+        <appender-ref ref="stdout" />
+        <appender-ref ref="FILE" />
+    </root>
+
+</configuration>

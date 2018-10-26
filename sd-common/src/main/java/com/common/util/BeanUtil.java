@@ -1,0 +1,74 @@
+package com.common.util;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.common.exception.JsonTransException;
+import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.text.SimpleDateFormat;
+
+/**
+ * @author sukang
+ */
+public class BeanUtil {
+
+    private static final  ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
+    private static Logger logger = LoggerFactory.getLogger(BeanUtil.class);
+
+    static {
+        OBJECT_MAPPER.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        // 设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性
+        OBJECT_MAPPER.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        OBJECT_MAPPER.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        //key可以不带双引号
+        OBJECT_MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+        //key value 可以是单引号
+        OBJECT_MAPPER.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true) ;
+        //允许出现特殊字符和转义符
+        OBJECT_MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+    }
+
+    public static JSONObject formObjectToJson(Object object){
+        try {
+            return JSONObject.fromObject(object);
+        } catch (Exception e) {
+            logger.error("json转换异常",e);
+            throw  new JsonTransException(e);
+        }
+    }
+
+    public static <T> T fromStrToObj(String jsonStr,Class<T> clazz){
+        try {
+            return OBJECT_MAPPER.readValue(jsonStr,clazz);
+        }catch (Exception e){
+            logger.error("json转换异常",e);
+            throw  new JsonTransException(e);
+        }
+    }
+
+
+
+    public static String fromObjectToStr (Object object){
+        try {
+            return OBJECT_MAPPER.writeValueAsString(object);
+        }catch (Exception e){
+            logger.error("json转换异常",e);
+        }
+        return "";
+    }
+
+
+    /*public static  <T> T transJsonStrToObj(String jsonStr,Class<T> clazz){
+        try {
+            return OBJECT_MAPPER.readValue(jsonStr,clazz);
+        }catch (Exception e) {
+            logger.error("json字符串转bean异常，异常信息为：", e);
+            throw new BeanException(e);
+        }
+    }*/
+}
