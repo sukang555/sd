@@ -3,12 +3,15 @@ package com.controller.core;
 import com.common.dto.BaseMsg;
 import com.common.dto.ResponseBean;
 import com.common.exception.BusinessException;
-import com.common.exception.ParamterException;
+import com.common.exception.ParameterException;
+import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author sukang
@@ -27,15 +30,16 @@ public class ControllerAdvice {
     }
 
 
-    @ExceptionHandler(ParamterException.class)
+    @ExceptionHandler(ParameterException.class)
     @ResponseBody
-    public ResponseBean exceptionHandler(ParamterException ex){
+    public ResponseBean exceptionHandler(ParameterException ex){
         return ResponseBean.paramError(ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public ResponseBean exceptionHandler(Exception ex){
+    public ResponseBean exceptionHandler(Exception ex, HttpServletRequest request){
+        logger.error("请求路径为{},程序异常",request.getRequestURL(),ex);
         return ResponseBean.paramError("程序异常");
     }
 

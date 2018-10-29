@@ -1,6 +1,6 @@
 package com.controller.core;
 
-import com.common.exception.ParamterException;
+import com.common.exception.Exceptions;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
@@ -21,7 +21,7 @@ public class BaseController {
                     .stream()
                     .map(ObjectError::getDefaultMessage)
                     .collect(Collectors.toList());
-            throw new ParamterException(collect.toString());
+            throw Exceptions.newPramException(collect.toString());
         }
     }
 
