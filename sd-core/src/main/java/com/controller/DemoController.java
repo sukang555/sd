@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 /**
  * @author sukang
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
+
+
 
     @PostMapping(value = "/status-info")
     public ResponseBean getStatusInfo(
