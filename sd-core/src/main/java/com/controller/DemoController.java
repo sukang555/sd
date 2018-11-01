@@ -6,15 +6,15 @@ import com.common.exception.BusinessException;
 import com.common.exception.Exceptions;
 import com.controller.core.BaseController;
 import net.sf.json.JSONObject;
+import org.apache.shiro.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author sukang
@@ -25,12 +25,12 @@ public class DemoController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-
-
     @PostMapping(value = "/status-info")
     public ResponseBean getStatusInfo(
             @RequestBody @Validated StatusInfo statusInfo,
-            BindingResult bindingResult){
+            BindingResult bindingResult, HttpServletRequest request){
+
+        System.out.println(request.getHeader("Autho"));
 
         checkParams(bindingResult);
 
@@ -39,5 +39,6 @@ public class DemoController extends BaseController {
         }
         logger.info(JSONObject.fromObject(statusInfo).toString());
         return ResponseBean.ok("");
+
     }
 }

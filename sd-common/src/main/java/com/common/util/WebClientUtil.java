@@ -24,20 +24,14 @@ public class WebClientUtil {
 
     public static <T> T doPost(String url, Object reqBody, Class<T> clazz){
 
-        return postReq(url,null,reqBody,clazz,null);
+        return postReq(url,null,reqBody,clazz);
     }
 
     public static <T> T doPost(String url, Object reqBody,
                                Class<T> clazz,
                                Map<String,String> headers){
 
-        return postReq(url,headers,reqBody,clazz,null);
-    }
-
-    public static <T> T doPost(String url, Object reqBody, Class<T> clazz,
-                               Map<String,String> headers,
-                               Map<String,String> params){
-        return postReq(url,headers,reqBody,clazz,params);
+        return postReq(url,headers,reqBody,clazz);
     }
 
 
@@ -71,10 +65,9 @@ public class WebClientUtil {
 
 
     private static <T> T postReq(String url, Map<String,String> header,
-                                 Object reqData, Class<T> clazz,
-                                 Map<String,String> params){
+                                 Object reqData, Class<T> clazz){
 
-        WebClient.RequestBodySpec reqUrl = createReqUrl(url, HttpMethod.POST,header,params);
+        WebClient.RequestBodySpec reqUrl = createReqUrl(url, HttpMethod.POST,header,reqData);
         reqUrl.body(Mono.just(reqData),Object.class);
         return getResponse(reqUrl,MediaType.APPLICATION_JSON_UTF8,clazz);
     }
@@ -93,7 +86,7 @@ public class WebClientUtil {
     private static WebClient.RequestBodySpec addHeader(Map<String,String> header,
                                                    WebClient.RequestBodySpec reqUrl){
         if (header != null && !header.isEmpty()){
-            header.forEach(reqUrl::cookie);
+            header.forEach(reqUrl::header);
         }
         return reqUrl;
     }
@@ -101,16 +94,12 @@ public class WebClientUtil {
     private static WebClient.RequestBodySpec createReqUrl(String url,
                                                           HttpMethod method,
                                                           Map<String,String> header,
-                                                          Map<String,String> params){
+                                                          Object reqData){
+
         Assert.isTrue(!StringUtils.isEmpty(url),"请求url不能为空");
 
-        logger.info("发送http请求的url为{},url参数为{}",url,isJson(params));
-        WebClient.RequestBodySpec requestBodySpec;
-        if (method.equals(HttpMethod.GET) && params != null){
-            requestBodySpec = url(method).uri(url, params);
-        }else {
-            requestBodySpec = url(method).uri(url);
-        }
+        logger.info("发送http请求的url为{},url参数为{}",url,isJson(reqData));
+        WebClient.RequestBodySpec requestBodySpec = url(method).uri(url);
         addHeader(header,requestBodySpec);
         return requestBodySpec;
     }
@@ -129,7 +118,5 @@ public class WebClientUtil {
         }
         return "null";
     }
-
-
 
 }

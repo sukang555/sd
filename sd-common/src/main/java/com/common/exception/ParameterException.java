@@ -1,6 +1,5 @@
 package com.common.exception;
 
-import org.jetbrains.annotations.NonNls;
 
 /**
  * @author sukang

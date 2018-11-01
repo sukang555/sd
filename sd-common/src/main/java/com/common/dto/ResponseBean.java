@@ -15,6 +15,9 @@ public class ResponseBean {
     private String errorMsg;
 
 
+    public ResponseBean() {
+    }
+
     public ResponseBean(Serializable body, boolean hasError, String errorMsg) {
         this.body = body;
         this.hasError = hasError;
