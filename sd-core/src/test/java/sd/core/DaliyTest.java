@@ -1,7 +1,12 @@
 package sd.core;
 
+import com.HelloAdvice;
+import com.HelloService;
+import com.common.dto.ResponseBean;
+import com.common.util.BeanUtil;
 import com.common.util.WebClientUtil;
 import org.junit.Test;
+import org.springframework.aop.framework.ProxyFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +15,20 @@ import java.util.Map;
  * Created by Administrator on 2018/7/22.
  */
 public class DaliyTest {
+
+    @Test
+    public void main2(){
+        HelloService helloService = new HelloService();
+
+        ProxyFactory proxyFactory = new ProxyFactory(helloService);
+
+        proxyFactory.addAdvice(new HelloAdvice());
+
+        HelloService proxy = (HelloService) proxyFactory.getProxy();
+        ResponseBean canshu = proxy.pushData("canshu");
+
+        System.out.println(BeanUtil.fromObjectToStr(canshu));
+    }
 
     @Test
     public void main3() {

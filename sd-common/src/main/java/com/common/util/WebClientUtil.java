@@ -86,6 +86,8 @@ public class WebClientUtil {
     private static WebClient.RequestBodySpec addHeader(Map<String,String> header,
                                                    WebClient.RequestBodySpec reqUrl){
         if (header != null && !header.isEmpty()){
+            //header.forEach((k,v) -> reqUrl.header(k,v));
+
             header.forEach(reqUrl::header);
         }
         return reqUrl;
