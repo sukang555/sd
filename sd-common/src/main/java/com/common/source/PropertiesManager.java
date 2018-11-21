@@ -18,7 +18,6 @@ import org.springframework.context.annotation.PropertySources;
 /**
  * @ConfigurationProperties(prefix = "sd.active")
  */
-
 public class PropertiesManager {
 
 	@Value("${sd.active.env}")

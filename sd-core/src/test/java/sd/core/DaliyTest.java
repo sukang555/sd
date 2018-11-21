@@ -5,29 +5,69 @@ import com.HelloService;
 import com.common.dto.ResponseBean;
 import com.common.util.BeanUtil;
 import com.common.util.WebClientUtil;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import org.junit.Test;
 import org.springframework.aop.framework.ProxyFactory;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 /**
- * Created by Administrator on 2018/7/22.
+ * @author sukang  on 2018/7/22.
  */
 public class DaliyTest {
 
+
+    @Test
+    public void main4(){
+        try {
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setHost("47.105.107.249");
+            factory.setUsername("test");
+            factory.setPassword("test");
+            factory.setPort(5672);
+            factory.setVirtualHost("/test");
+            Connection connection = factory.newConnection();
+            Channel channel = connection.createChannel();
+
+            String message = "{\"applyNo\":\"2021846\",\"code\":\"100000\"," +
+                    "\"link\":\"REQUEST_FUNDS\",\"message\":\"success\"," +
+                    "\"needSupply\":true} ";
+
+
+            channel.basicPublish("amq.direct", "demo", null, message.getBytes());
+            System.out.println(" [x] Sent '" + message + "'");
+
+            channel.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
     @Test
     public void main2(){
-        HelloService helloService = new HelloService();
+        /*HelloService helloService = new HelloService();
 
         ProxyFactory proxyFactory = new ProxyFactory(helloService);
 
         proxyFactory.addAdvice(new HelloAdvice());
 
         HelloService proxy = (HelloService) proxyFactory.getProxy();
-        ResponseBean canshu = proxy.pushData("canshu");
+        ResponseBean canshu = proxy.pushData(null);
 
-        System.out.println(BeanUtil.fromObjectToStr(canshu));
+        System.out.println(BeanUtil.fromObjectToStr(canshu));*/
+
+
+        System.out.println(Base64.getDecoder().decode("eyJhcHBseU5vIjoiMjAyMTg0NiIsImNvZGUiOiIxMDAwMDAiLCJsaW5rIjoiUkVRVUVTVF9GVU5EUyIsIm1lc3NhZ2UiOiJzdWNjZXNzIiwibmVlZFN1cHBseSI6dHJ1ZX0g".getBytes()));
     }
 
     @Test

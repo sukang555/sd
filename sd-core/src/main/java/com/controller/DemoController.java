@@ -9,12 +9,15 @@ import net.sf.json.JSONObject;
 import org.apache.shiro.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @author sukang
@@ -24,6 +27,34 @@ import javax.servlet.http.HttpServletRequest;
 public class DemoController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
+
+    @Resource
+    private RabbitTemplate rabbitTemplate;
+
+
+
+
+    @PostMapping("mq")
+    public ResponseBean sendMq(){
+        String message = "{\"applyNo\":\"2021846\",\"code\":\"100000\"," +
+                "\"link\":\"REQUEST_FUNDS\",\"message\":\"success\"," +
+                "\"needSupply\":true} ";
+        rabbitTemplate.convertAndSend("amq.direct","sukang",message);
+
+        return ResponseBean.ok("success");
+    }
+
+
+
+
+
+
+
+    @GetMapping("/success")
+    public String success(){
+        return "success";
+    }
+
 
     @PostMapping(value = "/status-info")
     public ResponseBean getStatusInfo(

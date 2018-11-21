@@ -11,7 +11,7 @@ import javax.inject.Named;
 import javax.sql.DataSource;
 
 /**
- * Created by sukang on 2018/8/3.
+ * @author   sukang on 2018/8/3.
  */
 
 @Configuration

@@ -3,10 +3,14 @@ package com;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
-@ComponentScan("com")
+/**
+ * @author sukang
+ */
+@SpringBootApplication(
+		scanBasePackages = {"com"}
+
+		)
 public class SdCoreApplication {
 
 	public static void main(String[] args) {
