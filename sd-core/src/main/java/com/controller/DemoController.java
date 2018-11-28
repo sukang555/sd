@@ -17,6 +17,7 @@ import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.plaf.basic.BasicRadioButtonMenuItemUI;
 import java.util.Map;
 
 /**
@@ -39,20 +40,15 @@ public class DemoController extends BaseController {
         String message = "{\"applyNo\":\"2021846\",\"code\":\"100000\"," +
                 "\"link\":\"REQUEST_FUNDS\",\"message\":\"success\"," +
                 "\"needSupply\":true} ";
-        rabbitTemplate.convertAndSend("amq.direct","sukang",message);
-
+        rabbitTemplate.convertAndSend("sukang",message);
         return ResponseBean.ok("success");
     }
 
 
+    @PostMapping("/success")
+    public Mono<ResponseBean> success(Map<String,String> map){
+        return Mono.just(ResponseBean.ok(""));
 
-
-
-
-
-    @GetMapping("/success")
-    public String success(){
-        return "success";
     }
 
 

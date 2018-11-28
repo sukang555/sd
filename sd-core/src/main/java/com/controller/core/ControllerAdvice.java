@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import reactor.core.publisher.Mono;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,22 +25,22 @@ public class ControllerAdvice {
 
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
-    public ResponseBean exceptionHandler(BusinessException ex){
-        return ResponseBean.failure(BaseMsg.failure("",ex.getMessage()));
+    public Mono<ResponseBean> exceptionHandler(BusinessException ex){
+        return Mono.just(ResponseBean.failure(BaseMsg.failure("",ex.getMessage())));
     }
 
 
     @ExceptionHandler(ParameterException.class)
     @ResponseBody
-    public ResponseBean exceptionHandler(ParameterException ex){
-        return ResponseBean.paramError(ex.getMessage());
+    public Mono<ResponseBean> exceptionHandler(ParameterException ex){
+        return Mono.just(ResponseBean.paramError(ex.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public ResponseBean exceptionHandler(Exception ex, HttpServletRequest request){
+    public Mono<ResponseBean> exceptionHandler(Exception ex, HttpServletRequest request){
         logger.error("请求路径为{},程序异常",request.getRequestURL(),ex);
-        return ResponseBean.paramError("程序异常");
+        return Mono.just(ResponseBean.paramError("程序异常"));
     }
 
 

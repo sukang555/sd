@@ -119,10 +119,13 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
+
+				<!--打包排除config下的所有文件-->
 				<excludes>
 					<exclude>config/dev/*</exclude>
 					<exclude>config/prd/*</exclude>
 				</excludes>
+				<!-- 指定filters 文件的变量值在resource 下是否有效-->
 				<filtering>true</filtering>
 			</resource>
 		</resources>

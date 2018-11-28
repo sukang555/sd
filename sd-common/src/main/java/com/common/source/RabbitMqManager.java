@@ -4,15 +4,17 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.ManagedBean;
 
 /**
  * @author sukang
  */
 
-
+@ManagedBean
 @PropertySource("classpath:sd.properties")
 @ConfigurationProperties(prefix = "spring.rabbitmq.test")
-@Configuration
 public class RabbitMqManager {
 
     private String host;
