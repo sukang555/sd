@@ -1,5 +1,7 @@
 package com.common.dto;
 
+import com.common.util.BeanUtil;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -32,5 +34,10 @@ public class StatusInfo {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return BeanUtil.fromObjectToStr(this);
     }
 }
