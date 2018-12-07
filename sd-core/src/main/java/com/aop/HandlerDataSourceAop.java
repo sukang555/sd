@@ -1,12 +1,12 @@
-package com.datasource;
+package com.aop;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLBoundOperation;
+import com.datasource.DataSourceNames;
+import com.datasource.DynamicRouteDataSource;
+import com.datasource.HandlerDataSource;
 import org.apache.commons.lang.StringUtils;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class HandlerDataSourceAop {
      *   //@within 在类上设置
         // @annotation 在方法上进行设置
      */
-    @Pointcut("@within(com.datasource.DynamicRouteDataSource)" +
+    @Pointcut(" execution(* com.service.*.*(..)) || @within(com.datasource.DynamicRouteDataSource)" +
             " || @annotation(com.datasource.DynamicRouteDataSource)")
     private void pointcut(){}
 
