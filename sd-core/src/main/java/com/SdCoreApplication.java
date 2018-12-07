@@ -1,6 +1,7 @@
 package com;
 
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -16,6 +17,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 		)
 @EnableConfigurationProperties
 @EnableAsync
+@MapperScan(basePackages = {"com.mapper"})
 public class SdCoreApplication {
 
 	public static void main(String[] args) {

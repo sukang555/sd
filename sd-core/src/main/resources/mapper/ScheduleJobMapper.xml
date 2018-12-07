@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.ScheduleJobMapper" >
+
+    <resultMap id="BaseResultMap" type="com.common.entity.ScheduleJobEntity" >
+        <id column="job_id" property="jobId" jdbcType="BIGINT" />
+        <result column="bean_name" property="beanName" jdbcType="VARCHAR" />
+        <result column="method_name" property="methodName" jdbcType="VARCHAR" />
+        <result column="params" property="params" jdbcType="VARCHAR" />
+        <result column="cron_expression" property="cronExpression" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="TINYINT" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        job_id, bean_name, method_name, params, cron_expression, status, remark, create_time, 
+        update_time
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from schedule_job
+        where job_id = #{jobId}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from schedule_job
+        where job_id = #{jobId}
+    </delete>
+
+    <insert id="insert" parameterType="com.common.entity.ScheduleJobEntity" >
+        insert into schedule_job (job_id, bean_name, method_name, 
+            params, cron_expression, status, 
+            remark, create_time, update_time
+            )
+        values (#{jobId,jdbcType=BIGINT}, #{beanName,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, 
+            #{params,jdbcType=VARCHAR}, #{cronExpression,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+            #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.common.entity.ScheduleJobEntity" >
+        insert into schedule_job
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="jobId != null" >
+                job_id,
+            </if>
+            <if test="beanName != null" >
+                bean_name,
+            </if>
+            <if test="methodName != null" >
+                method_name,
+            </if>
+            <if test="params != null" >
+                params,
+            </if>
+            <if test="cronExpression != null" >
+                cron_expression,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="remark != null" >
+                remark,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="jobId != null" >
+                #{jobId,jdbcType=BIGINT},
+            </if>
+            <if test="beanName != null" >
+                #{beanName,jdbcType=VARCHAR},
+            </if>
+            <if test="methodName != null" >
+                #{methodName,jdbcType=VARCHAR},
+            </if>
+            <if test="params != null" >
+                #{params,jdbcType=VARCHAR},
+            </if>
+            <if test="cronExpression != null" >
+                #{cronExpression,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="remark != null" >
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.common.entity.ScheduleJobEntity" >
+        update schedule_job
+        <set >
+            <if test="beanName != null" >
+                bean_name = #{beanName,jdbcType=VARCHAR},
+            </if>
+            <if test="methodName != null" >
+                method_name = #{methodName,jdbcType=VARCHAR},
+            </if>
+            <if test="params != null" >
+                params = #{params,jdbcType=VARCHAR},
+            </if>
+            <if test="cronExpression != null" >
+                cron_expression = #{cronExpression,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="remark != null" >
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where job_id = #{jobId,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.common.entity.ScheduleJobEntity" >
+        update schedule_job
+        set bean_name = #{beanName,jdbcType=VARCHAR},
+            method_name = #{methodName,jdbcType=VARCHAR},
+            params = #{params,jdbcType=VARCHAR},
+            cron_expression = #{cronExpression,jdbcType=VARCHAR},
+            status = #{status,jdbcType=TINYINT},
+            remark = #{remark,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where job_id = #{jobId,jdbcType=BIGINT}
+    </update>
+</mapper>
