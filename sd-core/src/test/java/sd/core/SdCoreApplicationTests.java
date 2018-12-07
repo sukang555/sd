@@ -41,9 +41,12 @@ public class SdCoreApplicationTests {
 	public void main2(){
 
 		ScheduleJobEntity scheduleJobEntity = scheduleJobMapper.selectByPrimaryKey(1l);
-
 		System.out.println(BeanUtil.fromObjectToStr(scheduleJobEntity));
 
+		scheduleJobEntity.setRemark("这是第二个数据源插入的数据");
+		int i = scheduleJobMapper.updateByPrimaryKey(scheduleJobEntity);
+
+		System.out.println("i++++++"+i);
 	}
 
 

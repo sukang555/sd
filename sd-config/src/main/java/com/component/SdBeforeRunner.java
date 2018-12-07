@@ -2,6 +2,7 @@ package com.component;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.annotation.ManagedBean;
@@ -36,15 +38,19 @@ public class SdBeforeRunner implements CommandLineRunner {
 		logger.info("开始加载初始数据");
 		
 		initTables();
+
+		printBeans();
 		
 		logger.info("获取到的spring上下文信息为:"+ApplicationUtils.getApplicationContext().toString());
 		logger.info("数据加载完毕");
 	}
-	
-	
-	
-	
-	
+
+	private void printBeans() {
+		ApplicationContext applicationContext = ApplicationUtils.getApplicationContext();
+
+		String[] names = applicationContext.getBeanDefinitionNames();
+		Arrays.stream(names).forEach(System.out::println);
+	}
 
 
 	private void initTables() {
