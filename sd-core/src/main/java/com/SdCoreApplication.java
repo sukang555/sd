@@ -3,6 +3,7 @@ package com;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,7 +13,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @author sukang
  */
 @SpringBootApplication(
-		scanBasePackages = {"com"}
+		scanBasePackages = {"com"},exclude = {DataSourceAutoConfiguration.class}
 
 		)
 @EnableConfigurationProperties
