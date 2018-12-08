@@ -35,19 +35,24 @@ public class SdCoreApplicationTests {
 	@Resource
 	ScheduleJobService scheduleJobService;
 
-
+	@Test
+	public void main3(){
+		ScheduleJobEntity scheduleJobEntity = scheduleJobService.getFromDataSource(1l);
+		System.out.println(BeanUtil.fromObjectToStr(scheduleJobEntity));
+	}
 
 
 	@Test
 	public void main2(){
 
-		ScheduleJobEntity scheduleJobEntity = scheduleJobService.getById(1l);
+		ScheduleJobEntity scheduleJobEntity = scheduleJobService.getDataSourcePrimary(1l);
 		System.out.println(BeanUtil.fromObjectToStr(scheduleJobEntity));
 
-		scheduleJobEntity.setRemark("这是第二个数据源插入的数据");
-		int i = scheduleJobService.updateEntity(scheduleJobEntity);
+		scheduleJobEntity.setRemark("这是第二个数据源");
+		Integer integer = scheduleJobService.updateEntity(scheduleJobEntity);
 
-		System.out.println("i++++++"+i);
+		System.out.println(integer);
+
 	}
 
 

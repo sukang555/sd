@@ -7,7 +7,9 @@ import com.common.entity.ScheduleJobEntity;
  */
 public interface ScheduleJobService {
 
-    public ScheduleJobEntity getById(Long id);
+    public ScheduleJobEntity getDataSourcePrimary(Long id);
+
+    public ScheduleJobEntity getFromDataSource(Long id);
 
     public Integer updateEntity(ScheduleJobEntity scheduleJobEntity);
 }

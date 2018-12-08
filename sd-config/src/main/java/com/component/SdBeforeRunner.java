@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import com.common.util.BeanUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +17,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.annotation.ManagedBean;
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.sql.DataSource;
 
 /**
  * @author sukang
@@ -29,7 +32,7 @@ public class SdBeforeRunner implements CommandLineRunner {
     private JdbcTemplate jdbcTemplate;
 
 	@Inject
-	public SdBeforeRunner(JdbcTemplate jdbcTemplate) {
+	public SdBeforeRunner(@Named("secondJdbcTemplate") JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
@@ -37,7 +40,7 @@ public class SdBeforeRunner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		logger.info("开始加载初始数据");
 		
-		initTables();
+		//initTables();
 
 		printBeans();
 		
@@ -48,8 +51,12 @@ public class SdBeforeRunner implements CommandLineRunner {
 	private void printBeans() {
 		ApplicationContext applicationContext = ApplicationUtils.getApplicationContext();
 
-		String[] names = applicationContext.getBeanDefinitionNames();
-		Arrays.stream(names).forEach(System.out::println);
+		String[] dateSourceBeanNames = applicationContext.getBeanNamesForType(DataSource.class);
+
+		Arrays.stream(dateSourceBeanNames).forEach(t -> {
+			DataSource bean = applicationContext.getBean(t, DataSource.class);
+			logger.info("{}获取到的数据源信息为{}",t,bean.toString());
+		});
 	}
 
 

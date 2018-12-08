@@ -24,7 +24,7 @@ public class HandlerDataSource extends AbstractRoutingDataSource{
 
     public static Object getDataSource() {
         String dataSourceKey = dataSourceThreadLocal.get();
-        Assert.isTrue(StringUtils.isBlank(dataSourceKey),"未找到数据源");
+        Assert.isTrue(StringUtils.isNotBlank(dataSourceKey),"未找到数据源");
         return dataSourceKey;
     }
 
@@ -34,7 +34,7 @@ public class HandlerDataSource extends AbstractRoutingDataSource{
 
     @Override
     protected Object determineCurrentLookupKey() {
-        return dataSourceThreadLocal.get();
+        return getDataSource();
     }
 
     public static void clearDataSource() {

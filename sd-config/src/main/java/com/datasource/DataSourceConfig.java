@@ -1,5 +1,6 @@
 package com.datasource;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -25,15 +26,14 @@ public class DataSourceConfig {
 
     @ConfigurationProperties(prefix = "spring.datasource.first")
     @Bean(name = "firstSource")
-    @Primary
     public DataSource firstSource(){
-       return DataSourceBuilder.create().build();
+       return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
 
     @ConfigurationProperties(prefix = "spring.datasource.second")
     @Bean(value = "secondSource")
     public DataSource secondSource(){
-        return DataSourceBuilder.create().build();
+        return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
 
 
@@ -60,16 +60,6 @@ public class DataSourceConfig {
         targetDataSources.put(DataSourceNames.FIRST, firstDataSource);
         targetDataSources.put(DataSourceNames.SECOND, secondDataSource);
         return new HandlerDataSource(firstDataSource, targetDataSources);
-    }
-
-
-    @Bean
-    public SqlSessionFactory sqlSessionFactory(HandlerDataSource dataSource) throws Exception {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource);
-        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
-                .getResources("classpath:mapper/*.xml"));
-        return sqlSessionFactoryBean.getObject();
     }
 
 
