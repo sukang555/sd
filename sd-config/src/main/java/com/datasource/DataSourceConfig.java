@@ -27,7 +27,7 @@ public class DataSourceConfig {
     @ConfigurationProperties(prefix = "spring.datasource.first")
     @Bean(name = "firstSource")
     public DataSource firstSource(){
-       return DataSourceBuilder.create().type(HikariDataSource.class).build();
+       return DataSourceBuilder.create().build();
     }
 
     @ConfigurationProperties(prefix = "spring.datasource.second")

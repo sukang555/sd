@@ -12,10 +12,8 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 
 import javax.annotation.ManagedBean;
-import java.lang.reflect.AnnotatedArrayType;
 import java.lang.reflect.Method;
 
 /**
