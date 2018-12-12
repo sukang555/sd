@@ -1,4 +1,4 @@
-package com.common.dto;
+package com.dto;
 
 import com.common.util.BeanUtil;
 

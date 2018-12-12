@@ -1,4 +1,4 @@
-package com;
+package com.core.component;
 
 import com.common.dto.ResponseBean;
 import org.springframework.lang.NonNull;

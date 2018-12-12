@@ -1,4 +1,4 @@
-package com;
+package com.core.component;
 
 import com.common.util.BeanUtil;
 import org.springframework.aop.AfterReturningAdvice;

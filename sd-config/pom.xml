@@ -15,9 +15,6 @@
 		<version>1.0.0</version>
 	</parent>
 
-
-
-
 	<dependencies>
 
 		<!--项目依赖-->
@@ -28,9 +25,20 @@
 		</dependency>
 
 		<!--spring核心依赖-->
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
@@ -44,19 +52,13 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>com.zaxxer</groupId>
-					<artifactId>HikariCP</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-spring</artifactId>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
 		</dependency>
 
 
@@ -65,7 +67,6 @@
 			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
 		<dependency>
 		    <groupId>org.quartz-scheduler</groupId>
 		    <artifactId>quartz</artifactId>
@@ -74,12 +75,6 @@
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
     </dependencies>
 

@@ -1,9 +1,9 @@
 package com.controller;
 
 import com.common.dto.ResponseBean;
-import com.common.dto.StatusInfo;
 import com.common.exception.Exceptions;
 import com.controller.core.BaseController;
+import com.dto.StatusInfo;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

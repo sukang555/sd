@@ -1,24 +1,14 @@
-package sd.core;
+package com;
 
-import com.HelloAdvice;
-import com.HelloService;
-import com.common.dto.ResponseBean;
-import com.common.util.BeanUtil;
-import com.common.util.WebClientUtil;
+import com.util.WebClientUtil;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.defaults.DefaultSqlSession;
 import org.junit.Test;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.springframework.aop.framework.ProxyFactory;
 
-import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeoutException;
 
 /**
  * @author sukang  on 2018/7/22.

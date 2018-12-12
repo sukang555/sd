@@ -1,18 +1,15 @@
 package com.config;
 
-import com.common.source.RabbitMqManager;
+import com.source.RabbitMqManager;
 import com.config.base.RabbitMqConfigBase;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 import javax.inject.Inject;
 import javax.inject.Named;

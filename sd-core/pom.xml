@@ -15,14 +15,9 @@
 		<version>1.0.0</version>
 	</parent>
 
-
-
 	<properties>
 
 	</properties>
-
-
-
 
 	<profiles>
 		<profile>
@@ -34,7 +29,6 @@
 				<profiles.active>dev</profiles.active>
 			</properties>
 		</profile>
-
 
 		<profile>
 			<id>prd</id>
@@ -50,7 +44,6 @@
 
 	<dependencies>
 
-
 		<!--项目依赖-->
 		<dependency>
 			<groupId>com.sd.config</groupId>
@@ -58,32 +51,11 @@
 			<version>${sd.config}</version>
 		</dependency>
 
-
 		<!--spring核心依赖-->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-aop</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -91,11 +63,6 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-		<!--mysql 依赖-->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
 	</dependencies>
 
 

@@ -1,4 +1,4 @@
-package sd.core;
+package com;
 
 import com.SdCoreApplication;
 import com.common.entity.ScheduleJobEntity;

@@ -1,4 +1,4 @@
-package com.common.util;
+package com.util;
 
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
