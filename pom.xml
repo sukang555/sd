@@ -24,12 +24,14 @@
     </parent>
 
     <properties>
+        <!--模块版本-->
         <sd.commmon>1.0.0</sd.commmon>
         <sd.config>1.0.0</sd.config>
-
-    	<skipTests>true</skipTests>
+        <!--打包配置-->
+    	<skip.tests>true</skip.tests>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
+        <!--第三方包版本配置-->
         <json.lib.version>2.4</json.lib.version>
         <java.mysql.version>5.1.46</java.mysql.version>
         <spring.quarz.version>2.3.0</spring.quarz.version>
@@ -132,7 +134,7 @@
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
-                        <skip>true</skip>
+                        <skip>${skip.tests}</skip>
                         <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
                 </plugin>
