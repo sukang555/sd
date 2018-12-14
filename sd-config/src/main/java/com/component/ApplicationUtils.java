@@ -8,7 +8,7 @@ import javax.annotation.ManagedBean;
 import java.util.Map;
 
 /**
- * Created by sukang on 2018/7/10.
+ * @author sukang on 2018/7/10.
  */
 @ManagedBean
 public class ApplicationUtils implements  ApplicationContextAware{

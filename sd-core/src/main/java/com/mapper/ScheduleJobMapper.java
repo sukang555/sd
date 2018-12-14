@@ -1,8 +1,6 @@
 package com.mapper;
 
 import com.common.entity.ScheduleJobEntity;
-import com.datasource.DataSourceNames;
-import com.datasource.DynamicRouteDataSource;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -15,11 +13,10 @@ public interface ScheduleJobMapper {
     int insert(ScheduleJobEntity record);
 
     int insertSelective(ScheduleJobEntity record);
-    //@DynamicRouteDataSource(DataSourceNames.FIRST)
+
     ScheduleJobEntity selectByPrimaryKey(@Param("jobId") Long jobId);
 
     int updateByPrimaryKeySelective(ScheduleJobEntity record);
 
-   // @DynamicRouteDataSource(DataSourceNames.SECOND)
     int updateByPrimaryKey(ScheduleJobEntity record);
 }

@@ -10,9 +10,11 @@ import org.slf4j.LoggerFactory;
 import com.common.constant.CommonConstant;
 import com.common.util.DateTimeUtil;
 
+/**
+ * @author sukang
+ */
 
-
-public class DemoJob2 extends AbstratJob implements Job{
+public class DemoJob2 extends AbstractJob implements Job{
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	

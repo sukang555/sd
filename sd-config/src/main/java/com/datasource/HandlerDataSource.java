@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class HandlerDataSource extends AbstractRoutingDataSource{
 
-    private final static ThreadLocal<String> dataSourceThreadLocal = new ThreadLocal<>();
+    private final static ThreadLocal<String> DATASOURCE_THREAD_LOCAL = new ThreadLocal<>();
 
     public HandlerDataSource(DataSource defaultTargetDataSource,
                              Map<Object, Object> targetDataSources) {
@@ -23,13 +23,13 @@ public class HandlerDataSource extends AbstractRoutingDataSource{
 
 
     public static Object getDataSource() {
-        String dataSourceKey = dataSourceThreadLocal.get();
+        String dataSourceKey = DATASOURCE_THREAD_LOCAL.get();
         Assert.isTrue(StringUtils.isNotBlank(dataSourceKey),"未找到数据源");
         return dataSourceKey;
     }
 
     public static void setDataSource(String dataSourceKey){
-        dataSourceThreadLocal.set(dataSourceKey);
+        DATASOURCE_THREAD_LOCAL.set(dataSourceKey);
     }
 
     @Override
@@ -38,6 +38,6 @@ public class HandlerDataSource extends AbstractRoutingDataSource{
     }
 
     public static void clearDataSource() {
-        dataSourceThreadLocal.remove();
+        DATASOURCE_THREAD_LOCAL.remove();
     }
 }
