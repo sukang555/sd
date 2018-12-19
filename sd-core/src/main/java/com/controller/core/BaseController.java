@@ -2,9 +2,9 @@ package com.controller.core;
 
 import com.common.dto.ResponseBean;
 import com.common.exception.Exceptions;
+import com.common.util.BeanUtil;
 import com.dto.StatusInfo;
 import com.util.WebClientUtil;
-import net.sf.json.JSONObject;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
@@ -46,7 +46,7 @@ public class BaseController {
         ResponseBean responseBean = WebClientUtil.doPost("http://127.0.0.1:18081/public/status-info",
                 statusInfo, ResponseBean.class,header);
 
-        System.out.println(JSONObject.fromObject(responseBean).toString());
+        System.out.println(BeanUtil.toJsonStr(responseBean));
     }
 
 

@@ -5,7 +5,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author sukang
@@ -17,19 +17,25 @@ public class DateTimeUtil {
 
 
 	public static  String transDateToStr(Date date,String format){
-		return DateTimeFormatter.ofPattern(format).withZone(ZoneId.systemDefault()).format(date.toInstant());
+		return DateTimeFormatter
+				.ofPattern(format)
+				.withZone(ZoneId.systemDefault())
+				.format(date.toInstant());
 	}
 
 	public static  String transDateToStr(Date date){
-		return DateTimeFormatter.ofPattern(DEFAULT_FORMAT).withZone(ZoneId.systemDefault())
+		return DateTimeFormatter
+				.ofPattern(DEFAULT_FORMAT)
+				.withZone(ZoneId.systemDefault())
 				.format(date.toInstant());
 	}
 
 	
 	
 	public static String currentDate(String format){
-		format = StringUtils.isBlank(format) ? DEFAULT_FORMAT : format;
-		return DateTimeFormatter.ofPattern(format).withZone(ZoneId.systemDefault())
+		return DateTimeFormatter
+				.ofPattern(StringUtils.isBlank(format) ? DEFAULT_FORMAT : format)
+				.withZone(ZoneId.systemDefault())
 				.format(LocalDateTime.now());
 	}
 	

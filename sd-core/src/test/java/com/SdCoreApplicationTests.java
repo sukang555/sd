@@ -27,7 +27,7 @@ public class SdCoreApplicationTests {
 	@Test
 	public void main3(){
 		ScheduleJobEntity scheduleJobEntity = scheduleJobService.getFromDataSource(1l);
-		System.out.println(BeanUtil.fromObjectToStr(scheduleJobEntity));
+		System.out.println(BeanUtil.toJsonStr(scheduleJobEntity));
 	}
 
 
@@ -35,7 +35,7 @@ public class SdCoreApplicationTests {
 	public void main2(){
 
 		ScheduleJobEntity scheduleJobEntity = scheduleJobService.getDataSourcePrimary(1l);
-		System.out.println(BeanUtil.fromObjectToStr(scheduleJobEntity));
+		System.out.println(BeanUtil.toJsonStr(scheduleJobEntity));
 
 		scheduleJobEntity.setRemark("这是第二个数据源");
 		Integer integer = scheduleJobService.updateEntity(scheduleJobEntity);

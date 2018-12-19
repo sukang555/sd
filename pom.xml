@@ -43,6 +43,7 @@
         <jetbrains.version>16.0.3</jetbrains.version>
         <jackson.version>2.9.6</jackson.version>
         <slf4j.version>1.7.25</slf4j.version>
+        <fast.json.version>1.2.45</fast.json.version>
     </properties>
 
 
@@ -53,11 +54,11 @@
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
-                <groupId>net.sf.json-lib</groupId>
-                <artifactId>json-lib</artifactId>
-                <version>${json.lib.version}</version>
-                <classifier>jdk15</classifier>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fast.json.version}</version>
             </dependency>
 
             <dependency>
@@ -144,10 +145,12 @@
 
     <repositories>
         <repository>
-            <id>central</id>
-            <name>Central Repository</name>
-            <url>http://repo.maven.apache.org/maven2</url>
-            <layout>default</layout>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>

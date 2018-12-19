@@ -17,7 +17,7 @@ public class HelloAdvice implements MethodBeforeAdvice,AfterReturningAdvice{
                        @Nullable Object target) throws Throwable {
 
         System.out.println(method.getName());
-        System.out.println("目标方法执行前数据为："+BeanUtil.fromObjectToStr(args));
+        System.out.println("目标方法执行前数据为："+BeanUtil.toJsonStr(args));
 
     }
 
@@ -25,6 +25,6 @@ public class HelloAdvice implements MethodBeforeAdvice,AfterReturningAdvice{
     public void afterReturning(@Nullable Object returnValue,
                                Method method, Object[] args,
                                @Nullable Object target) throws Throwable {
-        System.out.println("目标方法执行后"+ BeanUtil.fromObjectToStr(returnValue));
+        System.out.println("目标方法执行后"+ BeanUtil.toJsonStr(returnValue));
     }
 }

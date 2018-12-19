@@ -2,9 +2,9 @@ package com.controller;
 
 import com.common.dto.ResponseBean;
 import com.common.exception.Exceptions;
+import com.common.util.BeanUtil;
 import com.controller.core.BaseController;
 import com.dto.StatusInfo;
-import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -61,7 +61,7 @@ public class DemoController extends BaseController {
         if ("123".equals(statusInfo.getApplyNo())){
             throw Exceptions.newBusinessException("申请编号不存在");
         }
-        logger.info(JSONObject.fromObject(statusInfo).toString());
+        logger.info(BeanUtil.toJsonStr(statusInfo));
         return ResponseBean.ok("");
 
     }

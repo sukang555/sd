@@ -38,6 +38,10 @@ public class StatusInfo {
 
     @Override
     public String toString() {
-        return BeanUtil.fromObjectToStr(this);
+        final StringBuilder sb = new StringBuilder("StatusInfo{");
+        sb.append("applyNo='").append(applyNo).append('\'');
+        sb.append(", type='").append(type).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

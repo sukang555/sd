@@ -3,9 +3,8 @@ package com.common.util;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.common.exception.JsonTransException;
-import net.sf.json.JSONObject;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,15 +32,6 @@ public class BeanUtil {
         OBJECT_MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
     }
 
-    public static JSONObject formObjectToJson(Object object){
-        try {
-            return JSONObject.fromObject(object);
-        } catch (Exception e) {
-            logger.error("json转换异常",e);
-            throw  new JsonTransException(e);
-        }
-    }
-
     public static <T> T fromStrToObj(String jsonStr,Class<T> clazz){
         try {
             return OBJECT_MAPPER.readValue(jsonStr,clazz);
@@ -53,7 +43,7 @@ public class BeanUtil {
 
 
 
-    public static String fromObjectToStr (Object object){
+    public static String toJsonStr (Object object){
         try {
             return OBJECT_MAPPER.writeValueAsString(object);
         }catch (Exception e){
@@ -61,14 +51,4 @@ public class BeanUtil {
         }
         return "";
     }
-
-
-    /*public static  <T> T transJsonStrToObj(String jsonStr,Class<T> clazz){
-        try {
-            return OBJECT_MAPPER.readValue(jsonStr,clazz);
-        }catch (Exception e) {
-            logger.error("json字符串转bean异常，异常信息为：", e);
-            throw new BeanException(e);
-        }
-    }*/
 }

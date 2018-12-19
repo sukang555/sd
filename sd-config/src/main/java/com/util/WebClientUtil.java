@@ -1,6 +1,6 @@
 package com.util;
 
-import net.sf.json.JSONObject;
+import com.common.util.BeanUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
@@ -100,7 +100,8 @@ public class WebClientUtil {
 
         Assert.isTrue(!StringUtils.isEmpty(url),"请求url不能为空");
 
-        logger.info("发送http请求的url为{},url参数为{}",url,isJson(reqData));
+        logger.info("发送http请求的url为{},url参数为{}",url,
+                BeanUtil.toJsonStr(reqData));
         WebClient.RequestBodySpec requestBodySpec = url(method).uri(url);
         addHeader(header,requestBodySpec);
         return requestBodySpec;
@@ -111,14 +112,5 @@ public class WebClientUtil {
         return WebClient.create().method(method);
     }
 
-    private static String isJson(Object reqData){
-
-        try {
-            return JSONObject.fromObject(reqData).toString();
-        }catch (Exception e){
-            logger.error("json转换异常",e);
-        }
-        return "null";
-    }
 
 }

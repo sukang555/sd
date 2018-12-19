@@ -18,7 +18,7 @@ public class RabbitMqConsumer implements ChannelAwareMessageListener {
     @Override
     public void onMessage(Message message, Channel channel) throws Exception {
 
-        logger.info("获取到的mq消息为：{}", BeanUtil.fromObjectToStr(message));
+        logger.info("获取到的mq消息为：{}", BeanUtil.toJsonStr(message));
 
         String body = new String(message.getBody(), "utf-8");
 

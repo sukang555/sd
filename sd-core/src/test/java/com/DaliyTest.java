@@ -1,10 +1,18 @@
 package com;
 
+import com.alibaba.fastjson.JSONObject;
+import com.common.dto.ResponseBean;
+import com.common.util.BeanUtil;
+import com.core.component.HelloAdvice;
+import com.core.component.HelloService;
+import com.dto.StatusInfo;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import com.util.WebClientUtil;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import org.junit.Test;
+import org.springframework.aop.framework.ProxyFactory;
 
 import java.util.Base64;
 import java.util.HashMap;
@@ -22,13 +30,14 @@ public class DaliyTest {
 
     @Test
     public void main5(){
-       try {
+        try {
+            JSONObject jsonObject = new JSONObject();
 
+            System.out.println(jsonObject.toString());
 
-
-       }catch (Exception e){
-
-       }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -64,7 +73,7 @@ public class DaliyTest {
 
     @Test
     public void main2(){
-        /*HelloService helloService = new HelloService();
+        HelloService helloService = new HelloService();
 
         ProxyFactory proxyFactory = new ProxyFactory(helloService);
 
@@ -73,11 +82,9 @@ public class DaliyTest {
         HelloService proxy = (HelloService) proxyFactory.getProxy();
         ResponseBean canshu = proxy.pushData(null);
 
-        System.out.println(BeanUtil.fromObjectToStr(canshu));*/
+        System.out.println(BeanUtil.toJsonStr(canshu));
 
-
-        System.out.println(Base64.getDecoder().decode("eyJhcHBseU5vIjoiMjAyMTg0NiIsImNvZGUiOiIxMDAwMDAiLCJsaW5rIjoiUkVRVUVTVF9GVU5EUyIsIm1lc3NhZ2UiOiJzdWNjZXNzIiwibmVlZFN1cHBseSI6dHJ1ZX0g".getBytes()));
-    }
+   }
 
     @Test
     public void main3() {
