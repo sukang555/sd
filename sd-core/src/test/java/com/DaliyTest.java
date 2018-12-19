@@ -6,6 +6,7 @@ import com.common.util.BeanUtil;
 import com.core.component.HelloAdvice;
 import com.core.component.HelloService;
 import com.dto.StatusInfo;
+import com.google.common.collect.Maps;
 import com.sun.org.apache.xpath.internal.SourceTree;
 import com.util.WebClientUtil;
 import com.rabbitmq.client.Channel;
@@ -15,6 +16,7 @@ import org.junit.Test;
 import org.springframework.aop.framework.ProxyFactory;
 
 import java.util.Base64;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,14 +32,7 @@ public class DaliyTest {
 
     @Test
     public void main5(){
-        try {
-            JSONObject jsonObject = new JSONObject();
 
-            System.out.println(jsonObject.toString());
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 
