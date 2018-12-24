@@ -119,23 +119,11 @@ public class DaliyTest {
 
     @Test
     public void main1(){
-        Map<String,String> params = new HashMap<>();
-        params.put("name","sukang");
 
-        String s1 = WebClientUtil.doGet("http://localhost:18080/public/json/name",
-                params,String.class);
+        String s2 = WebClientUtil.doPost("https://dsc.uat.bd.dk/dsc/api/dscOwnApi/findNoMachRuleDataByApplyNo",
+                "2024462", String.class);
 
-
-
-        String s2 = WebClientUtil.doPost("http://localhost:18080/public/json/name1", params, String.class);
-
-       String s3 = WebClientUtil.doGet("http://localhost:18080/public/json/name3", params, String.class);
-
-
-       String htmlStr = WebClientUtil.doGet("https://www.skcore.cn/", String.class);
-
-
-        System.out.println(htmlStr);
+        System.out.println(s2);
 
     }
 }

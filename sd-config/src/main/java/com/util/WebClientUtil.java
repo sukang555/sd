@@ -1,15 +1,21 @@
 package com.util;
 
 import com.common.util.BeanUtil;
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.reactive.ClientHttpConnector;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import javax.net.ssl.SSLException;
 import java.util.Map;
 
 
@@ -19,6 +25,27 @@ import java.util.Map;
 public class WebClientUtil {
 
     private static  final Logger logger = LoggerFactory.getLogger(WebClientUtil.class);
+
+
+    private static WebClient webClient;
+
+    static {
+        SslContext sslContext = null;
+        try {
+            sslContext = SslContextBuilder
+                    .forClient()
+                    .trustManager(InsecureTrustManagerFactory.INSTANCE)
+                    .build();
+        } catch (SSLException e) {
+            e.printStackTrace();
+        }
+
+        SslContext finalSslContext = sslContext;
+        ClientHttpConnector httpConnector = new ReactorClientHttpConnector(opt -> {
+            opt.sslContext(finalSslContext);
+        });
+        webClient = WebClient.builder().clientConnector(httpConnector).build();
+    }
 
 
 
@@ -109,7 +136,7 @@ public class WebClientUtil {
 
 
     private static WebClient.RequestBodyUriSpec url(HttpMethod method){
-        return WebClient.create().method(method);
+        return webClient.method(method);
     }
 
 
