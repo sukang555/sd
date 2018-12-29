@@ -45,6 +45,7 @@
         <slf4j.version>1.7.25</slf4j.version>
         <fast.json.version>1.2.45</fast.json.version>
         <common.io.version>2.5</common.io.version>
+        <javassist.version>3.12.1.GA</javassist.version>
     </properties>
 
 
@@ -55,6 +56,14 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- https://mvnrepository.com/artifact/javassist/javassist -->
+            <dependency>
+                <groupId>javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${javassist.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>commons-io</groupId>

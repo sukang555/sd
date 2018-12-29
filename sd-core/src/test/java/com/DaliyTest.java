@@ -12,6 +12,9 @@ import com.util.WebClientUtil;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.NotFoundException;
 import org.junit.Test;
 import org.springframework.aop.framework.ProxyFactory;
 
@@ -32,6 +35,16 @@ public class DaliyTest {
 
     @Test
     public void main5(){
+
+        try {
+            CtClass ctClass = ClassPool.getDefault().get(StatusInfo.class.getName());
+
+
+
+
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -121,7 +134,7 @@ public class DaliyTest {
     public void main1(){
 
         String s2 = WebClientUtil.doPost("https://dsc.uat.bd.dk/dsc/api/dscOwnApi/findNoMachRuleDataByApplyNo",
-                "2024462", String.class);
+                "1000297999", String.class);
 
         System.out.println(s2);
 
