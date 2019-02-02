@@ -42,5 +42,10 @@ public class ApplicationUtils implements  ApplicationContextAware{
     }
 
 
+    public static BeanFacade getBeanFacade(){
+        return getBean("beanFacade",BeanFacade.class);
+    }
+
+
 
 }

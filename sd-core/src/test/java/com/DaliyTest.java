@@ -12,9 +12,6 @@ import com.util.WebClientUtil;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.NotFoundException;
 import org.junit.Test;
 import org.springframework.aop.framework.ProxyFactory;
 
@@ -36,15 +33,6 @@ public class DaliyTest {
     @Test
     public void main5(){
 
-        try {
-            CtClass ctClass = ClassPool.getDefault().get(StatusInfo.class.getName());
-
-
-
-
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
 
     }
 

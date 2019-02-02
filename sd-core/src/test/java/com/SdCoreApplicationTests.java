@@ -4,6 +4,10 @@ import com.SdCoreApplication;
 import com.common.entity.ScheduleJobEntity;
 import com.common.util.BeanUtil;
 import com.component.ApplicationUtils;
+import com.component.BeanFacade;
+import com.component.JobTask;
+import com.config.RabbitMqConfigTest;
+import com.config.RabbitMqConfigTest2;
 import com.mapper.ScheduleJobMapper;
 import com.service.ScheduleJobService;
 import org.junit.Test;
@@ -11,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -42,8 +47,8 @@ public class SdCoreApplicationTests {
 			e.printStackTrace();
 		}
 
-		ScheduleJobEntity scheduleJobEntity2 = scheduleJobService.getFromDataSource(1l);
-		System.out.println(BeanUtil.toJsonStr(scheduleJobEntity2));
+	/*	ScheduleJobEntity scheduleJobEntity2 = scheduleJobService.getFromDataSource(1l);
+		System.out.println(BeanUtil.toJsonStr(scheduleJobEntity2));*/
 	}
 
 
@@ -74,12 +79,14 @@ public class SdCoreApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		ApplicationUtils.getBeans(JdbcTemplate.class)
-				.forEach((k,v) -> {System.out.println(k + ":"+v);});
+		RabbitMqConfigTest rabbitMqConfigTest = BeanFacade.getRabbitMqConfigTest();
 
-		ApplicationUtils.getBeans(DataSource.class)
-				.forEach((k,v) -> {System.out.println(k + ":"+v);});
+		System.out.println(rabbitMqConfigTest);
 
+		RabbitMqConfigTest2 rabbitMqConfigTest2 =
+				BeanFacade.getRabbitMqConfigTest2();
+
+		System.out.println(rabbitMqConfigTest2);
 
 	}
 
