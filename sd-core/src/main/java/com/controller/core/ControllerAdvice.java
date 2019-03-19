@@ -25,8 +25,8 @@ public class ControllerAdvice {
 
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
-    public Mono<ResponseBean> exceptionHandler(BusinessException ex){
-        return Mono.just(ResponseBean.failure(BaseMsg.failure("",ex.getMessage())));
+    public ResponseBean exceptionHandler(BusinessException ex){
+        return ResponseBean.failure(BaseMsg.failure("",ex.getMessage()));
     }
 
 
