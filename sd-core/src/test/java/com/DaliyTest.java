@@ -15,10 +15,8 @@ import com.rabbitmq.client.ConnectionFactory;
 import org.junit.Test;
 import org.springframework.aop.framework.ProxyFactory;
 
-import java.util.Base64;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import javax.print.DocFlavor;
+import java.util.*;
 
 /**
  * @author sukang  on 2018/7/22.
@@ -27,13 +25,24 @@ public class DaliyTest {
 
 
 
+    @Test
+    public void main6(){
 
+        for (int i = 0; i < 100; i++) {
+            String s = UUID.randomUUID().toString();
+
+            System.out.println(s.replaceAll("-",""));
+        }
+    }
 
 
     @Test
     public void main5(){
 
+        String s = Base64.getEncoder().encodeToString("sukang".getBytes());
+        byte[] bytes = Base64.getDecoder().decode(s);
 
+        System.out.println(s);
     }
 
 

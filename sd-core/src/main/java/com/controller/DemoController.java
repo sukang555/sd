@@ -43,8 +43,8 @@ public class DemoController extends BaseController {
 
 
     @PostMapping("/success")
-    public Mono<ResponseBean> success(Map<String,String> map){
-        return Mono.just(ResponseBean.ok(""));
+    public ResponseBean success(Map<String,String> map){
+        return ResponseBean.ok("");
 
     }
 

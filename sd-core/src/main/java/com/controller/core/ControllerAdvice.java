@@ -32,15 +32,15 @@ public class ControllerAdvice {
 
     @ExceptionHandler(ParameterException.class)
     @ResponseBody
-    public Mono<ResponseBean> exceptionHandler(ParameterException ex){
-        return Mono.just(ResponseBean.paramError(ex.getMessage()));
+    public ResponseBean exceptionHandler(ParameterException ex){
+        return ResponseBean.paramError(ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public Mono<ResponseBean> exceptionHandler(Exception ex, HttpServletRequest request){
+    public ResponseBean exceptionHandler(Exception ex, HttpServletRequest request){
         logger.error("请求路径为{},程序异常",request.getRequestURL(),ex);
-        return Mono.just(ResponseBean.paramError("程序异常"));
+        return ResponseBean.paramError("程序异常");
     }
 
 
