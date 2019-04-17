@@ -3,6 +3,7 @@ package com;
 import com.alibaba.fastjson.JSONObject;
 import com.common.dto.ResponseBean;
 import com.common.util.BeanUtil;
+import com.common.util.CheckSumBuilder;
 import com.core.component.HelloAdvice;
 import com.core.component.HelloService;
 import com.dto.StatusInfo;
@@ -13,7 +14,14 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import org.junit.Test;
+import org.quartz.simpl.SystemPropertyInstanceIdGenerator;
 import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.print.DocFlavor;
 import java.util.*;
@@ -125,15 +133,65 @@ public class DaliyTest {
     }
 
 
+    @Test
+    public void main21(){
+
+
+        Map<String, String> headerMap = new HashMap<>(4);
+        headerMap.put("AppKey","b08d4bbdaff736fdeb10924f1ec0496e");
+        headerMap.put("Nonce",String.valueOf(System.nanoTime()));
+        headerMap.put("CurTime",String.valueOf(System.currentTimeMillis()/1000));
+        headerMap.put("CheckSum", CheckSumBuilder.getCheckSum(
+                "400ef62f7905",headerMap.get("Nonce"),headerMap.get("CurTime")));
+
+        MultiValueMap<String, String> reqBody = new LinkedMultiValueMap<>();
+
+        final String mobile = "13271357065";
+        reqBody.add("mobile",mobile);
+        reqBody.add("authCode","0501");
+
+        System.out.println(BeanUtil.toJsonStr(headerMap));
+
+
+
+        String s = WebClientUtil.fromReq(
+                "https://api.netease.im/sms/sendcode.action",
+                headerMap,
+                reqBody,
+                String.class,
+                MediaType.APPLICATION_FORM_URLENCODED,
+                null
+        );
+
+        System.out.println(s);
+    }
+
 
 
     @Test
     public void main1(){
 
-        String s2 = WebClientUtil.doPost("https://dsc.uat.bd.dk/dsc/api/dscOwnApi/findNoMachRuleDataByApplyNo",
-                "1000297999", String.class);
+        Map<String, Object> map = new HashMap<>();
 
-        System.out.println(s2);
+        map.put("mobile","17600690562");
+        map.put("codeLen","1234");
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        httpHeaders.add("AppKey","b08d4bbdaff736fdeb10924f1ec0496e");
+        httpHeaders.add("Nonce","");
+        httpHeaders.add("CurTime","");
+        httpHeaders.add("CheckSum","");
+
+        HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<String> exchange = restTemplate.exchange(
+                "https://api.netease.im/sms/sendcode.action",
+                HttpMethod.POST, httpEntity, String.class, map);
+
+        System.out.println(exchange.getBody());
 
     }
 }

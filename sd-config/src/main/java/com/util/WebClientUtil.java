@@ -1,6 +1,5 @@
 package com.util;
 
-import com.common.util.BeanUtil;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
@@ -11,11 +10,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ClientHttpConnector;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.util.Assert;
+import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import javax.net.ssl.SSLException;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -26,7 +27,9 @@ public class WebClientUtil {
 
     private static  final Logger logger = LoggerFactory.getLogger(WebClientUtil.class);
 
-
+    /**
+     * 应用范围的webclient
+     */
     private static WebClient webClient;
 
     static {
@@ -37,7 +40,7 @@ public class WebClientUtil {
                     .trustManager(InsecureTrustManagerFactory.INSTANCE)
                     .build();
         } catch (SSLException e) {
-            e.printStackTrace();
+            logger.error("创建webclient异常",e);
         }
 
         SslContext finalSslContext = sslContext;
@@ -49,95 +52,95 @@ public class WebClientUtil {
 
 
 
-    public static <T> T doPost(String url, Object reqBody, Class<T> clazz){
-
-        return postReq(url,null,reqBody,clazz);
-    }
-
-    public static <T> T doPost(String url, Object reqBody,
-                               Class<T> clazz,
-                               Map<String,String> headers){
-
-        return postReq(url,headers,reqBody,clazz);
+    public static <T> T doPost(String url,Object reqBody,Map<String,String> headers,
+                               Class<T> clazz,MediaType mediaType){
+        return postResponse(url,headers,reqBody,clazz,mediaType,null);
     }
 
 
-    public static <T> T doGet(String url,
-                              Map<String,String> header,
-                              Map<String,String> params,
-                              Class<T> clazz){
-
-        return  getReq(url,header,params,clazz);
+    public static <T> T doPost(String url, Object reqBody,Class<T> clazz,
+                               Map<String,String> headers,MediaType mediaType,
+                               Map<String,?> uriParam){
+        return postResponse(url,headers,reqBody,clazz, mediaType,uriParam);
     }
 
+
+    public static <T> T doGet(String url,Map<String,String> header,
+                              Map<String,String> uriParam,Class<T> clazz){
+        return getResponse(url,header,uriParam,clazz);
+    }
 
     public static <T> T doGet(String url, Class<T> clazz){
+        return getResponse(url,null,null,clazz);
+    }
 
-        return getReq(url,null,null,clazz);
+    public static  <T> T doGet(String url, Map<String,String> uriParam, Class<T> clazz){
+        return getResponse(url,null,uriParam,clazz);
     }
 
 
-    public static  <T> T doGet(String url, Map<String,String> params, Class<T> clazz){
 
-        return getReq(url,null,params,clazz);
-    }
-
-    private static <T> T getReq(String url, Map<String,String> header,
-                                Map<String,String> params,
+    private static <T> T getResponse(String url, Map<String,String> header,
+                                Map<String,?> params,
                                 Class<T> clazz){
-        return getResponse(createReqUrl(url, HttpMethod.GET,header,params),
-                MediaType.APPLICATION_JSON_UTF8,
+        return getResponse(createReqUrl(url, HttpMethod.GET,
+                MediaType.APPLICATION_JSON_UTF8,header,params),
                 clazz);
     }
 
+    public static <T> T fromReq(String url, Map<String, String> header,
+                                 MultiValueMap<String,String> reqData, Class<T> clazz,
+                                 MediaType mediaType, Map<String,?> uriParam){
 
-    private static <T> T postReq(String url, Map<String,String> header,
-                                 Object reqData, Class<T> clazz){
-
-        WebClient.RequestBodySpec reqUrl = createReqUrl(url, HttpMethod.POST,header,reqData);
-        reqUrl.body(Mono.just(reqData),Object.class);
-        return getResponse(reqUrl,MediaType.APPLICATION_JSON_UTF8,clazz);
+        WebClient.RequestBodySpec reqUrl = createReqUrl(url, HttpMethod.POST,mediaType,
+                header,uriParam);
+        reqUrl.body(BodyInserters.fromFormData(reqData));
+        return getResponse(reqUrl,clazz);
     }
 
-    private static  <T> T getResponse(WebClient.RequestBodySpec requestBodyUriSpec,
-                                      MediaType mediaType, Class<T> clazz){
+
+    private static <T> T postResponse(String url, Map<String, String> header,
+                                 Object reqData, Class<T> clazz,
+                                 MediaType mediaType,Map<String,?> uriParam){
+        WebClient.RequestBodySpec reqUrl = createReqUrl(
+                url, HttpMethod.POST,mediaType,header,uriParam);
+        reqUrl.syncBody(reqData);
+        return getResponse(reqUrl,clazz);
+    }
+
+
+
+    private static  <T> T getResponse(WebClient.RequestBodySpec requestBodyUriSpec,Class<T> clazz){
         return requestBodyUriSpec
-                .accept(mediaType)
                 .retrieve()
                 .bodyToMono(clazz)
                 .block();
     }
 
-
-
-    private static WebClient.RequestBodySpec addHeader(Map<String,String> header,
+    private static void addHeader(Map<String,String> header,
                                                    WebClient.RequestBodySpec reqUrl){
         if (header != null && !header.isEmpty()){
-            //header.forEach((k,v) -> reqUrl.header(k,v));
-
             header.forEach(reqUrl::header);
         }
-        return reqUrl;
     }
 
     private static WebClient.RequestBodySpec createReqUrl(String url,
                                                           HttpMethod method,
+                                                          MediaType mediaType,
                                                           Map<String,String> header,
-                                                          Object reqData){
+                                                          Map<String,?> uriParam){
 
         Assert.isTrue(!StringUtils.isEmpty(url),"请求url不能为空");
+        if (uriParam == null){
+            uriParam = new HashMap<>(1);
+        }
+        WebClient.RequestBodySpec requestBodySpec = webClient
+                .method(method)
+                .uri(url,uriParam)
+                .contentType(mediaType);
 
-        logger.info("发送http请求的url为{},url参数为{}",url,
-                BeanUtil.toJsonStr(reqData));
-        WebClient.RequestBodySpec requestBodySpec = url(method).uri(url);
         addHeader(header,requestBodySpec);
         return requestBodySpec;
     }
-
-
-    private static WebClient.RequestBodyUriSpec url(HttpMethod method){
-        return webClient.method(method);
-    }
-
 
 }

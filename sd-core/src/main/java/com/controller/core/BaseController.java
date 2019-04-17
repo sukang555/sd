@@ -31,23 +31,4 @@ public class BaseController {
         }
     }
 
-
-
-
-    public static void main(String[] args) {
-
-        StatusInfo statusInfo = new StatusInfo();
-        statusInfo.setApplyNo("");
-        statusInfo.setType("");
-
-        Map<String, String> header = new HashMap<>(3);
-        header.put("Autho","sukang");
-
-        ResponseBean responseBean = WebClientUtil.doPost("http://127.0.0.1:18081/public/status-info",
-                statusInfo, ResponseBean.class,header);
-
-        System.out.println(BeanUtil.toJsonStr(responseBean));
-    }
-
-
 }
