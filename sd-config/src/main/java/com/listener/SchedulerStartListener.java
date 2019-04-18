@@ -1,6 +1,8 @@
 package com.listener;
 
+import javax.annotation.Nullable;
 import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +12,9 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 import com.component.JobTask;
 
+/**
+ * @author sukang
+ */
 @Configuration
 public class SchedulerStartListener implements ApplicationListener<ContextRefreshedEvent> {
 	
@@ -19,14 +24,13 @@ public class SchedulerStartListener implements ApplicationListener<ContextRefres
 	
 	
 	@Override
-	public void onApplicationEvent(ContextRefreshedEvent event) {
+	public void onApplicationEvent(@Nullable ContextRefreshedEvent event) {
 		jobTask.start();
 	}
 	
 	@Bean
     public SchedulerFactoryBean schedulerFactoryBean() {
-        SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
-        return schedulerFactoryBean;
+        return new SchedulerFactoryBean();
     }
 
 }

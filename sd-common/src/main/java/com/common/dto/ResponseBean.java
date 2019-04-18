@@ -1,11 +1,19 @@
 package com.common.dto;
 
 
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
  * @author sukang
  */
+
+@Setter
+@Getter
 public class ResponseBean {
 
     private Serializable body;
@@ -14,9 +22,7 @@ public class ResponseBean {
 
     private String errorMsg;
 
-
-    public ResponseBean() {
-    }
+    public ResponseBean() {}
 
     public ResponseBean(Serializable body, boolean hasError, String errorMsg) {
         this.body = body;
@@ -54,30 +60,6 @@ public class ResponseBean {
                 .hasError(false).builder();
     }
 
-
-    public Serializable getBody() {
-        return body;
-    }
-
-    public void setBody(BaseMsg body) {
-        this.body = body;
-    }
-
-    public boolean isHasError() {
-        return hasError;
-    }
-
-    public void setHasError(boolean hasError) {
-        this.hasError = hasError;
-    }
-
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
 }
 
 

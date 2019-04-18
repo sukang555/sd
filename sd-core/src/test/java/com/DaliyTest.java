@@ -152,8 +152,6 @@ public class DaliyTest {
 
         System.out.println(BeanUtil.toJsonStr(headerMap));
 
-
-
         String s = WebClientUtil.fromReq(
                 "https://api.netease.im/sms/sendcode.action",
                 headerMap,

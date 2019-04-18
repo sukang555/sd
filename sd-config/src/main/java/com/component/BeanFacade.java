@@ -42,10 +42,6 @@ public class BeanFacade {
         this.rabbitMqConfigTest2 = rabbitMqConfigTest2;
     }
 
-
-
-
-
     private JobTask jobTask;
 
     public static JobTask getJobTask() {

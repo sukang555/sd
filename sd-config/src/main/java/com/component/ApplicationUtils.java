@@ -47,5 +47,8 @@ public class ApplicationUtils implements  ApplicationContextAware{
     }
 
 
+    public void publishEvent(Object event){
+        applicationContext.publishEvent(event);
+    }
 
 }

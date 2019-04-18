@@ -30,7 +30,9 @@ import com.common.constant.CommonConstant;
 import javax.annotation.ManagedBean;
 import javax.inject.Named;
 
-
+/**
+ * @author sukang
+ */
 @ManagedBean
 public class JobTask {
 	

@@ -1,10 +1,16 @@
 package com.common.dto;
 
+import com.common.util.BeanUtil;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
  * @author sukang
  */
+@Setter
+@Getter
 public class BaseMsg<T> implements Serializable {
 
 
@@ -21,29 +27,6 @@ public class BaseMsg<T> implements Serializable {
 
     private T data;
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 
     public BaseMsg(String code, String msg, T data) {
         this.code = code;
@@ -58,12 +41,7 @@ public class BaseMsg<T> implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("BaseMsg{");
-        sb.append("code='").append(code).append('\'');
-        sb.append(", msg='").append(msg).append('\'');
-        sb.append(", data=").append(data);
-        sb.append('}');
-        return sb.toString();
+        return BeanUtil.toJsonStr(this);
     }
 
     public static BaseMsg success(Serializable data) {
@@ -76,9 +54,6 @@ public class BaseMsg<T> implements Serializable {
             return new BaseMsg<>(BaseMsg.FAILURE_CODE,
                     failureInfo, (String) data);
         }
-
-
-
 
         return new  BaseMsg<>(BaseMsg.FAILURE_CODE,
                 failureInfo,data);

@@ -1,5 +1,8 @@
 package com.common.constant;
 
+/**
+ * @author sukang
+ */
 public interface CommonConstant {
 	
 	String JOB_PARAMS_KEY = "params";
