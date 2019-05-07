@@ -41,6 +41,17 @@ public class BeanUtil {
         }
     }
 
+    public static byte[] fromObjToByte(Object object){
+        try {
+
+            return OBJECT_MAPPER.writeValueAsBytes(object);
+
+        }catch (Exception e){
+            logger.error("序列化异常",e);
+            throw  new JsonTransException(e);
+        }
+    }
+
 
 
     public static String toJsonStr (Object object){

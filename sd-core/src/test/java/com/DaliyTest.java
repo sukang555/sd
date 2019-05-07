@@ -2,8 +2,13 @@ package com;
 
 import com.alibaba.fastjson.JSONObject;
 import com.common.dto.ResponseBean;
+import com.common.entity.ScheduleJobEntity;
+import com.common.exception.Exceptions;
+import com.common.exception.ParameterException;
 import com.common.util.BeanUtil;
 import com.common.util.CheckSumBuilder;
+import com.component.JobTask;
+import com.core.component.AbstractTest;
 import com.core.component.HelloAdvice;
 import com.core.component.HelloService;
 import com.dto.StatusInfo;
@@ -13,6 +18,11 @@ import com.util.WebClientUtil;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.ComparatorUtils;
+import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.junit.Test;
 import org.quartz.simpl.SystemPropertyInstanceIdGenerator;
 import org.springframework.aop.framework.ProxyFactory;
@@ -24,14 +34,35 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.print.DocFlavor;
+import java.io.ByteArrayInputStream;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author sukang  on 2018/7/22.
  */
-public class DaliyTest {
+@Slf4j
+public class DaliyTest extends AbstractTest {
+
+    @Test
+    public void main7(){
+
+        log.info("s");
+        ScheduleJobEntity entity1 = new ScheduleJobEntity();
+        entity1.setRemark("helloWorld");
+
+        ScheduleJobEntity entity2 = new ScheduleJobEntity();
+        entity2.setRemark("helloWorld");
+
+        String s = new String(BeanUtil.fromObjToByte(entity1));
+
+        String s2 = new String(BeanUtil.fromObjToByte(entity2));
 
 
+        System.out.println(Objects.equals(s,s2));
+        log.info("end");
+    }
 
     @Test
     public void main6(){
@@ -118,19 +149,6 @@ public class DaliyTest {
         System.out.println(scheduleJobEntity.toString());*/
     }
 
-
-
-
-
-
-
-
-
-
-
-    private static void print(String string){
-        System.out.println(string);
-    }
 
 
     @Test

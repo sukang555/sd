@@ -57,6 +57,7 @@
     <dependencyManagement>
         <dependencies>
 
+
             <!-- https://mvnrepository.com/artifact/javassist/javassist -->
             <dependency>
                 <groupId>javassist</groupId>
@@ -174,7 +175,7 @@
     </build>
 
     <repositories>
-        <repository>
+       <repository>
             <id>alimaven</id>
             <name>aliyun maven</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>

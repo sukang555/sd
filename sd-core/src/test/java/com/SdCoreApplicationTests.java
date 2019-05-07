@@ -10,6 +10,8 @@ import com.config.RabbitMqConfigTest;
 import com.config.RabbitMqConfigTest2;
 import com.mapper.ScheduleJobMapper;
 import com.service.ScheduleJobService;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -34,14 +36,35 @@ public class SdCoreApplicationTests {
 	ScheduleJobService scheduleJobService;
 
 	@Inject
-	@Named("mySqlSessionTemplate")
+	//@Named("mySqlSessionTemplate")
 	SqlSessionTemplate sqlSessionTemplate;
+
+
+	@Inject
+	//@Named("mySqlSessionFactory")
+	SqlSessionFactory sqlSessionFactory;
+
+
+
+	@Test
+	public void main5(){
+
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		//sqlSession.select("","");
+	}
+
+
 
 	@Test
 	public void main4(){
 		try {
-			ScheduleJobEntity scheduleJobEntity = sqlSessionTemplate.getMapper(ScheduleJobMapper.class).selectByPrimaryKey(1l);
-			System.out.println(BeanUtil.toJsonStr(scheduleJobEntity));
+
+			for (int i = 0; i < 10; i++) {
+				ScheduleJobEntity scheduleJobEntity = sqlSessionTemplate.getMapper(
+						ScheduleJobMapper.class).selectByPrimaryKey(1l);
+				System.out.println(BeanUtil.toJsonStr(scheduleJobEntity));
+
+			}
 
 		}catch (Exception e){
 			e.printStackTrace();

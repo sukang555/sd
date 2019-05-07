@@ -26,7 +26,7 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
     }
 
     @Override
-    @DynamicRouteDataSource(DataSourceNames.SECOND)
+    @DynamicRouteDataSource(DataSourceNames.FIRST)
     public ScheduleJobEntity getFromDataSource(Long id) {
         return scheduleJobMapper.selectByPrimaryKey(id);
     }
