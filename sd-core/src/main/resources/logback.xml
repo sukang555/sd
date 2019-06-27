@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration scan="true">
+
+    <property name = "FILE_PATH" value = "logs/"/>
     
    	<appender name = "stdout" class = "ch.qos.logback.core.ConsoleAppender">
 		<encoder>
@@ -11,10 +13,11 @@
 	
 	
 	 <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/sd.log</file>
+         <!--当前文件路径-->
+        <file>${FILE_PATH}/sd.log</file>
         <!--滚动策略 (http://blog.csdn.net/wujianmin577/article/details/68922545)-->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>logs/sd.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${FILE_PATH}/%d{yyyyMMdd}/sd.%d{yyyyMMdd}.%i.log</fileNamePattern>
             <maxHistory>365</maxHistory>
             <maxFileSize>100MB</maxFileSize>
         </rollingPolicy>

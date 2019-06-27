@@ -5,10 +5,13 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.common.exception.JsonTransException;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.sun.org.apache.xml.internal.utils.ObjectVector;
+import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
+import java.util.Map;
 
 /**
  * @author sukang
@@ -62,4 +65,22 @@ public class BeanUtil {
         }
         return "";
     }
+
+
+
+
+    public Map<String,String> beanToMap(Object bean){
+        /*ConvertUtilsBean convertUtils = BeanUtilsBean.getInstance().getConvertUtils();
+        DateConverter dateConverter = new DateConverter();
+        dateConverter.setPattern(DateUtil.DEFAULT_DATE_TIME_FORMAT);
+        convertUtils.register(dateConverter, String.class);
+        return new BeanUtilsBean(convertUtils).describe(object);*/
+
+        return null;
+    }
+
+
+
+
+
 }

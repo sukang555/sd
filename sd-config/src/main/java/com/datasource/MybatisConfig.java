@@ -1,4 +1,3 @@
-/*
 package com.datasource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -11,10 +10,9 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.inject.Named;
 import javax.sql.DataSource;
 
-*/
 /**
  * @author sukang on 2018/12/29.
- *//*
+*/
 
 @Configuration
 @AutoConfigureAfter(DataSourceConfig.class)
@@ -41,4 +39,3 @@ public class MybatisConfig {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 }
-*/

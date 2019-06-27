@@ -45,6 +45,9 @@ import java.util.stream.Stream;
 @Slf4j
 public class DaliyTest extends AbstractTest {
 
+
+
+
     @Test
     public void main7(){
 
@@ -166,7 +169,7 @@ public class DaliyTest extends AbstractTest {
 
         final String mobile = "13271357065";
         reqBody.add("mobile",mobile);
-        reqBody.add("authCode","0501");
+        reqBody.add("authCode","SUKANG");
 
         System.out.println(BeanUtil.toJsonStr(headerMap));
 

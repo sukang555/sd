@@ -81,6 +81,28 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
+
+
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<imageName>${project.artifactId}/-${project.version}</imageName>
+					<!--dockerFile文件位置 target目录-->
+					<dockerDirectory>${project.build.directory}</dockerDirectory>
+					<registryUrl>${docker.image.url}</registryUrl>
+					<pushImage>true</pushImage>
+					<resources>
+						<resource>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
+
+
 		</plugins>
 
 		<resources>
