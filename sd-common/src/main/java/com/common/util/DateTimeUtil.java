@@ -13,7 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 public class DateTimeUtil {
 	
 	
-	private static final String DEFAULT_FORMAT = "yyyy-MM-dd HH:mm:ss";
+	public static final String DEFAULT_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 
 	public static  String transDateToStr(Date date,String format){

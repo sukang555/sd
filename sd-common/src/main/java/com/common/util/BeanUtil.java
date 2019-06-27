@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.common.exception.JsonTransException;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.sun.org.apache.xml.internal.utils.ObjectVector;
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,19 +69,24 @@ public class BeanUtil {
         return "";
     }
 
-
-
-
-    public Map<String,String> beanToMap(Object bean){
-        /*ConvertUtilsBean convertUtils = BeanUtilsBean.getInstance().getConvertUtils();
+    public <T> T mapToBean(Map<String,String> map,Class<T> clazz) throws Exception{
+        T newInstance = clazz.newInstance();
+        ConvertUtilsBean convertUtils = BeanUtilsBean.getInstance().getConvertUtils();
         DateConverter dateConverter = new DateConverter();
-        dateConverter.setPattern(DateUtil.DEFAULT_DATE_TIME_FORMAT);
+        dateConverter.setPattern(DateTimeUtil.DEFAULT_FORMAT);
         convertUtils.register(dateConverter, String.class);
-        return new BeanUtilsBean(convertUtils).describe(object);*/
-
-        return null;
+        new BeanUtilsBean(convertUtils).populate(newInstance,map);
+        return newInstance;
     }
 
+
+    public Map<String,String> beanToMap(Object bean,String dateFormat) throws Exception{
+        ConvertUtilsBean convertUtils = BeanUtilsBean.getInstance().getConvertUtils();
+        DateConverter dateConverter = new DateConverter();
+        dateConverter.setPattern(dateFormat);
+        convertUtils.register(dateConverter, String.class);
+        return new BeanUtilsBean(convertUtils).describe(bean);
+    }
 
 
 
