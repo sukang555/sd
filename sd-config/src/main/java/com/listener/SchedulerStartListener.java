@@ -1,13 +1,12 @@
 package com.listener;
 
-import javax.annotation.Nullable;
 import javax.annotation.Resource;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.lang.Nullable;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 import com.component.JobTask;

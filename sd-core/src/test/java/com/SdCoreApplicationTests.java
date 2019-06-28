@@ -16,6 +16,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,6 +27,9 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.sql.DataSource;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {SdCoreApplication.class})
@@ -48,10 +53,20 @@ public class SdCoreApplicationTests {
 
 	@Test
 	public void main5(){
+        try {
+            RedisTemplate localRedisTemplate = ApplicationUtils.getBean(
+                    "localRedisTemplate", RedisTemplate.class);
 
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		//sqlSession.select("","");
-	}
+            HashOperations opsForHash = localRedisTemplate.opsForHash();
+
+            List sukang = opsForHash.values("sukang");
+
+            System.out.println(BeanUtil.toJsonStr(sukang));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 

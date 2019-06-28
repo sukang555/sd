@@ -5,17 +5,10 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.common.exception.JsonTransException;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.sun.org.apache.xml.internal.utils.ObjectVector;
-import org.apache.commons.beanutils.BeanUtilsBean;
-import org.apache.commons.beanutils.ConvertUtilsBean;
-import org.apache.commons.beanutils.converters.DateConverter;
-import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
-import java.util.Map;
-
 /**
  * @author sukang
  */
@@ -69,7 +62,7 @@ public class BeanUtil {
         return "";
     }
 
-    public <T> T mapToBean(Map<String,String> map,Class<T> clazz) throws Exception{
+    /*public <T> T mapToBean(Map<String,String> map,Class<T> clazz) throws Exception{
         T newInstance = clazz.newInstance();
         ConvertUtilsBean convertUtils = BeanUtilsBean.getInstance().getConvertUtils();
         DateConverter dateConverter = new DateConverter();
@@ -86,7 +79,7 @@ public class BeanUtil {
         dateConverter.setPattern(dateFormat);
         convertUtils.register(dateConverter, String.class);
         return new BeanUtilsBean(convertUtils).describe(bean);
-    }
+    }*/
 
 
 

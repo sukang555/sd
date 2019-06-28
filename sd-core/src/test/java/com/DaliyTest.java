@@ -1,6 +1,5 @@
 package com;
 
-import com.alibaba.fastjson.JSONObject;
 import com.common.dto.ResponseBean;
 import com.common.entity.ScheduleJobEntity;
 import com.common.exception.Exceptions;
@@ -12,7 +11,6 @@ import com.core.component.AbstractTest;
 import com.core.component.HelloAdvice;
 import com.core.component.HelloService;
 import com.dto.StatusInfo;
-import com.google.common.collect.Maps;
 import com.sun.org.apache.xpath.internal.SourceTree;
 import com.util.WebClientUtil;
 import com.rabbitmq.client.Channel;
