@@ -6,6 +6,7 @@ import com.common.exception.Exceptions;
 import com.common.exception.ParameterException;
 import com.common.util.BeanUtil;
 import com.common.util.CheckSumBuilder;
+import com.common.util.DateTimeUtil;
 import com.component.JobTask;
 import com.core.component.AbstractTest;
 import com.core.component.HelloAdvice;
@@ -30,6 +31,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
 
 import javax.print.DocFlavor;
 import java.io.ByteArrayInputStream;
@@ -44,7 +47,14 @@ import java.util.stream.Stream;
 public class DaliyTest extends AbstractTest {
 
 
+    @Test
+    public void main8(){
+        System.out.println(Integer.toBinaryString(1));
+        System.out.println(Integer.toBinaryString(~1));
 
+        System.out.println(1 & ~1);
+
+    }
 
     @Test
     public void main7(){

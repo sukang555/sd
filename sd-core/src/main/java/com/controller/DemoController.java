@@ -11,6 +11,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
@@ -38,13 +39,14 @@ public class DemoController extends BaseController {
                 "\"link\":\"REQUEST_FUNDS\",\"message\":\"success\"," +
                 "\"needSupply\":true} ";
         rabbitTemplate.convertAndSend("sukang",message);
+
         return ResponseBean.ok("success");
     }
 
 
     @PostMapping("/success")
     public ResponseBean success(Map<String,String> map){
-        return ResponseBean.ok("");
+        return ResponseBean.ok("1.0");
 
     }
 

@@ -10,12 +10,14 @@ import com.config.RabbitMqConfigTest;
 import com.config.RabbitMqConfigTest2;
 import com.mapper.ScheduleJobMapper;
 import com.service.ScheduleJobService;
+import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,6 +29,7 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -55,13 +58,16 @@ public class SdCoreApplicationTests {
 	public void main5(){
         try {
             RedisTemplate localRedisTemplate = ApplicationUtils.getBean(
-                    "localRedisTemplate", RedisTemplate.class);
+                    "localRedisTemplate2", RedisTemplate.class);
 
             HashOperations opsForHash = localRedisTemplate.opsForHash();
 
-            List sukang = opsForHash.values("sukang");
+            for (int i = 0; i < 100; i++) {
+                Double increment = opsForHash.increment("sukang",
+                        "s1", new BigDecimal(0.01).doubleValue());
+                System.out.println(increment);
+            }
 
-            System.out.println(BeanUtil.toJsonStr(sukang));
         } catch (Exception e) {
             e.printStackTrace();
         }
