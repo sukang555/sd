@@ -46,8 +46,8 @@ public class DemoController extends BaseController {
 
     @PostMapping("/success")
     public ResponseBean success(Map<String,String> map){
+        System.out.println("develop");
         return ResponseBean.ok("/develop/1.1");
-
     }
 
 
