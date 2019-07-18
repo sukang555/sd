@@ -8,6 +8,7 @@ import com.dto.StatusInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.context.annotation.Bean;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,7 @@ public class DemoController extends BaseController {
 
     @PostMapping("/success")
     public ResponseBean success(Map<String,String> map){
+        logger.info(BeanUtil.toJsonStr(map));
         return ResponseBean.ok("/feature/test/1.1");
     }
 
