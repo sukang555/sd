@@ -47,7 +47,7 @@ public class DemoController extends BaseController {
 
     @PostMapping("/success")
     public ResponseBean success(Map<String,String> map){
-        logger.info("master"+BeanUtil.toJsonStr(map));
+        logger.info("master1.0"+BeanUtil.toJsonStr(map));
         return ResponseBean.ok("/feature/test/1.1");
     }
 
