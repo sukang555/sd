@@ -88,7 +88,6 @@ public class DaliyTest extends AbstractTest {
 
     @Test
     public void main5(){
-
         String s = Base64.getEncoder().encodeToString("sukang".getBytes());
         byte[] bytes = Base64.getDecoder().decode(s);
 

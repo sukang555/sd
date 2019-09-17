@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author sukang
@@ -31,8 +32,11 @@ public class DemoController extends BaseController {
     @Resource
     private RabbitTemplate rabbitTemplate;
 
-
-
+    @GetMapping("/uuid")
+    public String uuId(){
+        String s = UUID.randomUUID().toString();
+        return s.replace("-","");
+    }
 
     @PostMapping("mq")
     public ResponseBean sendMq(){
