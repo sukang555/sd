@@ -5,6 +5,7 @@ import com.common.exception.Exceptions;
 import com.common.util.BeanUtil;
 import com.controller.core.BaseController;
 import com.dto.StatusInfo;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -32,10 +33,34 @@ public class DemoController extends BaseController {
     @Resource
     private RabbitTemplate rabbitTemplate;
 
-    @GetMapping("/uuid")
-    public String uuId(){
-        String s = UUID.randomUUID().toString();
-        return s.replace("-","");
+    @GetMapping("/uuid/{num}")
+    public String uuId(@PathVariable("num") String num){
+        int parseInt;
+        if (NumberUtils.isCreatable(num) && (parseInt = Integer.parseInt(num)) > 0 ){
+            StringBuilder stringBuilder = new StringBuilder(
+                    "<!DOCTYPE html>\n" +
+                            "<html lang=\"en\">\n" +
+                            "<head>\n" +
+                            "    <meta charset=\"UTF-8\">\n" +
+                            "    <title>Title</title>\n" +
+                            "\n" +
+                            "    <style type=\"text/css\">\n" +
+                            "        body{font-family:\"Microsoft YaHei\"}\n" +
+                            "    </style>\n" +
+                            "</head>\n" +
+                            "<body>");
+            for (int i = 0; i < parseInt; i++) {
+                String s = UUID.randomUUID().toString();
+                stringBuilder.append(s.replace("-",""));
+                stringBuilder.append("<br>");
+            }
+            stringBuilder.append("</body>\n" +
+                    "</html>");
+            return stringBuilder.toString();
+        }else {
+            String s = UUID.randomUUID().toString();
+            return s.replace("-","");
+        }
     }
 
     @PostMapping("mq")
