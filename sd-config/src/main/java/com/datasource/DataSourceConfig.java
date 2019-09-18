@@ -49,7 +49,7 @@ public class DataSourceConfig {
     }
 
 
-    @Bean
+    @Bean(name = "routeDateSource")
     public HandlerDataSource dataSource(
             @Named("firstSource") DataSource firstDataSource,
             @Named("secondSource") DataSource secondDataSource) {

@@ -21,7 +21,7 @@ public class MybatisConfig {
 
     @Bean("mySqlSessionFactory")
     public SqlSessionFactory getSqlSessionFactory (
-            @Named("secondSource") DataSource dataSource) throws Exception {
+            @Named("routeDateSource") DataSource dataSource) throws Exception {
 
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);

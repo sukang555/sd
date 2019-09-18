@@ -8,6 +8,8 @@ import com.component.BeanFacade;
 import com.component.JobTask;
 import com.config.RabbitMqConfigTest;
 import com.config.RabbitMqConfigTest2;
+import com.datasource.DataSourceNames;
+import com.datasource.HandlerDataSource;
 import com.mapper.ScheduleJobMapper;
 import com.service.ScheduleJobService;
 import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
@@ -44,13 +46,9 @@ public class SdCoreApplicationTests {
 	ScheduleJobService scheduleJobService;
 
 	@Inject
-	//@Named("mySqlSessionTemplate")
+	@Named("mySqlSessionTemplate")
 	SqlSessionTemplate sqlSessionTemplate;
 
-
-	@Inject
-	//@Named("mySqlSessionFactory")
-	SqlSessionFactory sqlSessionFactory;
 
 
 
@@ -79,20 +77,13 @@ public class SdCoreApplicationTests {
 	@Test
 	public void main4(){
 		try {
+            ScheduleJobEntity scheduleJobEntity = scheduleJobService.getDataSourcePrimary(1l);
+            System.out.println(BeanUtil.toJsonStr(scheduleJobEntity));
 
-			for (int i = 0; i < 10; i++) {
-				ScheduleJobEntity scheduleJobEntity = sqlSessionTemplate.getMapper(
-						ScheduleJobMapper.class).selectByPrimaryKey(1l);
-				System.out.println(BeanUtil.toJsonStr(scheduleJobEntity));
-
-			}
 
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-
-	/*	ScheduleJobEntity scheduleJobEntity2 = scheduleJobService.getFromDataSource(1l);
-		System.out.println(BeanUtil.toJsonStr(scheduleJobEntity2));*/
 	}
 
 

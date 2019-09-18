@@ -5,9 +5,12 @@ import com.datasource.DataSourceNames;
 import com.datasource.DynamicRouteDataSource;
 import com.mapper.ScheduleJobMapper;
 import com.service.ScheduleJobService;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * @author sukang  on 2018/12/7.
@@ -15,13 +18,19 @@ import javax.annotation.Resource;
 @Service
 public class ScheduleJobServiceImpl implements ScheduleJobService {
 
-    @Resource
     ScheduleJobMapper scheduleJobMapper;
+
+    @Inject
+    @Named("mySqlSessionTemplate")
+    SqlSessionTemplate sqlSessionTemplate;
 
 
     @Override
     @DynamicRouteDataSource(DataSourceNames.FIRST)
     public ScheduleJobEntity getDataSourcePrimary(Long id) {
+
+        scheduleJobMapper = sqlSessionTemplate.getMapper(ScheduleJobMapper.class);
+
         return scheduleJobMapper.selectByPrimaryKey(id);
     }
 
