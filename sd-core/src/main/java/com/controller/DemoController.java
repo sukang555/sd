@@ -42,7 +42,7 @@ public class DemoController extends BaseController {
                             "<html lang=\"en\">\n" +
                             "<head>\n" +
                             "    <meta charset=\"UTF-8\">\n" +
-                            "    <title>Title</title>\n" +
+                            "    <title>获取uuid</title>\n" +
                             "\n" +
                             "    <style type=\"text/css\">\n" +
                             "        body{font-family:\"Microsoft YaHei\"}\n" +
