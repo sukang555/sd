@@ -142,21 +142,28 @@ public class DaliyTest extends AbstractTest {
 
     @Test
     public void main3() {
-       /* ScheduleJobEntity jobEntity = new ScheduleJobEntity();
-        jobEntity.setJobId(null);
-        jobEntity.setBeanName("test");
-        jobEntity.setCreateTime(new Date());
-        jobEntity.setIsDelete(false);
 
-        net.sf.json.JSONObject jsonObject = BeanUtil.formObjectToJson(jobEntity);
+        String json = "{\n" +
+                "\t\"operate\":\"3\",\n" +
+                "\t\"redisKey\":\"SORT_SWITCH\",\n" +
+                "\t\"redisValue\":\"1\"\n" +
+                "}";
 
-        jsonObject.forEach((key, value) -> {
-            System.out.println(key +"--"+ value);
-        });
-        String s = BeanUtil.fromObjectToStr(jobEntity);
-        print(s);
-        ScheduleJobEntity scheduleJobEntity = BeanUtil.fromStrToObj(s, ScheduleJobEntity.class);
-        System.out.println(scheduleJobEntity.toString());*/
+        String s = WebClientUtil.doPost("http://127.0.0.1:8888//dsc/api/dscOwnApi/manageRedisValue",
+                json, String.class);
+
+
+
+
+
+
+
+
+
+       /* String s = WebClientUtil.doGet("http://www.baidu.com",
+                null, null, String.class);*/
+
+        System.out.println(s);
     }
 
 
@@ -176,7 +183,7 @@ public class DaliyTest extends AbstractTest {
 
         final String mobile = "13271357065";
         reqBody.add("mobile",mobile);
-        reqBody.add("authCode","SUKANG");
+        reqBody.add("authCode","0710");
 
         System.out.println(BeanUtil.toJsonStr(headerMap));
 

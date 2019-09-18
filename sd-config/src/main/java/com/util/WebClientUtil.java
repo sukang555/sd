@@ -22,6 +22,7 @@ import java.util.Map;
 
 /**
  * @author sukang
+ * @date 2019 09 18
  */
 public class WebClientUtil {
 
@@ -50,13 +51,17 @@ public class WebClientUtil {
         webClient = WebClient.builder().clientConnector(httpConnector).build();
     }
 
-
-
-    public static <T> T doPost(String url,Object reqBody,Map<String,String> headers,
-                               Class<T> clazz,MediaType mediaType){
-        return postResponse(url,headers,reqBody,clazz,mediaType,null);
+    public static <T> T doGet(String url,Map<String,String> header,
+                              Map<String,String> uriParam,Class<T> clazz){
+        return getResponse(url,header,uriParam,clazz);
     }
 
+
+
+    public static <T> T doPost(String url, Object reqBody,Class<T> clazz){
+        return doPost(url,reqBody,clazz,null, MediaType.APPLICATION_JSON_UTF8,
+                null);
+    }
 
     public static <T> T doPost(String url, Object reqBody,Class<T> clazz,
                                Map<String,String> headers,MediaType mediaType,
@@ -65,19 +70,15 @@ public class WebClientUtil {
     }
 
 
-    public static <T> T doGet(String url,Map<String,String> header,
-                              Map<String,String> uriParam,Class<T> clazz){
-        return getResponse(url,header,uriParam,clazz);
-    }
+    public static <T> T fromReq(String url, Map<String, String> header,
+                                MultiValueMap<String,String> reqData, Class<T> clazz,
+                                MediaType mediaType, Map<String,?> uriParam){
 
-    public static <T> T doGet(String url, Class<T> clazz){
-        return getResponse(url,null,null,clazz);
+        WebClient.RequestBodySpec reqUrl = createReqUrl(url, HttpMethod.POST,mediaType,
+                header,uriParam);
+        reqUrl.body(BodyInserters.fromFormData(reqData));
+        return getResponse(reqUrl,clazz);
     }
-
-    public static  <T> T doGet(String url, Map<String,String> uriParam, Class<T> clazz){
-        return getResponse(url,null,uriParam,clazz);
-    }
-
 
 
     private static <T> T getResponse(String url, Map<String,String> header,
@@ -86,16 +87,6 @@ public class WebClientUtil {
         return getResponse(createReqUrl(url, HttpMethod.GET,
                 MediaType.APPLICATION_JSON_UTF8,header,params),
                 clazz);
-    }
-
-    public static <T> T fromReq(String url, Map<String, String> header,
-                                 MultiValueMap<String,String> reqData, Class<T> clazz,
-                                 MediaType mediaType, Map<String,?> uriParam){
-
-        WebClient.RequestBodySpec reqUrl = createReqUrl(url, HttpMethod.POST,mediaType,
-                header,uriParam);
-        reqUrl.body(BodyInserters.fromFormData(reqData));
-        return getResponse(reqUrl,clazz);
     }
 
 
