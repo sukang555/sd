@@ -36,23 +36,30 @@ public class DemoController extends BaseController {
     @GetMapping("/uuid/{num}")
     public String uuId(@PathVariable("num") String num){
         int parseInt;
-        if (NumberUtils.isCreatable(num) && (parseInt = Integer.parseInt(num)) > 0 ){
+        if (NumberUtils.isCreatable(num)
+                && (parseInt = Integer.parseInt(num)) > 0
+                && parseInt <= 200){
             StringBuilder stringBuilder = new StringBuilder(
                     "<!DOCTYPE html>\n" +
                             "<html lang=\"en\">\n" +
                             "<head>\n" +
                             "    <meta charset=\"UTF-8\">\n" +
-                            "    <title>获取uuid</title>\n" +
+                            "    <title>Title</title>\n" +
                             "\n" +
                             "    <style type=\"text/css\">\n" +
-                            "        body{font-family:\"Microsoft YaHei\"}\n" +
+                            "        pre {\n" +
+                            "            font-family:'Courier New';\n" +
+                            "            size: 17px;\n" +
+                            "        }\n" +
                             "    </style>\n" +
                             "</head>\n" +
                             "<body>");
             for (int i = 0; i < parseInt; i++) {
                 String s = UUID.randomUUID().toString();
+                stringBuilder.append("<pre>");
                 stringBuilder.append(s.replace("-",""));
                 stringBuilder.append("<br>");
+                stringBuilder.append("</pre>");
             }
             stringBuilder.append("</body>\n" +
                     "</html>");
