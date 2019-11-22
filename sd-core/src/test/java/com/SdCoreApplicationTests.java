@@ -6,6 +6,7 @@ import com.common.util.BeanUtil;
 import com.component.ApplicationUtils;
 import com.component.BeanFacade;
 import com.component.JobTask;
+import com.component.RedisDistributedLock;
 import com.config.RabbitMqConfigTest;
 import com.config.RabbitMqConfigTest2;
 import com.datasource.DataSourceNames;
@@ -22,6 +23,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.test.context.ContextConfiguration;
@@ -32,9 +34,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.sql.DataSource;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {SdCoreApplication.class})
@@ -46,10 +47,37 @@ public class SdCoreApplicationTests {
 	ScheduleJobService scheduleJobService;
 
 	@Inject
+	@Named("localRedisTemplate2")
+	private RedisTemplate redisTemplate;
+
+	@Inject
 	@Named("mySqlSessionTemplate")
 	SqlSessionTemplate sqlSessionTemplate;
 
 
+	@Resource
+	private RedisDistributedLock redisDistributedLock;
+
+	@Test
+	public void mainLuna(){
+
+		try {
+			String token = UUID.randomUUID().toString().replace("-", "");
+			System.out.println("token:"+ token);
+			Boolean lock = redisDistributedLock.lock("ssuuLock", TimeUnit.SECONDS,
+					300, token);
+
+			if (lock){
+				System.out.println("获取锁成功");
+				TimeUnit.SECONDS.sleep(30);
+				redisDistributedLock.unLock("ssuuLock",token);
+			}else {
+				System.out.println("获取锁失败");
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 	@Test
