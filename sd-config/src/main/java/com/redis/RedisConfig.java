@@ -43,7 +43,10 @@ public class RedisConfig {
         template.setHashKeySerializer(stringRedisSerializer);
 
         template.setValueSerializer(jackson2JsonRedisSerializer);
-        template.setConnectionFactory(jedisConnectionFactory); return template;
+        template.setConnectionFactory(jedisConnectionFactory);
+
+
+        return template;
     }
 
     @Bean(name = "localRedisTemplate")
@@ -64,7 +67,8 @@ public class RedisConfig {
         template.setHashKeySerializer(stringRedisSerializer);
 
         template.setValueSerializer(jackson2JsonRedisSerializer);
-        template.setConnectionFactory(redisConnectionFactory); return template;
+        template.setConnectionFactory(redisConnectionFactory);
+        return template;
     }
 
 }

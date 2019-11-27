@@ -14,6 +14,11 @@ import com.datasource.HandlerDataSource;
 import com.mapper.ScheduleJobMapper;
 import com.service.ScheduleJobService;
 import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.curator.RetryPolicy;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
@@ -35,11 +40,13 @@ import javax.inject.Named;
 import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {SdCoreApplication.class})
 @ContextConfiguration
+@Slf4j
 public class SdCoreApplicationTests {
 
 
@@ -58,21 +65,50 @@ public class SdCoreApplicationTests {
 	@Resource
 	private RedisDistributedLock redisDistributedLock;
 
+
+
+	@Test
+	public void mainZK(){
+		RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 5);
+		CuratorFramework client = CuratorFrameworkFactory
+				.builder()
+				.connectString("47.105.107.249:2181")
+				.sessionTimeoutMs(10000)
+				.retryPolicy(retryPolicy)
+				.namespace("admin")
+				.build();
+
+
+
+	}
+
+
+
+
+
 	@Test
 	public void mainLuna(){
 
+		String lockKey = "ssuuLock";
+		String token = UUID.randomUUID().toString().replace("-", "");
+
 		try {
-			String token = UUID.randomUUID().toString().replace("-", "");
-			System.out.println("token:"+ token);
-			Boolean lock = redisDistributedLock.lock("ssuuLock", TimeUnit.SECONDS,
+			Boolean lockSuccess = redisDistributedLock.lock(lockKey, TimeUnit.SECONDS,
 					300, token);
 
-			if (lock){
-				System.out.println("获取锁成功");
+			if (lockSuccess){
+				log.info("{}锁token:{}获取锁成功",lockKey,token);
 				TimeUnit.SECONDS.sleep(30);
-				redisDistributedLock.unLock("ssuuLock",token);
+
+
+				Boolean ssuuLock = redisDistributedLock.unLock(lockKey, token);
+				if (ssuuLock){
+					log.info("{}锁token:{}释放成功",lockKey, token);
+				}else {
+					log.info("{}锁token:{}释放失败");
+				}
 			}else {
-				System.out.println("获取锁失败");
+				log.info("{}锁token:{}获取锁失败",lockKey,token);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
