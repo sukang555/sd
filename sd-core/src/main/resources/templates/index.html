@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>hello world</title>
+    <script language="JavaScript" src="js/jquery-3.1.0.js"></script>
+    <script type="text/javascript"></script>
+
+    <style>
+        .input__original__area{
+            display: block;
+            font-family: ArialMT,"Microsoft YaHei",Arial,sans-serif,Helvetica,STHeiti;
+            width: 100%;
+            min-height: 156px;
+            padding: 0;
+            border: 0;
+            background: 0 0;
+            font-size: 24px;
+            color:#333;
+            line-height: 30px;
+            overflow: auto;
+        }
+
+
+
+    </style>
+
+
+    <script>
+
+        function transCnStr() {
+            alert("hello")
+        }
+
+    </script>
 </head>
 <body>
-    <h1 th:inline="text">Hello world</h1>
+    <!--<h1 th:inline="text">Hello world</h1>
     <p th:text="${name}"></p>
-    <a href="data.html">查看任务列表</a>
+    <a href="data.html">查看任务列表</a>-->
+
+    <form  method="post" class="input__original__area">
+        <textarea placeholder="请输入中文" name="cnStr"></textarea><br>
+        <input type="button" value="加密"  onclick="transCnStr()">
+    </form>
 </body>
+
 </html>
