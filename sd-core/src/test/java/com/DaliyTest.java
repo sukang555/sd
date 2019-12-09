@@ -7,6 +7,7 @@ import com.common.exception.ParameterException;
 import com.common.util.BeanUtil;
 import com.common.util.CheckSumBuilder;
 import com.common.util.DateTimeUtil;
+import com.common.util.EncryptUtils;
 import com.component.JobTask;
 import com.core.component.AbstractTest;
 import com.core.component.HelloAdvice;
@@ -49,10 +50,21 @@ public class DaliyTest extends AbstractTest {
 
     @Test
     public void main8(){
-        System.out.println(Integer.toBinaryString(1));
-        System.out.println(Integer.toBinaryString(~1));
+        try {
+            String s ="sukang";
 
-        System.out.println(1 & ~1);
+            String encryptStr = EncryptUtils.encryptByPublicKey(s);
+
+            System.out.println(encryptStr);
+
+            String decrypt = EncryptUtils.decryptByPrivateKey(encryptStr);
+
+            System.out.println(decrypt);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 

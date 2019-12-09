@@ -27,7 +27,11 @@ public class ShiroConfig {
         //过滤器
         Map<String,String> filterMap = new LinkedHashMap<>();
         //顺序判断
-        filterMap.put("/static/**", ANON);
+        filterMap.put("/static/**",ANON);
+        filterMap.put("/js/**",ANON);
+
+
+
         filterMap.put("/public/**",ANON);
         filterMap.put("/logout", "logout");
         //过滤链定义，从上向下顺序执行，一般将/**放在最为下边

@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="">
 <head>
     <meta charset="UTF-8">
-    <title>hello world</title>
-    <script language="JavaScript" src="js/jquery-3.1.0.js"></script>
-    <script type="text/javascript"></script>
-
+    <title>明文加解密</title>
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/js/jquery.min.js'}"></script>
     <style>
-        .input__original__area{
+        .input__original__area {
             display: block;
             font-family: ArialMT,"Microsoft YaHei",Arial,sans-serif,Helvetica,STHeiti;
-            width: 100%;
-            min-height: 156px;
+            width: 1280px;
+            min-height: 250px;
             padding: 0;
             border: 0;
-            background: 0 0;
-            font-size: 24px;
+            background: rgba(102, 102, 102, 0.15);
+            font-size: 20px;
+            color: #333;
+            line-height: 30px;
+            overflow: auto;
+
+        }
+
+
+        .out__original__area{
+            display: block;
+            font-family: ArialMT,"Microsoft YaHei",Arial,sans-serif,Helvetica,STHeiti;
+            width: 1280px;
+            min-height: 250px;
+            padding: 0;
+            border: 0;
+            background: rgba(102,102,102,0.15);
+            font-size: 20px;
             color:#333;
             line-height: 30px;
             overflow: auto;
@@ -26,11 +40,57 @@
     </style>
 
 
-    <script>
+    <script type="text/javascript">
 
-        function transCnStr() {
-            alert("hello")
-        }
+        $(function(){
+           $("#encryptBt").click(function () {
+               var param = new Object();
+               param.plaintext = $("#encryptStr").val();
+               $.ajax({
+                   type:"POST",
+                   data:JSON.stringify(param
+                   ),
+                   url:"/public/encryption/encrypt",
+                   contentType:"application/json; charset=UTF-8",
+                   dataType:"json",
+                   success:function (respData) {
+                       
+                       if (!respData.hasError){
+                           var body = respData.body;
+                           if (body.code = '1000'){
+                               $("#decryptStr").val(body.data);
+                           }else {
+                               alert("加密失败"+body.msg);
+                           }
+                       } 
+                   }
+               });
+
+               $("#decryptBt").click(function () {
+                   var param = new Object();
+                   param.plaintext = $("#decryptStr").val();
+                   $.ajax({
+                       type:"POST",
+                       data:JSON.stringify(param
+                       ),
+                       url:"/public/encryption/decrypt",
+                       contentType:"application/json; charset=UTF-8",
+                       dataType:"json",
+                       success:function (respData) {
+
+                           if (!respData.hasError){
+                               var body = respData.body;
+                               if (body.code = '1000'){
+                                   $("#encryptStr").val(body.data);
+                               }else {
+                                   alert("解密失败"+body.msg);
+                               }
+                           }
+                       }
+                   });
+               });
+           });
+        });
 
     </script>
 </head>
@@ -39,9 +99,15 @@
     <p th:text="${name}"></p>
     <a href="data.html">查看任务列表</a>-->
 
-    <form  method="post" class="input__original__area">
-        <textarea placeholder="请输入中文" name="cnStr"></textarea><br>
-        <input type="button" value="加密"  onclick="transCnStr()">
+    <form  method="post" >
+        <textarea id="encryptStr" class="input__original__area" placeholder="请输入明文" name="encryptStr" ></textarea><br>
+        <input id = 'encryptBt' type="button" value="加密">
+    </form>
+
+    <br><br>
+    <form  method="post" >
+        <textarea id="decryptStr" class="out__original__area" placeholder="请输入密文" name="decryptStr" ></textarea><br>
+        <input id = 'decryptBt' type="button" value="解密" onclick="decryptFun()">
     </form>
 </body>
 
