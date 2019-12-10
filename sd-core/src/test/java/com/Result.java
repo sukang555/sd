@@ -65,7 +65,6 @@ public class Result<T> implements Serializable {
         encryptDTO.setPlaintext("hello");
         Result<EncryptDTO> success = Result.<EncryptDTO>builder().status(200)
                 .message("success").data(encryptDTO).build();
-
         System.out.println(BeanUtil.toJsonStr(success));
     }
 }

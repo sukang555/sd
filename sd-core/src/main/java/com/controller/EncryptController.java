@@ -31,10 +31,10 @@ public class EncryptController extends BaseController {
 
         checkParams(bindingResult);
 
-        SdApplicationContext applicationContext = SdApplicationContext.<EncryptDTO>getBuilder()
+        SdApplicationContext applicationContext = SdApplicationContext.
+                <EncryptDTO>getBuilder()
                 .setData(encryptDTO)
                 .setServletRequest(servletRequest).builder();
-
         return encryptionService.encryptText(applicationContext);
     }
 
@@ -44,7 +44,8 @@ public class EncryptController extends BaseController {
                                    HttpServletRequest servletRequest){
         checkParams(bindingResult);
 
-        SdApplicationContext applicationContext = SdApplicationContext.<EncryptDTO>getBuilder()
+        SdApplicationContext applicationContext = SdApplicationContext.
+                <EncryptDTO>getBuilder()
                 .setData(encryptDTO)
                 .setServletRequest(servletRequest).builder();
         return encryptionService.decryptText(applicationContext);

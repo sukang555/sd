@@ -12,6 +12,8 @@ import com.component.JobTask;
 import com.core.component.AbstractTest;
 import com.core.component.HelloAdvice;
 import com.core.component.HelloService;
+import com.dto.EncryptDTO;
+import com.dto.SdApplicationContext;
 import com.dto.StatusInfo;
 import com.sun.org.apache.xpath.internal.SourceTree;
 import com.util.WebClientUtil;
@@ -46,6 +48,15 @@ import java.util.stream.Stream;
  */
 @Slf4j
 public class DaliyTest extends AbstractTest {
+
+
+    @Test
+    public void main9(){
+        SdApplicationContext.Builder<EncryptDTO> builder = SdApplicationContext
+                .getBuilder();
+
+        builder.setData(new EncryptDTO()).builder().getData();
+    }
 
 
     @Test

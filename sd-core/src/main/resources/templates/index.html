@@ -8,8 +8,8 @@
         .input__original__area {
             display: block;
             font-family: ArialMT,"Microsoft YaHei",Arial,sans-serif,Helvetica,STHeiti;
-            width: 1280px;
-            min-height: 250px;
+            width: 750px;
+            min-height: 240px;
             padding: 0;
             border: 0;
             background: rgba(102, 102, 102, 0.15);
@@ -24,8 +24,8 @@
         .out__original__area{
             display: block;
             font-family: ArialMT,"Microsoft YaHei",Arial,sans-serif,Helvetica,STHeiti;
-            width: 1280px;
-            min-height: 250px;
+            width: 750px;
+            min-height: 240px;
             padding: 0;
             border: 0;
             background: rgba(102,102,102,0.15);
@@ -43,7 +43,15 @@
     <script type="text/javascript">
 
         $(function(){
-           $("#encryptBt").click(function () {
+
+            $("#resetBt1").click(function () {
+                $("#encryptStr").val("")
+            });
+            $("#resetBt2").click(function () {
+                $("#decryptStr").val("")
+            });
+
+            $("#encryptBt").click(function () {
                var param = new Object();
                param.plaintext = $("#encryptStr").val();
                $.ajax({
@@ -102,12 +110,14 @@
     <form  method="post" >
         <textarea id="encryptStr" class="input__original__area" placeholder="请输入明文" name="encryptStr" ></textarea><br>
         <input id = 'encryptBt' type="button" value="加密">
+        <input id = 'resetBt1' type="button" value="重置">
     </form>
 
     <br><br>
     <form  method="post" >
         <textarea id="decryptStr" class="out__original__area" placeholder="请输入密文" name="decryptStr" ></textarea><br>
-        <input id = 'decryptBt' type="button" value="解密" onclick="decryptFun()">
+        <input id = 'decryptBt' type="button" value="解密">
+        <input id = 'resetBt2' type="button" value="重置">
     </form>
 </body>
 

@@ -43,13 +43,23 @@ public class SdApplicationContext<T> {
 
         private HttpServletRequest httpServletRequest;
 
-        private T object;
+        private T data;
 
-        private Class clazz;
-
-        public Builder<T> setData(T object){
-            this.object = object;
+        public Builder<T> setData(T data){
+            this.data = data;
             return this;
+        }
+
+        public T getData() {
+            return data;
+        }
+
+        public HttpServletRequest getHttpServletRequest() {
+            return httpServletRequest;
+        }
+
+        public void setHttpServletRequest(HttpServletRequest httpServletRequest) {
+            this.httpServletRequest = httpServletRequest;
         }
 
         public Builder setServletRequest(HttpServletRequest httpServletRequest){
@@ -59,8 +69,8 @@ public class SdApplicationContext<T> {
 
         public SdApplicationContext<T> builder(){
             SdApplicationContext<T> applicationContext = new SdApplicationContext<>();
-            applicationContext.setData(this.object);
-            applicationContext.setHttpServletRequest(this.httpServletRequest);
+            applicationContext.setData(this.getData());
+            applicationContext.setHttpServletRequest(this.getHttpServletRequest());
             return applicationContext;
         }
 
