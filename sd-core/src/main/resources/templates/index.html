@@ -7,13 +7,13 @@
     <style>
         .input__original__area {
             display: block;
-            font-family: ArialMT,"Microsoft YaHei",Arial,sans-serif,Helvetica,STHeiti;
+            font-family: ArialMT, "Microsoft YaHei", Arial, sans-serif, Helvetica, STHeiti;
             width: 750px;
             min-height: 240px;
             padding: 0;
             border: 0;
             background: rgba(102, 102, 102, 0.15);
-            font-size: 20px;
+            font-size: 16px;
             color: #333;
             line-height: 30px;
             overflow: auto;
@@ -21,20 +21,19 @@
         }
 
 
-        .out__original__area{
+        .out__original__area {
             display: block;
-            font-family: ArialMT,"Microsoft YaHei",Arial,sans-serif,Helvetica,STHeiti;
+            font-family: ArialMT, "Microsoft YaHei", Arial, sans-serif, Helvetica, STHeiti;
             width: 750px;
             min-height: 240px;
             padding: 0;
             border: 0;
-            background: rgba(102,102,102,0.15);
-            font-size: 20px;
-            color:#333;
+            background: rgba(102, 102, 102, 0.15);
+            font-size: 16px;
+            color: #333;
             line-height: 30px;
             overflow: auto;
         }
-
 
 
     </style>
@@ -42,7 +41,8 @@
 
     <script type="text/javascript">
 
-        $(function(){
+        $(function () {
+
 
             $("#resetBt1").click(function () {
                 $("#encryptStr").val("")
@@ -52,73 +52,74 @@
             });
 
             $("#encryptBt").click(function () {
-               var param = new Object();
-               param.plaintext = $("#encryptStr").val();
-               $.ajax({
-                   type:"POST",
-                   data:JSON.stringify(param
-                   ),
-                   url:"/public/encryption/encrypt",
-                   contentType:"application/json; charset=UTF-8",
-                   dataType:"json",
-                   success:function (respData) {
-                       
-                       if (!respData.hasError){
-                           var body = respData.body;
-                           if (body.code = '1000'){
-                               $("#decryptStr").val(body.data);
-                           }else {
-                               alert("加密失败"+body.msg);
-                           }
-                       } 
-                   }
-               });
+                var param = new Object();
+                param.plaintext = $("#encryptStr").val();
+                $.ajax({
+                    type: "POST",
+                    data: JSON.stringify(param
+                    ),
+                    url: "/public/encryption/encrypt",
+                    contentType: "application/json; charset=UTF-8",
+                    dataType: "json",
+                    success: function (respData) {
 
-               $("#decryptBt").click(function () {
-                   var param = new Object();
-                   param.plaintext = $("#decryptStr").val();
-                   $.ajax({
-                       type:"POST",
-                       data:JSON.stringify(param
-                       ),
-                       url:"/public/encryption/decrypt",
-                       contentType:"application/json; charset=UTF-8",
-                       dataType:"json",
-                       success:function (respData) {
+                        if (!respData.hasError) {
+                            var body = respData.body;
+                            if (body.code = '1000') {
+                                $("#decryptStr").val(body.data);
+                            } else {
+                                alert("加密失败" + body.msg);
+                            }
+                        }
+                    }
+                });
+            });
 
-                           if (!respData.hasError){
-                               var body = respData.body;
-                               if (body.code = '1000'){
-                                   $("#encryptStr").val(body.data);
-                               }else {
-                                   alert("解密失败"+body.msg);
-                               }
-                           }
-                       }
-                   });
-               });
-           });
+            $("#decryptBt").click(function () {
+                var param = new Object();
+                param.plaintext = $("#decryptStr").val();
+                $.ajax({
+                    type: "POST",
+                    data: JSON.stringify(param
+                    ),
+                    url: "/public/encryption/decrypt",
+                    contentType: "application/json; charset=UTF-8",
+                    dataType: "json",
+                    success: function (respData) {
+
+                        if (!respData.hasError) {
+                            var body = respData.body;
+                            if (body.code = '1000') {
+                                $("#encryptStr").val(body.data);
+                            } else {
+                                alert("解密失败" + body.msg);
+                            }
+                        }
+                    }
+                });
+            });
+
         });
 
     </script>
 </head>
 <body>
-    <!--<h1 th:inline="text">Hello world</h1>
-    <p th:text="${name}"></p>
-    <a href="data.html">查看任务列表</a>-->
+<!--<h1 th:inline="text">Hello world</h1>
+<p th:text="${name}"></p>
+<a href="data.html">查看任务列表</a>-->
 
-    <form  method="post" >
-        <textarea id="encryptStr" class="input__original__area" placeholder="请输入明文" name="encryptStr" ></textarea><br>
-        <input id = 'encryptBt' type="button" value="加密">
-        <input id = 'resetBt1' type="button" value="重置">
-    </form>
+<form method="post">
+    <textarea id="encryptStr" class="input__original__area" placeholder="请输入明文" name="encryptStr"></textarea><br>
+    <input id='encryptBt' type="button" value="加密">
+    <input id='resetBt1' type="button" value="重置">
+</form>
 
-    <br><br>
-    <form  method="post" >
-        <textarea id="decryptStr" class="out__original__area" placeholder="请输入密文" name="decryptStr" ></textarea><br>
-        <input id = 'decryptBt' type="button" value="解密">
-        <input id = 'resetBt2' type="button" value="重置">
-    </form>
+<br><br>
+<form method="post">
+    <textarea id="decryptStr" class="out__original__area" placeholder="请输入密文" name="decryptStr"></textarea><br>
+    <input id='decryptBt' type="button" value="解密">
+    <input id='resetBt2' type="button" value="重置">
+</form>
 </body>
 
 </html>
