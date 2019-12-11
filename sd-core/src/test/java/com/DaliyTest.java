@@ -25,6 +25,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.ComparatorUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.jasypt.util.text.BasicTextEncryptor;
 import org.junit.Test;
 import org.quartz.simpl.SystemPropertyInstanceIdGenerator;
 import org.springframework.aop.framework.ProxyFactory;
@@ -53,9 +54,14 @@ public class DaliyTest extends AbstractTest {
 
     @Test
     public void main9(){
-        LocalDateTime localDateTime = LocalDateTime.now().plusHours(-16);
-
-        System.out.println(localDateTime.toString());
+        BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+        //加密所需的salt(盐)
+        textEncryptor.setPassword("sukang");
+        //要加密的数据（数据库的用户名或密码）
+        String username = textEncryptor.encrypt("root");
+        String password = textEncryptor.encrypt("sukang");
+        System.out.println("username:"+username);
+        System.out.println("password:"+password);
     }
 
 
