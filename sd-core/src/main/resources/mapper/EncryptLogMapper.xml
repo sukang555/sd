@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.EncryptLogMapper" >
+
+    <resultMap id="BaseResultMap" type="com.common.entity.EncryptLog" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="plain_text" property="plainText" jdbcType="VARCHAR" />
+        <result column="encrypt_text" property="encryptText" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, create_time, plain_text, encrypt_text
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from encrypt_log
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from encrypt_log
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.common.entity.EncryptLog" >
+        insert into encrypt_log (id, create_time, plain_text, 
+            encrypt_text)
+        values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{plainText,jdbcType=VARCHAR}, 
+            #{encryptText,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.common.entity.EncryptLog" >
+        insert into encrypt_log
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="plainText != null" >
+                plain_text,
+            </if>
+            <if test="encryptText != null" >
+                encrypt_text,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="plainText != null" >
+                #{plainText,jdbcType=VARCHAR},
+            </if>
+            <if test="encryptText != null" >
+                #{encryptText,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.common.entity.EncryptLog" >
+        update encrypt_log
+        <set >
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="plainText != null" >
+                plain_text = #{plainText,jdbcType=VARCHAR},
+            </if>
+            <if test="encryptText != null" >
+                encrypt_text = #{encryptText,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.common.entity.EncryptLog" >
+        update encrypt_log
+        set create_time = #{createTime,jdbcType=TIMESTAMP},
+            plain_text = #{plainText,jdbcType=VARCHAR},
+            encrypt_text = #{encryptText,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -39,6 +39,7 @@ import reactor.core.publisher.Mono;
 
 import javax.print.DocFlavor;
 import java.io.ByteArrayInputStream;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -52,10 +53,9 @@ public class DaliyTest extends AbstractTest {
 
     @Test
     public void main9(){
-        SdApplicationContext.Builder<EncryptDTO> builder = SdApplicationContext
-                .getBuilder();
+        LocalDateTime localDateTime = LocalDateTime.now().plusHours(-16);
 
-        builder.setData(new EncryptDTO()).builder().getData();
+        System.out.println(localDateTime.toString());
     }
 
 
