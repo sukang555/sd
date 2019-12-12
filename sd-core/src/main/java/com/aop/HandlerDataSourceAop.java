@@ -45,7 +45,7 @@ public class HandlerDataSourceAop implements Ordered{
             HandlerDataSource.setDataSource(StringUtils.isBlank(dataSource.value())
                 ? DataSourceNames.FIRST: dataSource.value());
         }else {
-            DynamicRouteDataSource annotation = signature.getClass()
+            DynamicRouteDataSource annotation = method.getDeclaringClass()
                     .getAnnotation(DynamicRouteDataSource.class);
             HandlerDataSource.setDataSource(
                     (annotation == null || StringUtils.isBlank(annotation.value()))

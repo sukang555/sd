@@ -4,7 +4,9 @@ import com.common.dto.ResponseBean;
 import com.common.entity.EncryptLog;
 import com.common.util.EncryptUtils;
 import com.component.BeanFacade;
+import com.datasource.DataSourceNames;
 import com.datasource.DynamicRouteDataSource;
+import com.datasource.HandlerDataSource;
 import com.dto.EncryptDTO;
 import com.dto.SdApplicationContext;
 import com.mapper.EncryptLogMapper;
@@ -21,7 +23,7 @@ import java.util.Date;
  * @author sukang on 2019/12/9 15:05
  */
 @Service
-@DynamicRouteDataSource
+@DynamicRouteDataSource(DataSourceNames.FIRST)
 public class EncryptionServiceImpl implements EncryptionService {
 
     @Resource

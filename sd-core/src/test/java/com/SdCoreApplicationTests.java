@@ -11,6 +11,7 @@ import com.config.RabbitMqConfigTest;
 import com.config.RabbitMqConfigTest2;
 import com.datasource.DataSourceNames;
 import com.datasource.HandlerDataSource;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.mapper.ScheduleJobMapper;
 import com.service.ScheduleJobService;
 import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
@@ -64,6 +65,23 @@ public class SdCoreApplicationTests {
 
 	@Resource
 	private RedisDistributedLock redisDistributedLock;
+
+
+
+	@Resource
+	private JdbcTemplate primaryJdbcTemplate;
+
+	@Resource
+	private JdbcTemplate secondJdbcTemplate;
+
+
+	@Test
+	public void mainJdbc(){
+		List<Map<String, Object>> queryForList = secondJdbcTemplate.queryForList("SELECT * from encrypt_log");
+
+
+		System.out.println(BeanUtil.toJsonStr(queryForList));
+	}
 
 
 
