@@ -6,6 +6,7 @@ import com.dto.EncryptDTO;
 import com.dto.SdApplicationContext;
 import com.service.EncryptionService;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,29 +26,29 @@ public class EncryptController extends BaseController {
     private EncryptionService encryptionService;
 
     @PostMapping("/encrypt")
-    public ResponseBean encryptStr(@RequestBody EncryptDTO encryptDTO,
+    public ResponseBean encryptStr(@RequestBody @Validated EncryptDTO encryptDTO,
                                    BindingResult bindingResult,
                                    HttpServletRequest servletRequest){
 
         checkParams(bindingResult);
 
-        SdApplicationContext applicationContext = SdApplicationContext.
+        SdApplicationContext<EncryptDTO> applicationContext = SdApplicationContext.
                 <EncryptDTO>getBuilder()
                 .setData(encryptDTO)
-                .setServletRequest(servletRequest).builder();
+                .setHttpServletRequest(servletRequest).builder();
         return encryptionService.encryptText(applicationContext);
     }
 
     @PostMapping("/decrypt")
-    public ResponseBean decryptStr(@RequestBody EncryptDTO encryptDTO,
+    public ResponseBean decryptStr(@RequestBody @Validated EncryptDTO encryptDTO,
                                    BindingResult bindingResult,
                                    HttpServletRequest servletRequest){
         checkParams(bindingResult);
 
-        SdApplicationContext applicationContext = SdApplicationContext.
+        SdApplicationContext<EncryptDTO> applicationContext = SdApplicationContext.
                 <EncryptDTO>getBuilder()
                 .setData(encryptDTO)
-                .setServletRequest(servletRequest).builder();
+                .setHttpServletRequest(servletRequest).builder();
         return encryptionService.decryptText(applicationContext);
     }
 

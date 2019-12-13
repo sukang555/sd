@@ -35,7 +35,7 @@ public class SdApplicationContext<T> {
     }
 
     public static <T> Builder<T> getBuilder(){
-        return new SdApplicationContext.Builder<T>();
+        return new SdApplicationContext.Builder<>();
     }
 
 
@@ -58,11 +58,7 @@ public class SdApplicationContext<T> {
             return httpServletRequest;
         }
 
-        public void setHttpServletRequest(HttpServletRequest httpServletRequest) {
-            this.httpServletRequest = httpServletRequest;
-        }
-
-        public Builder setServletRequest(HttpServletRequest httpServletRequest){
+        public Builder<T> setHttpServletRequest(HttpServletRequest httpServletRequest) {
             this.httpServletRequest = httpServletRequest;
             return this;
         }

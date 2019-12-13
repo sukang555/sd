@@ -29,6 +29,7 @@ import org.jasypt.util.text.BasicTextEncryptor;
 import org.junit.Test;
 import org.quartz.simpl.SystemPropertyInstanceIdGenerator;
 import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -50,6 +51,24 @@ import java.util.stream.Stream;
  */
 @Slf4j
 public class DaliyTest extends AbstractTest {
+
+
+
+
+
+    @Test
+    public void main10(){
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
     @Test

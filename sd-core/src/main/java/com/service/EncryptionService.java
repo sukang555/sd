@@ -1,6 +1,7 @@
 package com.service;
 
 import com.common.dto.ResponseBean;
+import com.dto.EncryptDTO;
 import com.dto.SdApplicationContext;
 
 /**
@@ -11,8 +12,8 @@ public interface EncryptionService {
     /**
      * 加密
      */
-    public ResponseBean encryptText(SdApplicationContext applicationContext);
+    public ResponseBean encryptText(SdApplicationContext<EncryptDTO> applicationContext);
 
 
-    public ResponseBean decryptText(SdApplicationContext applicationContext);
+    public ResponseBean decryptText(SdApplicationContext<EncryptDTO> applicationContext);
 }

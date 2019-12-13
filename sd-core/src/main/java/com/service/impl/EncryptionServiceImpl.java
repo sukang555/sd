@@ -31,8 +31,8 @@ public class EncryptionServiceImpl implements EncryptionService {
 
 
     @Override
-    public ResponseBean encryptText(SdApplicationContext applicationContext) {
-        EncryptDTO encryptDTO = (EncryptDTO)applicationContext.getData();
+    public ResponseBean encryptText(SdApplicationContext<EncryptDTO> applicationContext) {
+        EncryptDTO encryptDTO = applicationContext.getData();
         String encrypt = EncryptUtils.encryptByPublicKey(encryptDTO.getPlaintext());
 
         EncryptLog encryptLog = new EncryptLog();
@@ -46,8 +46,8 @@ public class EncryptionServiceImpl implements EncryptionService {
 
 
     @Override
-    public ResponseBean decryptText(SdApplicationContext applicationContext) {
-        EncryptDTO encryptDTO = (EncryptDTO)applicationContext.getData();
+    public ResponseBean decryptText(SdApplicationContext<EncryptDTO> applicationContext) {
+        EncryptDTO encryptDTO = applicationContext.getData();
 
         String decrypt = EncryptUtils.decryptByPrivateKey(encryptDTO.getPlaintext());
 
