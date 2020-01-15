@@ -27,9 +27,11 @@ public class ShiroConfig {
         //过滤器
         Map<String,String> filterMap = new LinkedHashMap<>();
         //顺序判断
-        filterMap.put("/static/**",ANON);
+        filterMap.put("/css/**",ANON);
+        filterMap.put("/images",ANON);
         filterMap.put("/js/**",ANON);
-
+        filterMap.put("/layui/**",ANON);
+        filterMap.put("/*.ico",ANON);
 
 
         filterMap.put("/public/**",ANON);

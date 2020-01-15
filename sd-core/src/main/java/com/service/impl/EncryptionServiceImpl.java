@@ -1,5 +1,6 @@
 package com.service.impl;
 
+import com.common.dto.BaseMsg;
 import com.common.dto.ResponseBean;
 import com.common.entity.EncryptLog;
 import com.common.util.EncryptUtils;
@@ -11,6 +12,7 @@ import com.dto.EncryptDTO;
 import com.dto.SdApplicationContext;
 import com.mapper.EncryptLogMapper;
 import com.service.EncryptionService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,10 @@ public class EncryptionServiceImpl implements EncryptionService {
         EncryptDTO encryptDTO = applicationContext.getData();
         String encrypt = EncryptUtils.encryptByPublicKey(encryptDTO.getPlaintext());
 
+        if (StringUtils.isBlank(encrypt)){
+            return ResponseBean.failure(BaseMsg.failure(null,"加密异常"));
+        }
+
         EncryptLog encryptLog = new EncryptLog();
         encryptLog.setCreateTime(new Date());
         encryptLog.setPlainText(encryptDTO.getPlaintext());
@@ -50,6 +56,10 @@ public class EncryptionServiceImpl implements EncryptionService {
         EncryptDTO encryptDTO = applicationContext.getData();
 
         String decrypt = EncryptUtils.decryptByPrivateKey(encryptDTO.getPlaintext());
+
+        if (StringUtils.isBlank(decrypt)){
+            return ResponseBean.failure(BaseMsg.failure(null,"解密异常"));
+        }
 
         EncryptLog encryptLog = new EncryptLog();
         encryptLog.setCreateTime(new Date());

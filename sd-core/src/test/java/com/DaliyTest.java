@@ -1,5 +1,6 @@
 package com;
 
+import com.common.dto.BaseMsg;
 import com.common.dto.ResponseBean;
 import com.common.entity.ScheduleJobEntity;
 import com.common.exception.Exceptions;
@@ -58,7 +59,9 @@ public class DaliyTest extends AbstractTest {
 
     @Test
     public void main10(){
+        ResponseBean bean = ResponseBean.failure(BaseMsg.failure(null, "加密异常"));
 
+        System.out.println(BeanUtil.toJsonStr(bean));
     }
     
     
