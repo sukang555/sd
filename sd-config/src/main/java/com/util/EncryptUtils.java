@@ -1,18 +1,22 @@
 package com.util;
 
 
+import com.common.constant.CommonConstant;
 import com.component.ApplicationUtils;
-import com.component.BeanFacade;
 import com.source.PropertiesManager;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Primary;
 
 import javax.crypto.Cipher;
+import java.io.File;
+import java.io.IOException;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+import java.util.Objects;
 
 /**
  * @author sukang on 2019/12/9 16:11
@@ -25,13 +29,45 @@ public class EncryptUtils {
 
     private static  String PUBLIC_KEY;
 
+    private static final String PUBLIC_KEY_PATH = "";
+    private static final String PRIVATE_KEY_PATH = "";
+
+
     static {
         PropertiesManager propertiesManager = ApplicationUtils.getBean("propertiesManager", PropertiesManager.class);
 
-        PUBLIC_KEY = propertiesManager.getPublicKey();
+        if (StringUtils.isBlank(PUBLIC_KEY)){
+            if (Objects.equals(CommonConstant.ENV_DEV,propertiesManager.getEnv())){
+                PUBLIC_KEY = propertiesManager.getPublicKey();
+            }else {
+                try {
+                    File file = new File(PUBLIC_KEY_PATH);
+                    PUBLIC_KEY = FileUtils.readFileToString(file,"utf-8");
+                } catch (IOException e) {
+                    logger.error("读取公钥异常",e);
+                }
+            }
+        }
 
-        PRIVATE_KEY = propertiesManager.getPrivateKey();
+        if (StringUtils.isBlank(PRIVATE_KEY)){
+            if (Objects.equals(CommonConstant.ENV_DEV,propertiesManager.getEnv())){
+                PRIVATE_KEY = propertiesManager.getPrivateKey();
+            }else {
+                try {
+                    File file = new File(PRIVATE_KEY_PATH);
+                    PRIVATE_KEY = FileUtils.readFileToString(file,"utf-8");
+                } catch (IOException e) {
+                    logger.error("读取私钥异常",e);
+                }
+            }
+        }
+
     }
+
+
+
+
+
 
     public static String decryptByPrivateKey(String text){
         try {

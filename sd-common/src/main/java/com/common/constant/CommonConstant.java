@@ -11,4 +11,9 @@ public interface CommonConstant {
 	
 	Integer JOB_RESUME = 0;
 
+
+	String ENV_DEV = "dev";
+
+	String ENV_PRD = "prd";
+
 }
