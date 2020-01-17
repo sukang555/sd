@@ -3,49 +3,26 @@ package com;
 import com.common.dto.BaseMsg;
 import com.common.dto.ResponseBean;
 import com.common.entity.ScheduleJobEntity;
-import com.common.exception.Exceptions;
-import com.common.exception.ParameterException;
 import com.common.util.BeanUtil;
 import com.common.util.CheckSumBuilder;
-import com.common.util.DateTimeUtil;
-import com.common.util.EncryptUtils;
-import com.component.JobTask;
+import com.util.EncryptUtils;
 import com.core.component.AbstractTest;
 import com.core.component.HelloAdvice;
 import com.core.component.HelloService;
-import com.dto.EncryptDTO;
-import com.dto.SdApplicationContext;
-import com.dto.StatusInfo;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import com.util.WebClientUtil;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.ComparatorUtils;
-import org.apache.commons.collections.MapUtils;
-import org.apache.commons.lang3.ObjectUtils;
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.junit.Test;
-import org.quartz.simpl.SystemPropertyInstanceIdGenerator;
 import org.springframework.aop.framework.ProxyFactory;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.server.ServerResponse;
-import reactor.core.publisher.Mono;
 
-import javax.print.DocFlavor;
-import java.io.ByteArrayInputStream;
-import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author sukang  on 2018/7/22.
@@ -80,10 +57,10 @@ public class DaliyTest extends AbstractTest {
         //加密所需的salt(盐)
         textEncryptor.setPassword("sukang");
         //要加密的数据（数据库的用户名或密码）
-        String username = textEncryptor.encrypt("1");
-        String password = textEncryptor.encrypt("1");
-        System.out.println("username:"+username);
-        System.out.println("password:"+password);
+        String str1 = textEncryptor.encrypt("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAz51KQheKb7wAIqQmobReleWLGRaY+rPV+Mu4h4OMvxP+sBScL2Uc8OlKcxN6FU1Iy5ihf6k2Z8OLvY7Sk/raUHpGsl59Xy0l1fq23ViWloO3mFKaNk5/vShCC+05ibzOepQvVr2uTdc4xAzXQfGoP+0dzVwJkF4C9QbQaHETfZMu1AkL46BlCxiXYRaLHpmzhJvyy5kXsSOVA2rqHjrEHd5AbgnTM7Fzs6jhDURvyF3UPBgEEtRSjVr1wKmqmJTCEtrWRr9u5Jj1ohYFQIBFah20gunDXKkKjFCbNoyIvhLnSW+ckrKzbN5IcYaUliLlFclio0s06vF9q7AObNZGdQIDAQAB");
+        String str2 = textEncryptor.encrypt("1");
+        System.out.println(str1);
+        System.out.println(str2);
     }
 
 

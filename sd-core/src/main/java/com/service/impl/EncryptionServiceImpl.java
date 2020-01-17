@@ -3,21 +3,17 @@ package com.service.impl;
 import com.common.dto.BaseMsg;
 import com.common.dto.ResponseBean;
 import com.common.entity.EncryptLog;
-import com.common.util.EncryptUtils;
-import com.component.BeanFacade;
+import com.util.EncryptUtils;
 import com.datasource.DataSourceNames;
 import com.datasource.DynamicRouteDataSource;
-import com.datasource.HandlerDataSource;
 import com.dto.EncryptDTO;
 import com.dto.SdApplicationContext;
 import com.mapper.EncryptLogMapper;
 import com.service.EncryptionService;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
 import java.util.Date;
 
 

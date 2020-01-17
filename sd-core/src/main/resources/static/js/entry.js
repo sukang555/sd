@@ -48,7 +48,7 @@ $(document).ready(function () {
         param.plaintext = $("#decryptStr").val();
 
         if (param.plaintext == null || param.plaintext == ''){
-            layer.alert('输入的明文不能为空', {icon: 5});
+            layer.alert('输入的密文不能为空', {icon: 5});
         }else {
             $.ajax({
                 type: "POST",

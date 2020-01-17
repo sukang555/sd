@@ -29,4 +29,11 @@ public class PropertiesManager {
 	@Value("${sd.active.env}")
 	private String env;
 
+
+	@Value("${sd.public.key}")
+	private String publicKey;
+
+
+	@Value("${sd.private.key}")
+	private String privateKey;
 }
