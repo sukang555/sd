@@ -1,11 +1,9 @@
 
-
-
 .input__original__area {
     display: block;
     font-family: ArialMT, "Microsoft YaHei", Arial, sans-serif, Helvetica, STHeiti;
     width: 750px;
-    min-height: 240px;
+    min-height: 200px;
     padding: 0;
     border: 0;
     background: rgba(102, 102, 102, 0.15);
@@ -19,7 +17,7 @@
     display: block;
     font-family: ArialMT, "Microsoft YaHei", Arial, sans-serif, Helvetica, STHeiti;
     width: 750px;
-    min-height: 240px;
+    min-height: 200px;
     padding: 0;
     border: 0;
     background: rgba(102, 102, 102, 0.15);
@@ -28,3 +26,15 @@
     line-height: 30px;
     overflow: auto;
 }
+
+
+
+
+
+
+
+
+
+
+
+

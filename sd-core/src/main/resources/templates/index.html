@@ -9,9 +9,8 @@
     <link type="text/css" rel="stylesheet" th:href="${#request.contextPath} + '/layui/css/layui.css'">
 
     <style type="text/css">
-        .container{
-            max-width: 1000px;
-            margin: 0 auto;
+        body{
+            background-image: image("/static/images/iu4.jpg");
         }
     </style>
 </head>
@@ -24,18 +23,24 @@
 <script type="text/javascript" th:src="${#request.contextPath} + '/js/entry.js'"></script>
 
 
-<form method="post">
+<form class="layui-form" style="padding-top: 20px; padding-left: 20px">
     <textarea autocomplete="off" id="encryptStr" class="input__original__area" placeholder="请输入明文(不能超过245个字符)" name="encryptStr" maxlength="245"></textarea><br>
-    <input id='encryptBt' type="button" class="layui-btn layui-btn-radius " value="加密">
-    <input id='resetBt1' type="button" class="layui-btn layui-btn-radius " value="重置">
+    
+    <div style="padding-left: 281px">
+        <input id='encryptBt'  type="button" class="layui-btn layui-btn-radius " value="加密">
+        <input id='resetBt1'  type="button" class="layui-btn layui-btn-radius " value="重置">
+    </div>
 </form>
 
 
 <br><br>
-<form method="post">
+<form class="layui-form" style="padding-left: 20px">
     <textarea autocomplete="off" id="decryptStr" class="out__original__area" placeholder="请输入密文" name="decryptStr"></textarea><br>
-    <input id='decryptBt' type="button" class="layui-btn layui-btn-radius " value="解密">
-    <input id='resetBt2' type="button" class="layui-btn layui-btn-radius " value="重置">
+
+    <div style="padding-left: 281px">
+        <input id='decryptBt' type="button" class="layui-btn layui-btn-radius " value="解密">
+        <input id='resetBt2' type="button" class="layui-btn layui-btn-radius " value="重置">
+    </div>
 </form>
 
 
