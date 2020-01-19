@@ -74,4 +74,18 @@ $(document).ready(function () {
         }
 
     });
+
+    $("#encryCopy").click(function () {
+        layer.alert("明文不允许复制",{icon: 5})
+    })
+
+    $("#decryCopy").click(function () {
+        var Url=document.getElementById("decryptStr");
+        Url.select(); // 选择对象
+        document.execCommand("Copy"); // 执行浏览器复制命令
+        layer.alert("复制成功!",{icon: 6});
+    });
+
+
+
 });
