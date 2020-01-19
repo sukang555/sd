@@ -63,7 +63,7 @@ public class IpUtils {
             if (Objects.equals(CommonConstant.OK,json.getString("ret"))){
                 JSONArray jsonArray = json.getJSONArray("data");
                 StringBuilder stringBuilder = new StringBuilder();
-                jsonArray.forEach(t -> stringBuilder.append(String.valueOf(t)));
+                jsonArray.forEach(t -> stringBuilder.append(String.valueOf(t)).append(","));
                 return stringBuilder.toString();
             }
         } catch (Exception e) {
