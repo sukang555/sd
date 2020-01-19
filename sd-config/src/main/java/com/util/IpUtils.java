@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.common.constant.CommonConstant;
+import com.common.util.BeanUtil;
 import com.component.ApplicationUtils;
 import com.source.PropertiesManager;
 import lombok.extern.slf4j.Slf4j;
@@ -56,6 +57,8 @@ public class IpUtils {
             String uriParams = WebClientUtil.buildUriParams(propertiesManager.getIpUri(), params);
 
             String jsonStr = WebClientUtil.doGet(uriParams, null, params, String.class);
+
+            log.info("获取的ip({})信息为{}",ip, jsonStr);
             JSONObject json = JSON.parseObject(jsonStr);
             if (Objects.equals(CommonConstant.OK,json.getString("ret"))){
                 JSONArray jsonArray = json.getJSONArray("data");
