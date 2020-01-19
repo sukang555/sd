@@ -42,11 +42,14 @@ public class DaliyTest extends AbstractTest {
     public void main11(){
         Map<String, String> params = new HashMap<String, String>() {{
             put("token","5d4ac1553bd21fd560e8a4c96bcfdd11");
-            put("ip","127.0.0.1");
+            put("ip","117.107.132.41");
         }};
         String uri = WebClientUtil.buildUriParams("https://api.ip138.com/query/", params);
+        System.out.println("url为:"+uri);
+
 
         String jsonStr = WebClientUtil.doGet(uri, null, params, String.class);
+        System.out.println(jsonStr);
         JSONObject json = JSON.parseObject(jsonStr);
         if (Objects.equals(CommonConstant.OK,json.getString("ret"))){
             JSONArray data = json.getJSONArray("data");

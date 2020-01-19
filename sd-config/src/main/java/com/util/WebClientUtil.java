@@ -137,7 +137,7 @@ public class WebClientUtil {
 
     public static String buildUriParams(String uri,Map<String,String> params){
         StringBuilder builder = new StringBuilder(uri).append("?");
-        params.forEach((k,v) -> builder.append(k).append("=").append(v));
+        params.forEach((k,v) -> builder.append(k).append("=").append(v).append("&"));
         return builder.toString();
     }
 
