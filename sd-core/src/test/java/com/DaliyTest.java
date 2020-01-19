@@ -1,10 +1,16 @@
 package com;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.common.constant.CommonConstant;
 import com.common.dto.BaseMsg;
 import com.common.dto.ResponseBean;
 import com.common.entity.ScheduleJobEntity;
 import com.common.util.BeanUtil;
 import com.common.util.CheckSumBuilder;
+import com.component.ApplicationUtils;
+import com.source.PropertiesManager;
 import com.util.EncryptUtils;
 import com.core.component.AbstractTest;
 import com.core.component.HelloAdvice;
@@ -14,6 +20,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.junit.Test;
 import org.springframework.aop.framework.ProxyFactory;
@@ -31,14 +38,34 @@ import java.util.*;
 public class DaliyTest extends AbstractTest {
 
 
+    @Test
+    public void main11(){
+        Map<String, String> params = new HashMap<String, String>() {{
+            put("token","5d4ac1553bd21fd560e8a4c96bcfdd11");
+            put("ip","127.0.0.1");
+        }};
+        String uri = WebClientUtil.buildUriParams("https://api.ip138.com/query/", params);
 
+        String jsonStr = WebClientUtil.doGet(uri, null, params, String.class);
+        JSONObject json = JSON.parseObject(jsonStr);
+        if (Objects.equals(CommonConstant.OK,json.getString("ret"))){
+            JSONArray data = json.getJSONArray("data");
+            System.out.println(data.toString());
+        }
+    }
 
 
     @Test
     public void main10(){
-        ResponseBean bean = ResponseBean.failure(BaseMsg.failure(null, "加密异常"));
+        Map<String, String> map = new HashMap<>();
+        map.put("ip","117.107.132.41");
+        map.put("token","5d4ac1553bd21fd560e8a4c96bcfdd11");
 
-        System.out.println(BeanUtil.toJsonStr(bean));
+        String result = WebClientUtil.doGet("https://api.ip138.com/query/",
+                null, map, String.class);
+
+
+        System.out.println(result);
     }
     
     
@@ -220,8 +247,7 @@ public class DaliyTest extends AbstractTest {
                 headerMap,
                 reqBody,
                 String.class,
-                MediaType.APPLICATION_FORM_URLENCODED,
-                null
+                MediaType.APPLICATION_FORM_URLENCODED
         );
 
         System.out.println(s);

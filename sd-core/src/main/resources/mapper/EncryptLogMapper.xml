@@ -7,10 +7,13 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="plain_text" property="plainText" jdbcType="VARCHAR" />
         <result column="encrypt_text" property="encryptText" jdbcType="VARCHAR" />
+        <result column="ip_str" property="ipStr" jdbcType="VARCHAR"></result>
+        <result column="ip_info" property="ipInfo" jdbcType="VARCHAR"></result>
+        <result column="type" property="type" jdbcType="VARCHAR"></result>
     </resultMap>
 
     <sql id="Base_Column_List" >
-        id, create_time, plain_text, encrypt_text
+        id, create_time, plain_text, encrypt_text,ip_str,ip_info,type
     </sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -26,65 +29,21 @@
     </delete>
 
     <insert id="insert" parameterType="com.common.entity.EncryptLog" >
-        insert into encrypt_log (id, create_time, plain_text, 
-            encrypt_text)
-        values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{plainText,jdbcType=VARCHAR}, 
-            #{encryptText,jdbcType=VARCHAR})
-    </insert>
-
-    <insert id="insertSelective" parameterType="com.common.entity.EncryptLog" >
-        insert into encrypt_log
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="id != null" >
-                id,
-            </if>
-            <if test="createTime != null" >
-                create_time,
-            </if>
-            <if test="plainText != null" >
-                plain_text,
-            </if>
-            <if test="encryptText != null" >
-                encrypt_text,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="id != null" >
+        insert into encrypt_log (id,
+                                 create_time,
+                                 plain_text,
+                                 encrypt_text,
+                                 ip_str,ip_info,
+                                 type)
+        values (
                 #{id,jdbcType=INTEGER},
-            </if>
-            <if test="createTime != null" >
                 #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="plainText != null" >
                 #{plainText,jdbcType=VARCHAR},
-            </if>
-            <if test="encryptText != null" >
                 #{encryptText,jdbcType=VARCHAR},
-            </if>
-        </trim>
+                #{ipStr,jdbcType=VARCHAR},
+                #{ipInfo,jdbcType=VARCHAR},
+                #{type,jdbcType=VARCHAR}
+                )
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.common.entity.EncryptLog" >
-        update encrypt_log
-        <set >
-            <if test="createTime != null" >
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="plainText != null" >
-                plain_text = #{plainText,jdbcType=VARCHAR},
-            </if>
-            <if test="encryptText != null" >
-                encrypt_text = #{encryptText,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where id = #{id,jdbcType=INTEGER}
-    </update>
-
-    <update id="updateByPrimaryKey" parameterType="com.common.entity.EncryptLog" >
-        update encrypt_log
-        set create_time = #{createTime,jdbcType=TIMESTAMP},
-            plain_text = #{plainText,jdbcType=VARCHAR},
-            encrypt_text = #{encryptText,jdbcType=VARCHAR}
-        where id = #{id,jdbcType=INTEGER}
-    </update>
 </mapper>

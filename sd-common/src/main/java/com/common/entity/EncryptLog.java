@@ -1,5 +1,8 @@
 package com.common.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 /**
@@ -23,6 +26,37 @@ public class EncryptLog {
     private String plainText;
 
     private String encryptText;
+
+
+    private String ipStr;
+
+    private String ipInfo;
+
+    private String type;
+
+    public String getIpInfo() {
+        return ipInfo;
+    }
+
+    public void setIpInfo(String ipInfo) {
+        this.ipInfo = ipInfo;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getIpStr() {
+        return ipStr;
+    }
+
+    public void setIpStr(String ipStr) {
+        this.ipStr = ipStr;
+    }
 
     public Integer getId() {
         return id;

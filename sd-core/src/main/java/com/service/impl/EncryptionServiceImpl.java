@@ -3,6 +3,7 @@ package com.service.impl;
 import com.common.dto.BaseMsg;
 import com.common.dto.ResponseBean;
 import com.common.entity.EncryptLog;
+import com.util.IpUtils;
 import com.util.EncryptUtils;
 import com.datasource.DataSourceNames;
 import com.datasource.DynamicRouteDataSource;
@@ -40,6 +41,9 @@ public class EncryptionServiceImpl implements EncryptionService {
         EncryptLog encryptLog = new EncryptLog();
         encryptLog.setCreateTime(new Date());
         encryptLog.setPlainText(encryptDTO.getPlaintext());
+        encryptLog.setType("1");
+        encryptLog.setIpStr(IpUtils.getIP(applicationContext.getHttpServletRequest()));
+        encryptLog.setIpInfo(IpUtils.query(encryptLog.getIpStr()));
         encryptLogMapper.insert(encryptLog);
 
         return ResponseBean.ok(encrypt);
@@ -60,6 +64,9 @@ public class EncryptionServiceImpl implements EncryptionService {
         EncryptLog encryptLog = new EncryptLog();
         encryptLog.setCreateTime(new Date());
         encryptLog.setPlainText(decrypt);
+        encryptLog.setType("2");
+        encryptLog.setIpStr(IpUtils.getIP(applicationContext.getHttpServletRequest()));
+        encryptLog.setIpInfo(IpUtils.query(encryptLog.getIpStr()));
         encryptLogMapper.insert(encryptLog);
         return ResponseBean.ok(decrypt);
     }

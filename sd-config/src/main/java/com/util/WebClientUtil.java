@@ -51,50 +51,51 @@ public class WebClientUtil {
         webClient = WebClient.builder().clientConnector(httpConnector).build();
     }
 
+
+
+
     public static <T> T doGet(String url,Map<String,String> header,
                               Map<String,String> uriParam,Class<T> clazz){
-        return getResponse(url,header,uriParam,clazz);
+        WebClient.RequestBodySpec requestBodySpec = webClient.method(HttpMethod.GET)
+                .uri(url)
+                .attributes(t -> {
+            t.putAll(uriParam);
+        }).contentType(MediaType.APPLICATION_JSON_UTF8);
+
+        return getResponse(requestBodySpec,clazz);
     }
+
+
+
 
 
 
     public static <T> T doPost(String url, Object reqBody,Class<T> clazz){
-        return doPost(url,reqBody,clazz,null, MediaType.APPLICATION_JSON_UTF8,
-                null);
+        return doPost(url,reqBody,clazz,null, MediaType.APPLICATION_JSON_UTF8);
     }
 
     public static <T> T doPost(String url, Object reqBody,Class<T> clazz,
-                               Map<String,String> headers,MediaType mediaType,
-                               Map<String,?> uriParam){
-        return postResponse(url,headers,reqBody,clazz, mediaType,uriParam);
+                               Map<String,String> headers,MediaType mediaType){
+        return postResponse(url,headers,reqBody,clazz, mediaType);
     }
 
 
     public static <T> T fromReq(String url, Map<String, String> header,
                                 MultiValueMap<String,String> reqData, Class<T> clazz,
-                                MediaType mediaType, Map<String,?> uriParam){
+                                MediaType mediaType){
 
         WebClient.RequestBodySpec reqUrl = createReqUrl(url, HttpMethod.POST,mediaType,
-                header,uriParam);
+                header);
         reqUrl.body(BodyInserters.fromFormData(reqData));
         return getResponse(reqUrl,clazz);
     }
 
 
-    private static <T> T getResponse(String url, Map<String,String> header,
-                                Map<String,?> params,
-                                Class<T> clazz){
-        return getResponse(createReqUrl(url, HttpMethod.GET,
-                MediaType.APPLICATION_JSON_UTF8,header,params),
-                clazz);
-    }
-
-
     private static <T> T postResponse(String url, Map<String, String> header,
                                  Object reqData, Class<T> clazz,
-                                 MediaType mediaType,Map<String,?> uriParam){
+                                 MediaType mediaType){
         WebClient.RequestBodySpec reqUrl = createReqUrl(
-                url, HttpMethod.POST,mediaType,header,uriParam);
+                url, HttpMethod.POST,mediaType,header);
         reqUrl.syncBody(reqData);
         return getResponse(reqUrl,clazz);
     }
@@ -118,20 +119,26 @@ public class WebClientUtil {
     private static WebClient.RequestBodySpec createReqUrl(String url,
                                                           HttpMethod method,
                                                           MediaType mediaType,
-                                                          Map<String,String> header,
-                                                          Map<String,?> uriParam){
+                                                          Map<String,String> header){
 
         Assert.isTrue(!StringUtils.isEmpty(url),"请求url不能为空");
-        if (uriParam == null){
-            uriParam = new HashMap<>(1);
-        }
+
         WebClient.RequestBodySpec requestBodySpec = webClient
                 .method(method)
-                .uri(url,uriParam)
+                .uri(url)
                 .contentType(mediaType);
 
         addHeader(header,requestBodySpec);
         return requestBodySpec;
+    }
+
+
+
+
+    public static String buildUriParams(String uri,Map<String,String> params){
+        StringBuilder builder = new StringBuilder(uri).append("?");
+        params.forEach((k,v) -> builder.append(k).append("=").append(v));
+        return builder.toString();
     }
 
 }

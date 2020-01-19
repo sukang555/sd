@@ -36,4 +36,10 @@ public class PropertiesManager {
 
 	@Value("${sd.private.key}")
 	private String privateKey;
+
+	@Value("${query.ip.uri}")
+	private String ipUri;
+
+	@Value("${query.ip.token}")
+	private String ipToken;
 }

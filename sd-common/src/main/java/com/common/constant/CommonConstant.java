@@ -16,4 +16,5 @@ public interface CommonConstant {
 
 	String ENV_PRD = "prd";
 
+    String OK = "ok";
 }
