@@ -38,11 +38,13 @@ public class EncryptionServiceImpl implements EncryptionService {
             return ResponseBean.failure(BaseMsg.failure(null,"加密异常"));
         }
 
+
         EncryptLog encryptLog = new EncryptLog();
         encryptLog.setCreateTime(new Date());
         encryptLog.setPlainText(encryptDTO.getPlaintext());
         encryptLog.setType("1");
         encryptLog.setIpStr(IpUtils.getIP(applicationContext.getHttpServletRequest()));
+
         encryptLog.setIpInfo(IpUtils.query(encryptLog.getIpStr()));
         encryptLogMapper.insert(encryptLog);
 
@@ -60,6 +62,7 @@ public class EncryptionServiceImpl implements EncryptionService {
         if (StringUtils.isBlank(decrypt)){
             return ResponseBean.failure(BaseMsg.failure(null,"解密异常"));
         }
+
 
         EncryptLog encryptLog = new EncryptLog();
         encryptLog.setCreateTime(new Date());
