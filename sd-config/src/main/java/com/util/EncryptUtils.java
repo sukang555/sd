@@ -29,8 +29,8 @@ public class EncryptUtils {
 
     private static  String PUBLIC_KEY;
 
-    private static final String PUBLIC_KEY_PATH = "";
-    private static final String PRIVATE_KEY_PATH = "";
+    private static final String PUBLIC_KEY_PATH = "/usr/local/java/sd/key/public-key.txt";
+    private static final String PRIVATE_KEY_PATH = "/usr/local/java/sd/key/private-key.txt";
 
 
     static {
