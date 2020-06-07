@@ -87,8 +87,8 @@ public class DaliyTest extends AbstractTest {
         //加密所需的salt(盐)
         textEncryptor.setPassword("sukang");
         //要加密的数据（数据库的用户名或密码）
-        String str1 = textEncryptor.encrypt("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAz51KQheKb7wAIqQmobReleWLGRaY+rPV+Mu4h4OMvxP+sBScL2Uc8OlKcxN6FU1Iy5ihf6k2Z8OLvY7Sk/raUHpGsl59Xy0l1fq23ViWloO3mFKaNk5/vShCC+05ibzOepQvVr2uTdc4xAzXQfGoP+0dzVwJkF4C9QbQaHETfZMu1AkL46BlCxiXYRaLHpmzhJvyy5kXsSOVA2rqHjrEHd5AbgnTM7Fzs6jhDURvyF3UPBgEEtRSjVr1wKmqmJTCEtrWRr9u5Jj1ohYFQIBFah20gunDXKkKjFCbNoyIvhLnSW+ckrKzbN5IcYaUliLlFclio0s06vF9q7AObNZGdQIDAQAB");
-        String str2 = textEncryptor.encrypt("1");
+        String str1 = textEncryptor.encrypt("");
+        String str2 = textEncryptor.encrypt("");
         System.out.println(str1);
         System.out.println(str2);
     }
