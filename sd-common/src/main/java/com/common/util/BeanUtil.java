@@ -5,10 +5,15 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.common.exception.JsonTransException;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.converters.DateConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
+import java.util.Map;
+
 /**
  * @author sukang
  */
@@ -70,16 +75,16 @@ public class BeanUtil {
         convertUtils.register(dateConverter, String.class);
         new BeanUtilsBean(convertUtils).populate(newInstance,map);
         return newInstance;
-    }
+    }*/
 
 
-    public Map<String,String> beanToMap(Object bean,String dateFormat) throws Exception{
+    public static Map<String,String> beanToMap(Object bean, String dateFormat) throws Exception{
         ConvertUtilsBean convertUtils = BeanUtilsBean.getInstance().getConvertUtils();
         DateConverter dateConverter = new DateConverter();
         dateConverter.setPattern(dateFormat);
         convertUtils.register(dateConverter, String.class);
         return new BeanUtilsBean(convertUtils).describe(bean);
-    }*/
+    }
 
 
 

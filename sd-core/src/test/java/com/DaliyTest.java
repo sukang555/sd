@@ -3,6 +3,7 @@ package com;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPath;
 import com.common.constant.CommonConstant;
 import com.common.dto.BaseMsg;
 import com.common.dto.ResponseBean;
@@ -10,6 +11,11 @@ import com.common.entity.ScheduleJobEntity;
 import com.common.util.BeanUtil;
 import com.common.util.CheckSumBuilder;
 import com.component.ApplicationUtils;
+import com.dto.SdApplicationContext;
+import com.dto.StatusInfo;
+import com.googlecode.aviator.AviatorEvaluator;
+import com.googlecode.aviator.Expression;
+import com.jayway.jsonpath.JsonPath;
 import com.source.PropertiesManager;
 import com.util.EncryptUtils;
 import com.core.component.AbstractTest;
@@ -20,15 +26,18 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.junit.Test;
 import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**
@@ -36,6 +45,41 @@ import java.util.*;
  */
 @Slf4j
 public class DaliyTest extends AbstractTest {
+
+    @Test
+    public void main13() {
+        StatusInfo statusInfo = new StatusInfo();
+        statusInfo.setApplyNo("411324");
+        statusInfo.setType("demo");
+        SdApplicationContext<Object> applicationContext = SdApplicationContext.getBuilder().setData(statusInfo).builder();
+        try {
+
+            Object read = JsonPath.parse(BeanUtil.toJsonStr(applicationContext)).read("$.data.type");
+
+            System.out.println(read);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Test
+    public void main12(){
+        String expression = "(b13864=='ssuu') && (b13865=='123456') && (b81366==50)";
+
+        Expression compile = AviatorEvaluator.compile(expression);
+
+        Object execute = compile.execute(new HashMap<String, Object>() {{
+            put("b13864", "ssuu");
+            put("b13865", "123456");
+            put("b81366", 50);
+        }});
+
+        System.out.println(execute);
+
+
+    }
 
 
     @Test

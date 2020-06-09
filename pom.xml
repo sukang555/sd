@@ -44,20 +44,31 @@
 
         <jackson.version>2.9.9</jackson.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <fast.json.version>1.2.45</fast.json.version>
+        <fast.json.version>[2.9.10.4,)</fast.json.version>
         <common.io.version>2.5</common.io.version>
         <javassist.version>3.12.1.GA</javassist.version>
+
+        <googlecode.aviator.version>4.0.0-RC</googlecode.aviator.version>
     </properties>
 
 
-    <dependencies>
 
-    </dependencies>
 
 
     <dependencyManagement>
         <dependencies>
 
+            <dependency>
+                <groupId>com.googlecode.aviator</groupId>
+                <artifactId>aviator</artifactId>
+                <version>${googlecode.aviator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+                <version>2.2.0</version>
+            </dependency>
 
             <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
             <dependency>
@@ -73,7 +84,11 @@
                 <version>1.9.0</version>
             </dependency>
 
-
+            <dependency>
+                <groupId>com.googlecode.aviator</groupId>
+                <artifactId>aviator</artifactId>
+                <version>${googlecode.aviator.version}</version>
+            </dependency>
 
             <!-- https://mvnrepository.com/artifact/javassist/javassist -->
             <dependency>
