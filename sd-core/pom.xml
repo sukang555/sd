@@ -115,7 +115,7 @@
 					<imageName>${project.artifactId}/-${project.version}</imageName>
 					<!--dockerFile文件位置 target目录-->
 					<dockerDirectory>${project.build.directory}</dockerDirectory>
-					<registryUrl>${docker.image.url}</registryUrl>
+					<!--<registryUrl>${docker.image.url}</registryUrl>-->
 					<pushImage>true</pushImage>
 					<resources>
 						<resource>
@@ -142,16 +142,23 @@
 
 			<resource>
 				<directory>src/main/resources</directory>
-
-				<!--打包排除config下的所有文件-->
+				<!--将config下的所有文件排除-->
 				<excludes>
-					<exclude>config/dev/*</exclude>
-					<exclude>config/prd/*</exclude>
+					<exclude>config/**/*.*</exclude>
 				</excludes>
-				<!-- 指定filters 文件的变量值在resource 下是否有效-->
 				<filtering>true</filtering>
 			</resource>
+
+
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>config/${profiles.active}/**/*.*</include>
+				</includes>
+			</resource>
 		</resources>
+
+		<!--指定@@变量中的值的来源文件-->
 		<filters>
 			<filter>src/main/resources/config/${profiles.active}/application-${profiles.active}.properties</filter>
 		</filters>

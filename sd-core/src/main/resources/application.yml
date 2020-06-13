@@ -1,0 +1,55 @@
+server:
+  port: @server.port@
+
+
+
+#mysql
+spring:
+  datasource:
+    driver-class-name: com:mysql:jdbc:Driver
+    #spring:datasource:type:com:zaxxer:hikari:HikariDataSource
+    hikari:
+      minimum-idle:5
+      maximum-pool-size:10
+      idle-timeout:30000
+      connection-timeout:30000
+
+    first:
+      jdbc-url: @first.mysqldb.url@
+      username: @first.mysqldb.username@
+      password: @first.mysqldb.password@
+    second:
+      jdbc-url: @second.mysqldb.url@
+      username: @second.mysqldb.username@
+      password: @second.mysqldb.password@
+    redis:
+      host: ENC(EAms4RhsJiPnIJ0MZfP4g8+klp/+KMnf)
+      port: 6379
+
+    thymeleaf:
+      cache: false
+      prefix: classpath:/templates/
+      suffix: html
+
+
+
+jasypt:
+  encryptor:
+    password: sukang
+
+
+sd:
+  public:
+    key:@sd.public.key@
+  private:
+    key:@sd.private.key@
+
+mybatis:
+  mapper-locations:
+    classpath: mapper/*:xml
+
+
+query:
+  ip:
+  uri: https://api:ip138:com/query/
+  token: 5d4ac1553bd21fd560e8a4c96bcfdd11
