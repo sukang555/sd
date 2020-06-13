@@ -107,15 +107,15 @@
 			</plugin>
 
 
-			<plugin>
+		<!--	<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>1.0.0</version>
 				<configuration>
 					<imageName>${project.artifactId}/-${project.version}</imageName>
-					<!--dockerFile文件位置 target目录-->
+					&lt;!&ndash;dockerFile文件位置 target目录&ndash;&gt;
 					<dockerDirectory>${project.build.directory}</dockerDirectory>
-					<!--<registryUrl>${docker.image.url}</registryUrl>-->
+					&lt;!&ndash;<registryUrl>${docker.image.url}</registryUrl>&ndash;&gt;
 					<pushImage>true</pushImage>
 					<resources>
 						<resource>
@@ -124,7 +124,7 @@
 						</resource>
 					</resources>
 				</configuration>
-			</plugin>
+			</plugin>-->
 
 
 		</plugins>
@@ -146,6 +146,7 @@
 				<excludes>
 					<exclude>config/**/*.*</exclude>
 				</excludes>
+				<!--指定resource下的文件是否替换@@变量-->
 				<filtering>true</filtering>
 			</resource>
 
