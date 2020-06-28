@@ -17,7 +17,7 @@ import org.springframework.context.annotation.PropertySources;
  * 加在bean中，通过@value注解来获取
  */
 @PropertySources({
-	@PropertySource("classpath:sd.properties")
+	@PropertySource("classpath:sd.properties"),@PropertySource("classpath:application.yml")
 	})
 /**
  * @ConfigurationProperties(prefix = "sd.active")

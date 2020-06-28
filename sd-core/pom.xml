@@ -50,6 +50,11 @@
 			<version>${sd.config}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
 		<!--spring核心依赖-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

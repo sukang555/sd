@@ -2,10 +2,6 @@ package com.controller;
 
 
 import com.common.entity.ScheduleJobEntity;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -28,7 +24,6 @@ public class IndexController {
     @RequestMapping("/success")
     public String success(Map<String,String> map){
         return "success";
-
     }
 
     @RequestMapping("/data")
@@ -54,25 +49,7 @@ public class IndexController {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
-        UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
-        org.apache.shiro.subject.Subject subject = SecurityUtils.getSubject();
-        String msg = "";
-        try {
-            //完成登录
-            subject.login(usernamePasswordToken);
-            return "success";
-        } catch(UnknownAccountException e1) {
-            msg = e1.getMessage();
-        }catch (IncorrectCredentialsException e2){
-            msg = "密码错误";
-        }catch (Exception e3){
-            msg = "登陆异常";
-            e3.printStackTrace();
-        }
-        map.put("msg", msg);
         return "login";
-
     }
 
 

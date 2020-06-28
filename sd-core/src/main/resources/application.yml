@@ -6,7 +6,7 @@ server:
 #mysql
 spring:
   datasource:
-    driver-class-name: com:mysql:jdbc:Driver
+    driver-class-name: com.mysql.jdbc.Driver
     #spring:datasource:type:com:zaxxer:hikari:HikariDataSource
     hikari:
       minimum-idle:5
@@ -40,16 +40,15 @@ jasypt:
 
 sd:
   public:
-    key:@sd.public.key@
+    key: @public.key@
   private:
-    key:@sd.private.key@
+    key: @private.key@
 
 mybatis:
   mapper-locations:
     classpath: mapper/*:xml
 
-
 query:
   ip:
-  uri: https://api:ip138:com/query/
-  token: 5d4ac1553bd21fd560e8a4c96bcfdd11
+    uri: https://api:ip138:com/query/
+    token: 5d4ac1553bd21fd560e8a4c96bcfdd11

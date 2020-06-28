@@ -131,8 +131,8 @@ public class DaliyTest extends AbstractTest {
         //加密所需的salt(盐)
         textEncryptor.setPassword("sukang");
         //要加密的数据（数据库的用户名或密码）
-        String str1 = textEncryptor.encrypt("");
-        String str2 = textEncryptor.encrypt("");
+        String str1 = textEncryptor.encrypt("admin");
+        String str2 = textEncryptor.encrypt("admin");
         System.out.println(str1);
         System.out.println(str2);
     }

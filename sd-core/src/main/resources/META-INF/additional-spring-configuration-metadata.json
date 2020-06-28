@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "sd.public.key",
+      "type": "java.lang.String",
+      "description": "Description for sd.public.key."
+    },
+    {
+      "name": "spring.datasource.hikari",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.hikari."
+    }
+  ] }
