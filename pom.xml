@@ -33,7 +33,7 @@
         <java.version>1.8</java.version>
         <!--第三方包版本配置-->
         <json.lib.version>2.4</json.lib.version>
-        <java.mysql.version>5.1.46</java.mysql.version>
+        <java.mysql.version>8.0.16</java.mysql.version>
         <spring.quarz.version>2.3.0</spring.quarz.version>
         <hikariCP.vesion>3.2.0</hikariCP.vesion>
         <mybatis.version>1.3.2</mybatis.version>
