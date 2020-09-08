@@ -32,6 +32,7 @@ import org.jasypt.util.text.BasicTextEncryptor;
 import org.junit.Test;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.util.Lazy;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -39,12 +40,20 @@ import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.function.Supplier;
 
 /**
  * @author sukang  on 2018/7/22.
  */
 @Slf4j
 public class DaliyTest extends AbstractTest {
+
+
+
+    @Test
+    public void main14(){
+        Objects.requireNonNull(null, () -> "hello world");
+    }
 
     @Test
     public void main13() {

@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 
 import javax.inject.Named;
 import javax.sql.DataSource;
@@ -27,7 +28,8 @@ public class MybatisConfig {
         sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setMapperLocations(
                 new PathMatchingResourcePatternResolver()
-                        .getResources("classpath:mapper/*.xml"));
+                        .getResources(ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
+                                + "com.mapper/*.xml"));
         return sqlSessionFactoryBean.getObject();
     }
 

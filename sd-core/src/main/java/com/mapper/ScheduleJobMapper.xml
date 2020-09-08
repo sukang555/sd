@@ -15,8 +15,10 @@
     </resultMap>
 
     <sql id="Base_Column_List" >
-        job_id, bean_name, method_name, params, cron_expression, status, remark, create_time, 
-        update_time
+        <![CDATA[
+            job_id, bean_name, method_name, params, cron_expression, status, remark, create_time,
+            update_time
+        ]]>
     </sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >

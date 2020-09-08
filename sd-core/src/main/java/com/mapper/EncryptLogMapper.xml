@@ -7,13 +7,13 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="plain_text" property="plainText" jdbcType="VARCHAR" />
         <result column="encrypt_text" property="encryptText" jdbcType="VARCHAR" />
-        <result column="ip_str" property="ipStr" jdbcType="VARCHAR"></result>
-        <result column="ip_info" property="ipInfo" jdbcType="VARCHAR"></result>
-        <result column="type" property="type" jdbcType="VARCHAR"></result>
+        <result column="ip_str" property="ipStr" jdbcType="VARCHAR"/>
+        <result column="ip_info" property="ipInfo" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List" >
-        id, create_time, plain_text, encrypt_text,ip_str,ip_info,type
+       id, create_time, plain_text, encrypt_text,ip_str,ip_info,type
     </sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

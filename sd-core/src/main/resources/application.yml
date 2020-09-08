@@ -50,5 +50,5 @@ mybatis:
 
 query:
   ip:
-    uri: https://api:ip138:com/query/
-    token: 5d4ac1553bd21fd560e8a4c96bcfdd11
+    uri: https://api.ip138.com/ipv4/
+    token: 0965e4897ada59765910cb80d17dec08
