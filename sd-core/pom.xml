@@ -139,7 +139,7 @@
 				<excludes>
 					<exclude>config/**/*.*</exclude>
 				</excludes>
-				<!--指定resource下的文件是否替换@@变量-->
+				<!--指定该目录下剩余的配置文件是否替换变量-->
 				<filtering>true</filtering>
 			</resource>
 
@@ -152,7 +152,7 @@
 			</resource>
 		</resources>
 
-		<!--指定@@变量中的值的来源文件-->
+		<!--指定变量的来源文件-->
 		<filters>
 			<filter>src/main/resources/config/${profiles.active}/application-${profiles.active}.properties</filter>
 		</filters>
