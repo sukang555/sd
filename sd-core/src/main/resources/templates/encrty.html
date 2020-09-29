@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>明文加解密</title>
+    <link rel=”shortcut” th:href="${#request.contextPath} + '/favicon.ico' " />
+    <link type="text/css" rel="stylesheet" th:href="${#request.contextPath} + '/css/entry.css'">
+    <link type="text/css" rel="stylesheet" th:href="${#request.contextPath} + 'lib/layui/css/layui.css'">
+
+</head>
+
+<body>
+
+<!--加载js文件-->
+<script type="text/javascript" th:src="${#request.contextPath} + '/lib/layui/layui.js'"></script>
+<script type="text/javascript" th:src="${#request.contextPath} + '/lib/jquery/jquery.min.js'"></script>
+<script type="text/javascript" th:src="${#request.contextPath} + '/js/entry.js'"></script>
+
+
+<form class="layui-form" style="padding-top: 20px; padding-left: 20px">
+    <textarea autocomplete="off" id="encryptStr" class="input__original__area" placeholder="请输入明文(不能超过245个字符)" name="encryptStr" maxlength="245"></textarea><br>
+    
+    <div style="padding-left: 281px">
+        <input id='encryptBt'  type="button" class="layui-btn layui-btn-radius " value="加密">
+        <input id='resetBt1'  type="button" class="layui-btn layui-btn-radius " value="重置">
+        <input id = 'encryCopy' type="button" class="layui-btn layui-btn-normal layui-btn-radius" value="复制">
+    </div>
+</form>
+
+
+<br><br>
+<form class="layui-form" style="padding-left: 20px">
+    <textarea autocomplete="off" id="decryptStr" class="out__original__area" placeholder="请输入密文" name="decryptStr"></textarea><br>
+
+    <div style="padding-left: 281px">
+        <input id='decryptBt' type="button" class="layui-btn layui-btn-radius " value="解密">
+        <input id='resetBt2' type="button" class="layui-btn layui-btn-radius " value="重置">
+        <input id = 'decryCopy' type="button" class="layui-btn layui-btn-normal layui-btn-radius" value="复制">
+    </div>
+</form>
+
+
+
+
+</body>
+
+</html>

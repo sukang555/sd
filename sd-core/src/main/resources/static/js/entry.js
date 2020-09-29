@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     var layer;
     layui.use('layer', function(){

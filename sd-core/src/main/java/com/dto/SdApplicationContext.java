@@ -35,7 +35,7 @@ public class SdApplicationContext<T> {
     }
 
     public static <T> Builder<T> getBuilder(){
-        return new SdApplicationContext.Builder<>();
+        return new SdApplicationContext.Builder<T>();
     }
 
 
