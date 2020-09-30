@@ -53,8 +53,7 @@ public class HandlerDataSourceAop implements Ordered{
             );
         }
 
-        logger.info("类{}方法{}配置的数据源为{}",signature.getClass().getSimpleName(),
-                method.getName(),HandlerDataSource.getDataSource());
+
         try {
             return joinPoint.proceed();
         } finally {

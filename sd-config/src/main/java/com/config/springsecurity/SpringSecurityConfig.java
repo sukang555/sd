@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 import javax.annotation.Resource;
 
-/*
+/**
  * @Author: sukang
  * @Date: 2020/6/28 15:26
  */
@@ -73,7 +73,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/lib/**").permitAll()
-                .antMatchers("/favicon.ico").permitAll()
+                .antMatchers("/*.ico").permitAll()
         //登录 登出页面
                 .antMatchers("/login.html","/404.html","/authentication/form").permitAll()
                 .anyRequest().authenticated()
@@ -92,7 +92,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http .csrf().disable();
 
 
-
+        http.headers().frameOptions().sameOrigin();
 
 
     }

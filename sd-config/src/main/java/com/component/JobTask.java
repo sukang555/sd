@@ -49,7 +49,7 @@ public class JobTask {
     
     public void initAndUpdateJob(){
     	
-    	new Thread(() ->{
+    	/*new Thread(() ->{
     		while (true) {
     			
     			try {
@@ -86,7 +86,7 @@ public class JobTask {
     			
     			
 			}
-    	},"initAndUpdateJob").start();
+    	},"initAndUpdateJob").start();*/
     }
     
   
@@ -108,7 +108,7 @@ public class JobTask {
 		List<ScheduleJobEntity> jobs = getJobsFromDb(true,false);
 		logger.info("初始化的job列表为{}",String.valueOf(jobs));
 		
-		if (jobs != null && !jobs.isEmpty()) {
+		/*if (jobs != null && !jobs.isEmpty()) {
 			
 			for (ScheduleJobEntity scheduleJobEntity : jobs) {
 				
@@ -119,7 +119,7 @@ public class JobTask {
 				addJob(scheduleJobEntity);
 			}
 		}
-		scheduler.start();
+		scheduler.start();*/
 	}
 	
 	

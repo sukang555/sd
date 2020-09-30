@@ -124,20 +124,13 @@
 				<filtering>false</filtering>
 			</resource>
 
-			<resource>
-				<directory>lib</directory>
-				<targetPath>BOOT-INF/lib/</targetPath>
-				<includes>
-					<include>**/*.jar</include>
-				</includes>
-			</resource>
-
 
 			<resource>
 				<directory>src/main/resources</directory>
 				<!--将config下的所有文件排除-->
 				<excludes>
 					<exclude>config/**/*.*</exclude>
+					<exclude>static/**</exclude>
 				</excludes>
 				<!--指定该目录下剩余的配置文件是否替换变量-->
 				<filtering>true</filtering>
@@ -148,6 +141,7 @@
 				<directory>src/main/resources</directory>
 				<includes>
 					<include>config/${profiles.active}/**/*.*</include>
+					<include>static/**</include>
 				</includes>
 			</resource>
 		</resources>

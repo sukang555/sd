@@ -1,6 +1,7 @@
 package com.controller.core;
 
 import com.common.exception.Exceptions;
+import com.datasource.DynamicRouteDataSource;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 /**
  * @author sukang
  */
+@DynamicRouteDataSource
 public class BaseController {
 
     protected void checkParams(BindingResult bindingResult){
