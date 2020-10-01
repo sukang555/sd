@@ -6,25 +6,22 @@
 <div class="layui-form timo-compile user-info-page">
     <div class="user-info">
         <div class="user-avatar-box">
-            <img class="user-avatar" th:src="@{'/system/user/picture?p='+${user.picture}}" alt="头像">
+            <img class="user-avatar" th:src="${user.headImage}" alt="头像">
             <span class="edit-avatar" th:attr="data-url=@{/userPicture}">修改头像</span>
         </div>
         <ul class="detail-info">
-            <li>账号：<span th:text="${user.username}" th:title="${user.username}"></span></li>
-            <li>昵称：<span th:text="${user.nickname}" th:title="${user.nickname}"></span></li>
-            <li>性别：<span th:text="${#dicts.keyValue('USER_SEX', user.sex)}"
-                         th:title="${#dicts.keyValue('USER_SEX', user.sex)}"></span></li>
+            <li>姓名：<span th:text="${user.userName}" th:title="${user.userName}"></span></li>
             <li>电话：<span th:text="${user.phone}" th:title="${user.phone}"></span></li>
             <li>邮箱：<span th:text="${user.email}" th:title="${user.email}"></span></li>
         </ul>
     </div>
     <form class="user-edit" th:action="@{/userInfo}">
-        <input type="hidden" name="username" th:value="${user.username}"/>
-        <input type="hidden" name="dept" th:value="${user.dept?.id}"/>
+        <input type="hidden" name="username" th:value="${user.userName}"/>
+       <!-- <input type="hidden" name="dept" th:value="${user.dept?.id}"/>-->
         <div class="layui-form-item">
             <label class="layui-form-label">用户昵称</label>
             <div class="layui-input-inline">
-                <input class="layui-input" type="text" name="nickname" placeholder="请输入用户昵称" th:value="${user.nickname}">
+                <input class="layui-input" type="text" name="nickname" placeholder="请输入用户昵称" th:value="${user.userName}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -40,18 +37,31 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">紧急联系人姓名</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="email" placeholder="请输入紧急联系人姓名" th:value="${user.emergencyName}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">紧急联系人电话</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="email" placeholder="请输入紧急联系人电话" th:value="${user.emergencyPhone}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">与紧急联系人关系</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="email" placeholder="请输入与紧急联系人关系" th:value="${user.emergencyRelation}">
+            </div>
+        </div>
+        <!--<div class="layui-form-item">
             <label class="layui-form-label">选择性别</label>
             <div class="layui-input-inline">
                 <input type="radio" name="sex" value="1" title="男" checked><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>男</div></div>
                 <input type="radio" name="sex" value="2" title="女" th:checked="${user.sex} eq 2"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>女</div></div>
             </div>
-        </div>
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">备注</label>
-            <div class="layui-input-block">
-                <textarea placeholder="请输入内容" class="layui-textarea" name="remark">[[${user.remark}]]</textarea>
-            </div>
-        </div>
+        </div>-->
+
         <div class="layui-form-item timo-finally">
             <button class="layui-btn ajax-submit"><i class="fa fa-check-circle"></i> 保存</button>
             <a class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</a>

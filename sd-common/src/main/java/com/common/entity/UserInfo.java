@@ -18,6 +18,9 @@ public class UserInfo {
      */
     private Integer id;
 
+    /**
+     * user表id
+     */
     private Integer userId;
 
     /**
@@ -26,17 +29,42 @@ public class UserInfo {
     private String headImage;
 
     /**
-     * 用户名 或者昵称
+     * 用户名
      */
     private String userName;
 
     /**
-     * 身份证
+     * 证件号码
      */
     private String idNo;
 
     /**
-     * 身份证姓名
+     * 证件上的姓名
      */
     private String idName;
+
+    /**
+     * 手机号
+     */
+    private String phone;
+
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 紧急联系人名称
+     */
+    private String emergencyName;
+
+    /**
+     * 紧急联系人电话
+     */
+    private String emergencyPhone;
+
+    /**
+     * 与紧急联系人的关系
+     */
+    private String emergencyRelation;
 }

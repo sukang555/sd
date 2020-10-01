@@ -45,11 +45,9 @@ sd:
   private:
     key: @private.key@
 
-mybatis:
-  mapper-locations:
-    classpath: mapper/*:xml
-
 query:
   ip:
     uri: https://api.ip138.com/ipv4/
     token: 0965e4897ada59765910cb80d17dec08
+logging:
+  config: classpath:logback.xml

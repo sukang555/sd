@@ -3,6 +3,7 @@ package com.service.impl;
 import com.common.dto.UserInfoDTO;
 import com.common.entity.UserDetail;
 import com.common.entity.UserInfo;
+import com.common.util.BeanMapping;
 import com.datasource.DynamicRouteDataSource;
 import com.mapper.UserDetailMapper;
 import com.mapper.UserInfoMapper;
@@ -41,4 +42,22 @@ public class UserServiceInfoImpl implements UserInfoService {
         userInfoDTO.setHeadImage(userInfo.getHeadImage());
         return userInfoDTO;
     }
+
+    @Override
+    public UserInfoDTO getUserDetailByUserName(String username) {
+        UserDetail userDetail = userDetailMapper.selectByuserName(username);
+        UserInfo userInfo = getUserInfoByUserId(userDetail.getId());
+        UserInfoDTO userInfoDTO = BeanMapping.copy(userInfo, UserInfoDTO.class);
+
+
+        return userInfoDTO;
+    }
+
+
+
+
+
+
+
+
 }

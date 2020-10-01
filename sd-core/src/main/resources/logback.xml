@@ -35,4 +35,8 @@
         <appender-ref ref="FILE" />
     </root>
 
+    <logger name="org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter" level="WARN">
+        <appender-ref ref="stdout"/>
+    </logger>
+
 </configuration>

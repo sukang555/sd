@@ -14,4 +14,7 @@ public interface UserInfoService {
     UserInfo getUserInfoByUserId(Integer id);
 
     UserInfoDTO selectByUserName(String username);
+
+
+    UserInfoDTO getUserDetailByUserName(String username);
 }

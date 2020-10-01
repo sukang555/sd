@@ -9,28 +9,24 @@
         <result column="user_name" property="userName" jdbcType="VARCHAR" />
         <result column="id_no" property="idNo" jdbcType="VARCHAR" />
         <result column="id_name" property="idName" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="emergency_name" property="emergencyName" jdbcType="VARCHAR" />
+        <result column="emergency_phone" property="emergencyPhone" jdbcType="VARCHAR" />
+        <result column="emergency_relation" property="emergencyRelation" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        id, user_id, head_image, user_name, id_no, id_name
+        id, user_id, head_image, user_name, id_no, id_name, phone, email, emergency_name, 
+        emergency_phone, emergency_relation
     </sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-        select 
+        select
         <include refid="Base_Column_List" />
         from user_info
         where id = #{id,jdbcType=INTEGER}
     </select>
-
-
-
-    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-        select
-        <include refid="Base_Column_List" />
-        from user_info
-        where user_id = #{userId,jdbcType=INTEGER}
-    </select>
-
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from user_info
@@ -38,14 +34,14 @@
     </delete>
 
     <insert id="insert" parameterType="com.common.entity.UserInfo" >
-        insert into user_info (id, user_id, head_image, 
-            user_name, id_no, id_name)
-        values (
-
-                #{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{headImage,jdbcType=LONGVARCHAR},
-                #{userName,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, #{idName,jdbcType=VARCHAR}
-
-            )
+        insert into user_info (id, user_id, head_image,
+                               user_name, id_no, id_name,
+                               phone, email, emergency_name,
+                               emergency_phone, emergency_relation)
+        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{headImage,jdbcType=LONGVARCHAR},
+                #{userName,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, #{idName,jdbcType=VARCHAR},
+                #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{emergencyName,jdbcType=VARCHAR},
+                #{emergencyPhone,jdbcType=VARCHAR}, #{emergencyRelation,jdbcType=VARCHAR})
     </insert>
 
     <insert id="insertSelective" parameterType="com.common.entity.UserInfo" >
@@ -69,6 +65,21 @@
             <if test="idName != null" >
                 id_name,
             </if>
+            <if test="phone != null" >
+                phone,
+            </if>
+            <if test="email != null" >
+                email,
+            </if>
+            <if test="emergencyName != null" >
+                emergency_name,
+            </if>
+            <if test="emergencyPhone != null" >
+                emergency_phone,
+            </if>
+            <if test="emergencyRelation != null" >
+                emergency_relation,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -88,6 +99,21 @@
             </if>
             <if test="idName != null" >
                 #{idName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null" >
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="emergencyName != null" >
+                #{emergencyName,jdbcType=VARCHAR},
+            </if>
+            <if test="emergencyPhone != null" >
+                #{emergencyPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="emergencyRelation != null" >
+                #{emergencyRelation,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -110,6 +136,21 @@
             <if test="idName != null" >
                 id_name = #{idName,jdbcType=VARCHAR},
             </if>
+            <if test="phone != null" >
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="emergencyName != null" >
+                emergency_name = #{emergencyName,jdbcType=VARCHAR},
+            </if>
+            <if test="emergencyPhone != null" >
+                emergency_phone = #{emergencyPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="emergencyRelation != null" >
+                emergency_relation = #{emergencyRelation,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -120,7 +161,46 @@
             head_image = #{headImage,jdbcType=LONGVARCHAR},
             user_name = #{userName,jdbcType=VARCHAR},
             id_no = #{idNo,jdbcType=VARCHAR},
-            id_name = #{idName,jdbcType=VARCHAR}
+            id_name = #{idName,jdbcType=VARCHAR},
+            phone = #{phone,jdbcType=VARCHAR},
+            email = #{email,jdbcType=VARCHAR},
+            emergency_name = #{emergencyName,jdbcType=VARCHAR},
+            emergency_phone = #{emergencyPhone,jdbcType=VARCHAR},
+            emergency_relation = #{emergencyRelation,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+
+
+
+
+
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from user_info
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
 </mapper>

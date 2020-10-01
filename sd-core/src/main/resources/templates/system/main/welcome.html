@@ -147,22 +147,7 @@
                 <div class="layui-card">
                     <div class="layui-card-header">项目信息</div>
                     <div class="layui-card-body">
-                        <ul>
-                            <li><i class="fa fa-paper-plane"></i> 版本：<a href="https://gitee.com/aun/Timo">v2.0.3</a></li>
-                            <li><i class="fa fa-coffee"></i> 作者：<a href="https://gitee.com/aun">小懒虫</a></li>
-                            <li><i class="fa fa-flag"></i> 官网：<a href="http://www.linln.cn">http://www.linln.cn</a></li>
-                            <li><i class="fa fa-qq"></i> QQ群：<a href="https://jq.qq.com/?_wv=1027&k=5RCnDCO">941209502(已满)</a> <a href="https://jq.qq.com/?_wv=1027&k=5AIEf1E">545633945</a></li>
-                            <li><i class="fa fa-book"></i> 开发文档：<a href="http://www.linln.cn/docs">TIMO开发文档.在线</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-md6">
-                <div class="layui-card">
-                    <div class="layui-card-header">捐赠</div>
-                    <div class="layui-card-body">
-                        <div class="alert alert-info">开源不易，您的支持就是我的动力！</div>
-                        <img style="width: 100%" th:src="@{/images/alipay.png}"/>
+
                     </div>
                 </div>
             </div>
@@ -170,7 +155,7 @@
     </div>
     <div class="layui-col-md4">
         <div class="layui-card">
-            <div class="layui-card-header">更新日志</div>
+            <div class="layui-card-header">公告</div>
             <div class="layui-card-body">
                 <ul class="layui-timeline">
                     <li class="layui-timeline-item">
@@ -189,114 +174,8 @@
                             </p>
                         </div>
                     </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">v2.0.2</h3>
-                            <p>
-                                1.优化：根据【阿里巴巴Java开发手册】对代码进行优化处理！<br>
-                                2.新增：上传文件路径输出为全路径方法<br>
-                                3.更新：介绍文档及HTML页面头部信息<br>
-                                4.更新：去掉“更多按钮”，直接显示隐藏内容，不再需要点击按钮滑动内容<br>
-                                5.修复：编译时警告信息！<br>
-                                6.修复：代码生成新模块版本号问题<br>
-                                7.修复：接口无法继承多个父接口的问题<br>
-                                8.修复：jwt组件中添加获取用户名的方法<br>
-                                9.修复：代码生成时控制器保存地址问题<br>
-                                10.修复：部门、菜单控制器更新数据时，pids无法更新<br>
-                            </p>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">v2.0.1</h3>
-                            <p>
-                                1.新增：加入JWT TOKEN鉴权机制，实现多端的权限验证！<br>
-                                2.更新：模块化全局统一异常处理机制及项目配置，降低模块间的耦合性！<br>
-                                3.修复：部分环境下代码生成模板文件编译时的后缀遗留问题！<br>
-                                4.修复：部门更新导致pids字段为空的问题！<br>
-                            </p>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">v2.0</h3>
-                            <p>
-                                1.重构项目结构，引入组件及业务组概念<br>
-                                2.前后台分离部署，可以针对前台进行性能优化<br>
-                                3.优化逻辑删除功能，限制查询已删除的数据<br>
-                                4.重构代码生成功能解析方式<br>
-                                5.优化弹出式窗口，加入最大化及自动适应大小<br>
-                                6.优化数据列表在小窗口下显示混乱问题
-                            </p>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">v1.0.8</h3>
-                            <p>
-                                1.重构字典模块，简化字典操作<br>
-                                2.修复个人信息修改时不通过问题<br>
-                                3.修复用户名修改报错问题，防止脏数据报错<br>
-                                4.修复上传文件无法访问的bug<br>
-                                5.修复生成实体类Text类型的bug
-                            </p>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">v1.0.6</h3>
-                            <p>
-                                加入导入导出功能
-                            </p>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">v1.0.5</h3>
-                            <p>
-                                1.加入QuerySpec动态查询实例<br>
-                                2.加入选择排序功能<br>
-                                3.加入xss防护功能<br>
-                                4.加入swagger数据接口文档
-                            </p>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">v1.0.1</h3>
-                            <p>
-                                1.加入部门管理<br>
-                                2.更新项目开源协议<br>
-                                3.支持第三级子菜单
-                            </p>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">v1.0</h3>
-                            <p>
-                                正式发布v1.0系统<br>
-                                1.权限管理<br>
-                                2.字典管理<br>
-                                3.日志管理<br>
-                                4.代码生成
-                            </p>
-                        </div>
-                    </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                        <div class="layui-timeline-content layui-text">
-                            <div class="layui-timeline-title">小懒虫</div>
-                        </div>
-                    </li>
+
+
                 </ul>
             </div>
         </div>

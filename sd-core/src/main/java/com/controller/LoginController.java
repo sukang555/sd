@@ -8,6 +8,7 @@ import com.common.entity.UserInfo;
 import com.common.enums.MenuTypeEnum;
 import com.common.util.BeanUtil;
 import com.controller.core.BaseController;
+import com.controller.core.SecurityContextUtils;
 import com.service.MenuService;
 import com.service.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
@@ -88,9 +89,8 @@ public class LoginController extends BaseController {
     }
 
     private UserInfoDTO buildUserInfo() {
-        User details = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        return userInfoService.selectByUserName(details.getUsername());
+        User currentUser = SecurityContextUtils.getCurrentUser();
+        return userInfoService.selectByUserName(currentUser.getUsername());
     }
 
 
