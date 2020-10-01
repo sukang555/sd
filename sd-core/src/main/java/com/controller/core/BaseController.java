@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 /**
  * @author sukang
  */
-@DynamicRouteDataSource
 public class BaseController {
 
     protected void checkParams(BindingResult bindingResult){

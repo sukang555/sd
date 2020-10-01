@@ -12,6 +12,8 @@ import java.util.Date;
  * 
  * @date 2019-12-11
  */
+@Setter
+@Getter
 public class EncryptLog {
     /**
      * 主键
@@ -34,59 +36,4 @@ public class EncryptLog {
 
     private String type;
 
-    public String getIpInfo() {
-        return ipInfo;
-    }
-
-    public void setIpInfo(String ipInfo) {
-        this.ipInfo = ipInfo;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getIpStr() {
-        return ipStr;
-    }
-
-    public void setIpStr(String ipStr) {
-        this.ipStr = ipStr;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getPlainText() {
-        return plainText;
-    }
-
-    public void setPlainText(String plainText) {
-        this.plainText = plainText == null ? null : plainText.trim();
-    }
-
-    public String getEncryptText() {
-        return encryptText;
-    }
-
-    public void setEncryptText(String encryptText) {
-        this.encryptText = encryptText == null ? null : encryptText.trim();
-    }
 }

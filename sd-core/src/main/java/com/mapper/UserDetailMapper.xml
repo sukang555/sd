@@ -3,7 +3,7 @@
 <mapper namespace="com.mapper.UserDetailMapper" >
 
     <resultMap id="BaseResultMap" type="com.common.entity.UserDetail" >
-        <id column="id" property="id" jdbcType="VARCHAR" />
+        <id column="id" property="id" jdbcType="INTEGER" />
         <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="status" property="status" jdbcType="INTEGER" />
@@ -18,7 +18,7 @@
         select 
         <include refid="Base_Column_List" />
         from user
-        where id = #{id,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
     </select>
     <select id="selectByuserName" resultType="com.common.entity.UserDetail">
         select
@@ -30,13 +30,13 @@
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
         delete from user
-        where id = #{id,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
     </delete>
 
     <insert id="insert" parameterType="com.common.entity.UserDetail" >
         insert into user (id, username, password, 
             status, descn)
-        values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+        values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
             #{status,jdbcType=INTEGER}, #{descn,jdbcType=VARCHAR})
     </insert>
 
@@ -61,7 +61,7 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="id != null" >
-                #{id,jdbcType=VARCHAR},
+                #{id,jdbcType=INTEGER},
             </if>
             <if test="username != null" >
                 #{username,jdbcType=VARCHAR},
@@ -94,7 +94,7 @@
                 descn = #{descn,jdbcType=VARCHAR},
             </if>
         </set>
-        where id = #{id,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
     </update>
 
     <update id="updateByPrimaryKey" parameterType="com.common.entity.UserDetail" >
@@ -103,6 +103,6 @@
             password = #{password,jdbcType=VARCHAR},
             status = #{status,jdbcType=INTEGER},
             descn = #{descn,jdbcType=VARCHAR}
-        where id = #{id,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>

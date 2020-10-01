@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.UserInfoMapper" >
+
+    <resultMap id="BaseResultMap" type="com.common.entity.UserInfo" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="head_image" property="headImage" jdbcType="LONGVARCHAR" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="id_no" property="idNo" jdbcType="VARCHAR" />
+        <result column="id_name" property="idName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, user_id, head_image, user_name, id_no, id_name
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from user_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+
+
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from user_info
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from user_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.common.entity.UserInfo" >
+        insert into user_info (id, user_id, head_image, 
+            user_name, id_no, id_name)
+        values (
+
+                #{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{headImage,jdbcType=LONGVARCHAR},
+                #{userName,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, #{idName,jdbcType=VARCHAR}
+
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.common.entity.UserInfo" >
+        insert into user_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="headImage != null" >
+                head_image,
+            </if>
+            <if test="userName != null" >
+                user_name,
+            </if>
+            <if test="idNo != null" >
+                id_no,
+            </if>
+            <if test="idName != null" >
+                id_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null" >
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="headImage != null" >
+                #{headImage,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="userName != null" >
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="idNo != null" >
+                #{idNo,jdbcType=VARCHAR},
+            </if>
+            <if test="idName != null" >
+                #{idName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.common.entity.UserInfo" >
+        update user_info
+        <set >
+            <if test="userId != null" >
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="headImage != null" >
+                head_image = #{headImage,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="userName != null" >
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="idNo != null" >
+                id_no = #{idNo,jdbcType=VARCHAR},
+            </if>
+            <if test="idName != null" >
+                id_name = #{idName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.common.entity.UserInfo" >
+        update user_info
+        set user_id = #{userId,jdbcType=INTEGER},
+            head_image = #{headImage,jdbcType=LONGVARCHAR},
+            user_name = #{userName,jdbcType=VARCHAR},
+            id_no = #{idNo,jdbcType=VARCHAR},
+            id_name = #{idName,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

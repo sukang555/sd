@@ -7,7 +7,7 @@
 <div class="layui-layout layui-layout-admin">
     <!-- 导航栏 -->
     <div class="layui-header">
-        <a href="#" class="layui-logo">
+        <a th:href="@{/index}" class="layui-logo">
             <span class="layui-logo-mini">TIMO</span>
             <span class="layui-logo-lg">TIMO 后台</span>
         </a>
@@ -31,13 +31,13 @@
                 </a>
             </li>
             <li class="layui-nav-item timo-nav-user">
-                <a class="timo-header-nickname" text="${name}">TIMO</a>
+                <a class="timo-header-nickname" th:text="${userInfo.userName}"></a>
                 <div class="layui-nav-child">
                     <div class="timo-nav-child-box">
-                        <div><a class="open-popup" data-title="个人信息" th:attr="data-url=@{/userInfo}"
+                        <div><a class="open-popup" data-title="个人信息" th:attr="data-url=@{/user/userInfo}"
                                 data-size="680,464"><!--
               --><i class="fa fa-user-o"></i>个人信息</a></div>
-                        <div><a class="open-popup" data-title="修改密码" th:attr="data-url=@{/editPwd}"
+                        <div><a class="open-popup" data-title="修改密码" th:attr="data-url=@{/user/editPwd}"
                                 data-size="456,296"><!--
               --><i class="fa fa-lock" style="font-size:17px;width:12px;"></i>修改密码</a></div>
                         <div><a th:href="@{/logout}"><i class="fa fa-power-off"></i>退出登录</a></div>
@@ -52,9 +52,9 @@
         <div class="layui-side-scroll">
             <div class="layui-side-user">
                 <img class="layui-side-user-avatar open-popup" th:attr="data-url=@{/userInfo}" data-size="680,464"
-                     th:src="@{'/system/user/picture?p='}" alt="头像">
+                     th:src="${userInfo.headImage}" alt="头像">
                 <div>
-                    <p class="layui-side-user-name" text="${user.nickname}">TIMO</p>
+                    <p class="layui-side-user-name" th:text="${userInfo.userName}"></p>
                     <p class="layui-side-user-designation">在线</p>
                 </div>
             </div>
