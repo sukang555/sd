@@ -1,27 +1,23 @@
 package com;
 
-import com.SdCoreApplication;
+
 import com.common.entity.ScheduleJobEntity;
 import com.common.util.BeanUtil;
 import com.component.ApplicationUtils;
 import com.component.BeanFacade;
-import com.component.JobTask;
+
 import com.component.RedisDistributedLock;
 import com.config.RabbitMqConfigTest;
 import com.config.RabbitMqConfigTest2;
-import com.datasource.DataSourceNames;
-import com.datasource.HandlerDataSource;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.mapper.ScheduleJobMapper;
+
 import com.service.ScheduleJobService;
-import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -29,7 +25,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.script.DefaultRedisScript;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.test.context.ContextConfiguration;

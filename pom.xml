@@ -209,25 +209,6 @@
         </dependencies>
     </dependencyManagement>
 
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <!--编译插件-->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                        <skip>${skip.tests}</skip>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
     <repositories>
        <repository>
             <id>alimaven</id>
@@ -241,10 +222,6 @@
             </snapshots>
         </repository>
     </repositories>
-
-
-
-
 
 
 </project>
