@@ -28,7 +28,7 @@ public class UserController {
         UserInfoDTO userInfoDTO = userInfoService.getUserDetailByUserName(currentUser.getUsername());
 
         model.addAttribute("user",userInfoDTO);
-        return "system/main/userInfo";
+        return "/system/main/userInfo";
     }
 
 }

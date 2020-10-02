@@ -9,5 +9,25 @@
       "name": "spring.datasource.hikari",
       "type": "java.lang.String",
       "description": "Description for spring.datasource.hikari."
+    },
+    {
+      "name": "spring.datasource.first.jdbc-ur",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.first.jdbc-ur."
+    },
+    {
+      "name": "spring.datasource.first.username",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.first.username."
+    },
+    {
+      "name": "spring.datasource.first.password",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.first.password."
+    },
+    {
+      "name": "spring.datasource.second.jdbc-url",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.second.jdbc-url."
     }
   ] }

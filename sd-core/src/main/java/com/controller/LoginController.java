@@ -46,7 +46,7 @@ public class LoginController extends BaseController {
 
     @GetMapping("/userLogin")
     public String userLogin(){
-        return "login";
+        return "/login";
     }
 
     @GetMapping("/")
@@ -58,11 +58,11 @@ public class LoginController extends BaseController {
     @GetMapping("/index/system/{page}")
     public String homeHtml(@PathVariable("page") String page){
         if (StringUtils.isBlank(page)){
-            return "index";
+            return "/index";
         }
         StringBuilder pathString = new StringBuilder();
         Arrays.stream(page.split("-")).forEach(t -> pathString.append("/").append(t));
-        return "/system/" + pathString.toString() ;
+        return "/system" + pathString.toString() ;
     }
 
 
@@ -85,7 +85,7 @@ public class LoginController extends BaseController {
 
         model.addAttribute("treeMenu", treeMenu);
         model.addAttribute("userInfo", userInfoDto);
-        return "index";
+        return "/index";
     }
 
     private UserInfoDTO buildUserInfo() {
