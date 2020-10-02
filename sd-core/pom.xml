@@ -99,46 +99,21 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
 					<skip>true</skip>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.5.5</version>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<appendAssemblyId>false</appendAssemblyId>
-					<!--outputDirectory>output</outputDirectory-->
-					<descriptors>
-						<descriptor>src/assembly/assemble.xml</descriptor>
-					</descriptors>
-				</configuration>
-			</plugin>
-
 		</plugins>
-
-
-
-
-
-
-
 
 
 		<resources>
