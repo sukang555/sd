@@ -25,3 +25,4 @@
 /.nb-gradle/
 /logs/
 mvnw
+/sd-core/bin/

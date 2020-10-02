@@ -3,33 +3,23 @@ package com.controller;
 
 import com.common.dto.UserInfoDTO;
 import com.common.entity.SysMenu;
-import com.common.entity.UserDetail;
-import com.common.entity.UserInfo;
-import com.common.enums.MenuTypeEnum;
-import com.common.util.BeanUtil;
 import com.controller.core.BaseController;
 import com.controller.core.SecurityContextUtils;
 import com.service.MenuService;
 import com.service.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 import javax.annotation.Resource;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author sukang
@@ -75,7 +65,8 @@ public class LoginController extends BaseController {
     public String userIndex(Model model){
 
         List<SysMenu> sysMenus = menuServiceImpl.getListBySortOk();
-        Map<String, SysMenu> sysMenuMap = sysMenus.stream().collect(Collectors.toMap(String::valueOf, Function.identity()));
+        Map<String, SysMenu> sysMenuMap = sysMenus.stream()
+                .collect(Collectors.toMap( t -> String.valueOf(t.getId()),Function.identity()));
 
         // 封装菜单树形数据
         Map<String, SysMenu> treeMenu = buildTreeMenu(sysMenuMap);
@@ -96,15 +87,44 @@ public class LoginController extends BaseController {
 
     private Map<String, SysMenu> buildTreeMenu(Map<String, SysMenu> sysMenuMap){
 
-        Map<String, SysMenu> treeMenu = new HashMap<>(16);
+        Map<String, SysMenu> treeMenu = new LinkedHashMap<>(16);
 
-        sysMenuMap.forEach((k,v) -> {
-            if (StringUtils.isEmpty(v.getPids())){
-                treeMenu.put(k,v);
-            }
+
+        List<SysMenu> collect = sysMenuMap.values().stream()
+                .filter(t -> 0L == t.getPid())
+                .sorted(Comparator.comparing(SysMenu::getSort))
+                .collect(Collectors.toList());
+
+        collect.forEach(t -> treeMenu.put(String.valueOf(t.getId()),t));
+
+        treeMenu.forEach((k,v) -> {
+            addChildrenNode(sysMenuMap,treeMenu,v);
         });
+
         return treeMenu;
     }
+
+    private void addChildrenNode(Map<String, SysMenu> sysMenuMap,Map<String, SysMenu> treeMenuMap, SysMenu sysMenu) {
+
+        if (StringUtils.isBlank(sysMenu.getPids())){
+            return;
+        }
+
+        String[] childIds = sysMenu.getPids().split(":");
+
+        for (String childId : childIds) {
+            SysMenu childMenu = sysMenuMap.get(childId);
+            if (childMenu == null){
+                continue;
+            }
+            sysMenu.getChildren().put(childId,childMenu);
+            addChildrenNode(sysMenuMap,treeMenuMap,childMenu);
+        }
+
+    }
+
+
+
 
 
 

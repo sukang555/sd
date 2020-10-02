@@ -7,6 +7,7 @@ import lombok.Setter;
 import java.beans.Transient;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -95,7 +96,7 @@ public class SysMenu {
     private Byte status;
 
     @JsonIgnore
-    private Map<Long, SysMenu> children = new HashMap<>();
+    private Map<String, SysMenu> children = new LinkedHashMap<>();
 
 
 }
