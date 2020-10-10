@@ -1,161 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.sd.core</groupId>
-	<artifactId>sd-core</artifactId>
-	<packaging>jar</packaging>
-	<name>sd-core</name>
-	<description>core for sd </description>
+    <groupId>com.sd.core</groupId>
+    <artifactId>sd-core</artifactId>
+    <packaging>jar</packaging>
+    <name>sd-core</name>
+    <description>core for sd</description>
 
-	<parent>
-		<groupId>com.sd</groupId>
-		<artifactId>sd</artifactId>
-		<version>1.0.0</version>
-	</parent>
+    <parent>
+        <groupId>com.sd</groupId>
+        <artifactId>sd</artifactId>
+        <version>1.0.0</version>
+    </parent>
 
-	<properties>
+    <properties>
 
-	</properties>
+    </properties>
 
-	<profiles>
-		<profile>
-			<id>dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<profiles.active>dev</profiles.active>
-			</properties>
-		</profile>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profiles.active>dev</profiles.active>
+            </properties>
+        </profile>
 
-		<profile>
-			<id>prd</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<properties>
-				<profiles.active>prd</profiles.active>
-			</properties>
-		</profile>
-	</profiles>
-
-
-	<dependencies>
-		<!--项目依赖-->
-		<dependency>
-			<groupId>com.sd.config</groupId>
-			<artifactId>sd-config</artifactId>
-			<version>${sd.config}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-
-		<!--spring核心依赖-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>com.github.ulisesbocchio</groupId>
-			<artifactId>jasypt-spring-boot-starter</artifactId>
-			<version>2.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jasypt</groupId>
-			<artifactId>jasypt</artifactId>
-			<version>1.9.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.googlecode.aviator</groupId>
-			<artifactId>aviator</artifactId>
-		</dependency>
-	</dependencies>
+        <profile>
+            <id>prd</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <profiles.active>prd</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+    <dependencies>
+        <!--项目依赖-->
+        <dependency>
+            <groupId>com.sd.config</groupId>
+            <artifactId>sd-config</artifactId>
+            <version>${sd.config}</version>
+        </dependency>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<skip>true</skip>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-		</plugins>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!--spring核心依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>1.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.aviator</groupId>
+            <artifactId>aviator</artifactId>
+        </dependency>
+    </dependencies>
 
 
-		<resources>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <!--依赖装配 false：指的是，把依赖包跟java程序打包成一个jar文件内；true（默认）：指的是，把依赖包单独打包成一个jar文件-->
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>src/assembly/package.xml</descriptor>
+                    </descriptors>
+                </configuration>
 
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.properties</include>
-					<include>**/*.xml</include>
-				</includes>
-				<filtering>false</filtering>
-			</resource>
+                <executions>
+                    <execution>
+                        <!--代表执行插件 不写executions，则打包命令变成：mvn package assembly:single-->
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
 
 
-			<resource>
-				<directory>src/main/resources</directory>
-				<!--将config下的所有文件排除-->
-				<excludes>
-					<exclude>config/**/*.*</exclude>
-					<exclude>static/**</exclude>
-				</excludes>
-				<!--指定该目录下剩余的配置文件是否替换变量-->
-				<filtering>true</filtering>
-			</resource>
+        <resources>
+
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
 
 
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>config/${profiles.active}/**/*.*</include>
-					<include>static/**</include>
-					<include>templates/**</include>
-				</includes>
-				<filtering>false</filtering>
-			</resource>
-		</resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!--将config下的所有文件排除-->
+                <excludes>
+                    <exclude>config/**/*.*</exclude>
+                    <exclude>static/**</exclude>
+                </excludes>
+                <!--指定该目录下剩余的配置文件是否替换变量-->
+                <filtering>true</filtering>
+            </resource>
 
-		<!--指定变量的来源文件-->
-		<filters>
-			<filter>src/main/resources/config/${profiles.active}/application-${profiles.active}.properties</filter>
-		</filters>
-	</build>
+
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>config/${profiles.active}/**/*.*</include>
+                    <include>static/**</include>
+                    <include>templates/**</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+
+        <!--指定变量的来源文件-->
+        <filters>
+            <filter>src/main/resources/config/${profiles.active}/application-${profiles.active}.properties</filter>
+        </filters>
+    </build>
 
 
 </project>
