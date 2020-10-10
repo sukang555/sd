@@ -2,7 +2,7 @@
 
 <configuration scan="true">
 
-    <property name = "FILE_PATH" value = "logs/"/>
+    <property name="FILE_PATH" value ="/logs"/>
     
    	<appender name = "stdout" class = "ch.qos.logback.core.ConsoleAppender">
 		<encoder>

@@ -25,7 +25,6 @@ JAVA_OPT="${JAVA_OPT} -XX:MetaspaceSize=512m"
 JAVA_OPT="${JAVA_OPT} -Duser.timezone=GMT+8 -XX:+PrintCommandLineFlags"
 JAVA_OPT="${JAVA_OPT} -Xloggc:${PROJECT_DIR}/logs/gc.log"
 JAVA_OPT="${JAVA_OPT} -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${PROJECT_DIR}/logs"
-JAVA_OPT="${JAVA_OPT} -Dlogging.config.location=${PROJECT_DIR}/config/logback.xml"
 JAVA_OPT="${JAVA_OPT} -Dspring.config.location=${PROJECT_DIR}/config/application.properties"
 
 JAVA_FINAL_OPT="${JAVA_MEM_OPTS} ${JAVA_OPT}"
@@ -49,8 +48,8 @@ getPid
 if [[ ${PID} != "" ]]; then
     echo "${APPLICATION_MAIN} already started (PID=${PID})"
 else
-    nohup ${JAVA_HOME}/bin/java ${JAVA_FINAL_OPT} -cp ${CLASSPATH} ${APPLICATION_MAIN} > ${LOG_DIR}/start.out 2>&1 &
-    tail -f "${LOG_DIR}/start.out"
+    nohup ${JAVA_HOME}/bin/java ${JAVA_FINAL_OPT} -cp ${CLASSPATH} ${APPLICATION_MAIN} > ${LOG_DIR}/start.log 2>&1 &
+    #tail -f "${LOG_DIR}/sd.log"
 fi
 
 
