@@ -3,10 +3,12 @@ package com.controller;
 
 import com.common.dto.UserInfoDTO;
 import com.common.entity.SysMenu;
+import com.common.util.BeanUtil;
 import com.controller.core.BaseController;
 import com.controller.core.SecurityContextUtils;
 import com.service.MenuService;
 import com.service.UserInfoService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,7 @@ import java.util.stream.Stream;
  * @author sukang
  */
 @Controller
+@Slf4j
 public class LoginController extends BaseController {
 
     @Resource
@@ -76,6 +79,7 @@ public class LoginController extends BaseController {
 
         model.addAttribute("treeMenu", treeMenu);
         model.addAttribute("userInfo", userInfoDto);
+        log.info("登录用户信息为{}",BeanUtil.toJsonStr(userInfoDto));
         return "/index";
     }
 

@@ -48,8 +48,8 @@ getPid
 if [[ ${PID} != "" ]]; then
     echo "${APPLICATION_MAIN} already started (PID=${PID})"
 else
-    nohup ${JAVA_HOME}/bin/java ${JAVA_FINAL_OPT} -cp ${CLASSPATH} ${APPLICATION_MAIN} > ${LOG_DIR}/start.log 2>&1 &
-    tail -f "${LOG_DIR}/start.log"
+    ${JAVA_HOME}/bin/java ${JAVA_FINAL_OPT} -cp ${CLASSPATH} ${APPLICATION_MAIN} &
+    tail -f "${LOG_DIR}/sd.log"
 fi
 
 
