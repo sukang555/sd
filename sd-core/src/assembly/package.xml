@@ -52,6 +52,7 @@
                 <include>/static/**</include>
                 <include>/templates/**</include>
                 <include>/function/**</include>
+                <include>/config/${profiles.active}/**</include>
             </includes>
         </fileSet>
     </fileSets>

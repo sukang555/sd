@@ -3,7 +3,7 @@
 PROJECT_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd | sed 's/\/bin//' )
 SHELL_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )
 source ${SHELL_DIR}/JAVA_ENV.sh
-WEB_PATH=${PROJECT_DIR}/target/sd-core-1.0.0.jar
+
 echo "PROJECT_DIR is ${PROJECT_DIR}"
 echo "SHELL_DIR is ${SHELL_DIR}"
 
