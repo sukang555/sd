@@ -17,7 +17,7 @@
     </resultMap>
 
     <sql id="Base_Column_List" >
-        id, user_id, head_image, user_name, id_no, id_name, phone, email, emergency_name, 
+        user_info.id, user_id, head_image, user_name, id_no, id_name, phone, email, emergency_name,
         emergency_phone, emergency_relation
     </sql>
 
@@ -183,24 +183,25 @@
     </select>
 
 
+    <select id="selectAll" resultMap="BaseResultMap" resultType="com.common.entity.UserInfo" parameterType="com.common.dto.UserInfoDTO">
+        select
+        <include refid="Base_Column_List" />
+        from user_info
+        <where>
+            <if test=" userName != null and userName != '' ">
+                user_name = #{userName,jdbcType=VARCHAR}
+            </if>
+
+            <if test="idNo != null and idNo != '' ">
+                id_no = #{idNo,jdbcType=VARCHAR}
+            </if>
+
+            <if test=" phone != null and phone != '' ">
+                phone = #{phone,jdbcType=VARCHAR}
+            </if>
+        </where>
+
+    </select>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
 </mapper>

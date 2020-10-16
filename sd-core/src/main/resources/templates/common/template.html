@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head th:fragment="header(title, link, style)">
     <th:block th:if="${title == null}">
         <title>TIMO后台</title>
@@ -17,7 +19,7 @@
 
     <link rel="shortcut icon" th:href="@{/mo-favicon.ico}" type="image/x-icon">
     <link rel="stylesheet" th:href="@{/css/plugins/font-awesome-4.7.0/css/font-awesome.min.css}"  media="all">
-    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/lib/layui-2.5.6/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/css/main.css}"  media="all">
     <th:block th:if="${link != null}">
         <th:block th:replace="${link}"></th:block>
@@ -29,7 +31,7 @@
 </head>
 <body>
     <th:block th:fragment="script">
-        <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+        <script th:src="@{/lib/layui-2.5.6/layui.js}" charset="utf-8"></script>
         <script th:src="@{/js/main.js}" charset="utf-8"></script>
     </th:block>
 </body>

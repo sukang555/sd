@@ -1,6 +1,7 @@
 package com;
 
 
+import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @author sukang
  */
 @SpringBootApplication(
-		scanBasePackages = {"com"},exclude = {DataSourceAutoConfiguration.class}
+		scanBasePackages = {"com"},exclude = {DataSourceAutoConfiguration.class, PageHelperAutoConfiguration.class}
 
 		)
 @EnableConfigurationProperties

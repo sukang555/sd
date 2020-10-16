@@ -7,7 +7,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONPath;
 import com.common.constant.CommonConstant;
-import com.common.dto.BaseMsg;
+
 import com.common.dto.ResponseBean;
 import com.common.entity.ScheduleJobEntity;
 import com.common.util.BeanUtil;

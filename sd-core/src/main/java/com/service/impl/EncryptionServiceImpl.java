@@ -1,6 +1,6 @@
 package com.service.impl;
 
-import com.common.dto.BaseMsg;
+
 import com.common.dto.ResponseBean;
 import com.common.entity.EncryptLog;
 import com.util.IpUtils;
@@ -35,7 +35,7 @@ public class EncryptionServiceImpl implements EncryptionService {
         String encrypt = EncryptUtils.encryptByPublicKey(encryptDTO.getPlaintext());
 
         if (StringUtils.isBlank(encrypt)){
-            return ResponseBean.failure(BaseMsg.failure(null,"加密异常"));
+            return ResponseBean.failure("加密异常");
         }
 
 
@@ -60,7 +60,7 @@ public class EncryptionServiceImpl implements EncryptionService {
         String decrypt = EncryptUtils.decryptByPrivateKey(encryptDTO.getPlaintext());
 
         if (StringUtils.isBlank(decrypt)){
-            return ResponseBean.failure(BaseMsg.failure(null,"解密异常"));
+            return ResponseBean.failure("解密异常");
         }
 
 

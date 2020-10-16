@@ -30,6 +30,8 @@ public class MybatisConfig {
                 new PathMatchingResourcePatternResolver()
                         .getResources(ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
                                 + "com.mapper/*.xml"));
+        sqlSessionFactoryBean.setConfigLocation(new PathMatchingResourcePatternResolver()
+                .getResource("classpath:mybatis-config.xml"));
         return sqlSessionFactoryBean.getObject();
     }
 

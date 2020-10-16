@@ -1,9 +1,13 @@
 package com.mapper;
 
 
+import com.common.dto.UserInfoDTO;
+import com.common.entity.UserDetail;
 import com.common.entity.UserInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 public interface UserInfoMapper {
     int deleteByPrimaryKey(Integer id);
@@ -19,4 +23,6 @@ public interface UserInfoMapper {
     int updateByPrimaryKey(UserInfo record);
 
     UserInfo selectByUserId(@Param("userId") Integer userId);
+
+    List<UserInfo> selectAll(UserInfoDTO userInfoDTO);
 }

@@ -19,11 +19,18 @@ public interface CommonConstant {
     String OK = "ok";
 
 	/** 正常状态码 */
-	public static final Integer NORMAL = 1;
+	Integer NORMAL = 1;
 
 	/** 冻结状态码 */
-	public static final Integer FREEZED = 2;
+	Integer FREEZED = 2;
 
 	/** 删除状态码 */
-	public static final Integer DELETE = 3;
+	Integer DELETE = 3;
+	
+	
+	int DEFAULT_PAGE_SIZE = 10;
+	int DEFAULT_PAGE_NUM = 1;
+	
+	String PAGE_NUM = "pageNum";
+	String PAGE_SIZE = "pageSize";
 }

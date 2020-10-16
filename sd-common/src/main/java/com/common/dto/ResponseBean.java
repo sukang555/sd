@@ -2,6 +2,7 @@ package com.common.dto;
 
 
 
+import com.common.constant.RespStatus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,15 +19,15 @@ public class ResponseBean {
 
     private Serializable body;
 
-    private boolean hasError;
+    private Integer code;
 
     private String errorMsg;
 
     public ResponseBean() {}
 
-    public ResponseBean(Serializable body, boolean hasError, String errorMsg) {
+    public ResponseBean(Serializable body,Integer code, String errorMsg) {
         this.body = body;
-        this.hasError = hasError;
+        this.code = code;
         this.errorMsg = errorMsg;
     }
 
@@ -37,17 +38,17 @@ public class ResponseBean {
     public static ResponseBean paramError(String errorMsg){
         ResponseBeanBuilder builder = new ResponseBeanBuilder();
         return builder.body(null).errorMsg(errorMsg)
-                .hasError(true).builder();
+                .code(RespStatus.PARAM_ERROR_CODE).builder();
     }
 
 
     /**
      * 接口成功业务失败
      */
-    public static ResponseBean failure(BaseMsg body){
+    public static ResponseBean failure(Serializable body){
         ResponseBeanBuilder builder = new ResponseBeanBuilder();
         return builder.body(body).errorMsg("")
-                .hasError(false).builder();
+                .code(RespStatus.ERROR_CODE).builder();
     }
 
     /**
@@ -56,8 +57,8 @@ public class ResponseBean {
     public static ResponseBean ok(Serializable body){
         ResponseBeanBuilder builder = new ResponseBeanBuilder();
 
-        return builder.body(BaseMsg.success(body)).errorMsg("")
-                .hasError(false).builder();
+        return builder.body(body).errorMsg("")
+                .code(RespStatus.SUCCESS_CODE).builder();
     }
 
 }
@@ -69,7 +70,7 @@ public class ResponseBean {
 class ResponseBeanBuilder {
 
     private String errorMsg;
-    private boolean hasError;
+    private Integer code;
     private Serializable body;
 
 
@@ -78,8 +79,8 @@ class ResponseBeanBuilder {
         return this;
     }
 
-    public ResponseBeanBuilder hasError(boolean hasError) {
-        this.hasError = hasError;
+    public ResponseBeanBuilder code(Integer code) {
+        this.code = code;
         return this;
     }
 
@@ -89,7 +90,7 @@ class ResponseBeanBuilder {
     }
 
     ResponseBean builder() {
-        return new ResponseBean(body, hasError, errorMsg);
+        return new ResponseBean(body, code, errorMsg);
     }
 
 }

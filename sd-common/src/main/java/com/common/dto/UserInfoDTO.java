@@ -3,13 +3,15 @@ package com.common.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 /**
  * @Author: sukang
  * @Date: 2020/10/1 15:05
  */
 @Getter
 @Setter
-public class UserInfoDTO {
+public class UserInfoDTO extends BaseDTO{
 
     /**
      * 主键
@@ -25,6 +27,10 @@ public class UserInfoDTO {
      * 头像地址
      */
     private String headImage;
+
+    private Integer status;
+
+    private String sex;
 
     /**
      * 用户名
@@ -65,4 +71,7 @@ public class UserInfoDTO {
      * 与紧急联系人的关系
      */
     private String emergencyRelation;
+
+
+    private LocalDateTime createTime = LocalDateTime.now();
 }

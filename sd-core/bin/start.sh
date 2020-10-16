@@ -10,11 +10,12 @@ echo "SHELL_DIR is ${SHELL_DIR}"
 LOG_DIR=${PROJECT_DIR}/logs
 
 JAVA_OPT=""
-if [[ $1 == "" ]]; then
-    JAVA_OPT="-Dspring.profiles.active=dev"
-else
-    JAVA_OPT="-Dspring.profiles.active=${1}"
-fi
+
+#if [[ $1 == "" ]]; then
+ #   JAVA_OPT="-Dspring.profiles.active=dev"
+#else
+ #   JAVA_OPT="-Dspring.profiles.active=${1}"
+#fi
 
 ## jvm配置
 
@@ -29,6 +30,7 @@ JAVA_OPT="${JAVA_OPT} -Dspring.config.location=${PROJECT_DIR}/config/application
 
 JAVA_FINAL_OPT="${JAVA_MEM_OPTS} ${JAVA_OPT}"
 
+##classpath 路径设置 包含lib文件夹和config文件夹
 CLASSPATH="${CLASSPATH}:${PROJECT_DIR}/config:${PROJECT_DIR}/lib/*"
 
 echo "当前启动项目的环境为： ${1}"

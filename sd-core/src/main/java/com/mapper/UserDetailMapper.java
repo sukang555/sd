@@ -1,8 +1,11 @@
 package com.mapper;
 
 
+import com.common.dto.UserInfoDTO;
 import com.common.entity.UserDetail;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author  sukang
@@ -21,4 +24,5 @@ public interface UserDetailMapper {
     int updateByPrimaryKeySelective(UserDetail record);
 
     int updateByPrimaryKey(UserDetail record);
+
 }
