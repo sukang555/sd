@@ -67,4 +67,6 @@ public class UserInfo {
      * 与紧急联系人的关系
      */
     private String emergencyRelation;
+
+    private String sex;
 }

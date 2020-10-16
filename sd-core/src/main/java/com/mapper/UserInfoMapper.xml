@@ -14,11 +14,12 @@
         <result column="emergency_name" property="emergencyName" jdbcType="VARCHAR" />
         <result column="emergency_phone" property="emergencyPhone" jdbcType="VARCHAR" />
         <result column="emergency_relation" property="emergencyRelation" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="TINYINT" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        user_info.id, user_id, head_image, user_name, id_no, id_name, phone, email, emergency_name,
-        emergency_phone, emergency_relation
+        id, user_id, head_image, user_name, id_no, id_name, phone, email, emergency_name,
+        emergency_phone, emergency_relation,sex
     </sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -38,10 +39,13 @@
                                user_name, id_no, id_name,
                                phone, email, emergency_name,
                                emergency_phone, emergency_relation)
-        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{headImage,jdbcType=LONGVARCHAR},
+        values (
+                #{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{headImage,jdbcType=LONGVARCHAR},
                 #{userName,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, #{idName,jdbcType=VARCHAR},
                 #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{emergencyName,jdbcType=VARCHAR},
-                #{emergencyPhone,jdbcType=VARCHAR}, #{emergencyRelation,jdbcType=VARCHAR})
+                #{emergencyPhone,jdbcType=VARCHAR}, #{emergencyRelation,jdbcType=VARCHAR},
+                #{sex,jdbcType=TINYINT}
+                )
     </insert>
 
     <insert id="insertSelective" parameterType="com.common.entity.UserInfo" >
@@ -80,6 +84,9 @@
             <if test="emergencyRelation != null" >
                 emergency_relation,
             </if>
+            <if test="sex != null" >
+                sex,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -115,6 +122,11 @@
             <if test="emergencyRelation != null" >
                 #{emergencyRelation,jdbcType=VARCHAR},
             </if>
+
+            <if test="sex != null" >
+                #{sex,jdbcType=TINYINT},
+            </if>
+
         </trim>
     </insert>
 
@@ -151,6 +163,10 @@
             <if test="emergencyRelation != null" >
                 emergency_relation = #{emergencyRelation,jdbcType=VARCHAR},
             </if>
+
+            <if test="sex != null" >
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -166,7 +182,8 @@
             email = #{email,jdbcType=VARCHAR},
             emergency_name = #{emergencyName,jdbcType=VARCHAR},
             emergency_phone = #{emergencyPhone,jdbcType=VARCHAR},
-            emergency_relation = #{emergencyRelation,jdbcType=VARCHAR}
+            emergency_relation = #{emergencyRelation,jdbcType=VARCHAR},
+            sex = #{sex,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 

@@ -4,6 +4,7 @@ import com.common.dto.UserInfoDTO;
 import com.common.entity.UserDetail;
 import com.common.entity.UserInfo;
 import com.common.util.BeanMapping;
+import com.common.util.StrUtil;
 import com.datasource.DynamicRouteDataSource;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
@@ -64,6 +65,7 @@ public class UserServiceInfoImpl implements UserInfoService {
         for (UserInfoDTO infoDTO : userInfoDtos) {
             UserDetail userDetail = userDetailMapper.selectByPrimaryKey(String.valueOf(infoDTO.getUserId()));
             infoDTO.setStatus(userDetail.getStatus());
+            infoDTO.setIdNo(StrUtil.idNoHide(infoDTO.getIdNo()));
         }
 
         return new PageInfo<>(userInfoDtos);
