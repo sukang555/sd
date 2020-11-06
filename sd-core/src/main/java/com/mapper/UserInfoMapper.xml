@@ -206,15 +206,15 @@
         from user_info
         <where>
             <if test=" userName != null and userName != '' ">
-                user_name = #{userName,jdbcType=VARCHAR}
+                user_name like concat('%',#{userName,jdbcType=VARCHAR},'%')
             </if>
 
             <if test="idNo != null and idNo != '' ">
-                id_no = #{idNo,jdbcType=VARCHAR}
+                id_no like concat('%',#{idNo,jdbcType=VARCHAR},'%')
             </if>
 
             <if test=" phone != null and phone != '' ">
-                phone = #{phone,jdbcType=VARCHAR}
+                phone like concat('%',#{phone,jdbcType=VARCHAR},'%')
             </if>
         </where>
 

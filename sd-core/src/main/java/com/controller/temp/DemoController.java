@@ -19,7 +19,9 @@ import reactor.core.publisher.Mono;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author sukang
@@ -34,7 +36,7 @@ public class DemoController extends BaseController {
     private RabbitTemplate rabbitTemplate;
 
     @GetMapping("/uuid/{num}")
-    public String uuId(@PathVariable("num") String num){
+    public String uuId(@PathVariable("num") String num) throws InterruptedException {
         int parseInt;
         if (NumberUtils.isCreatable(num)
                 && (parseInt = Integer.parseInt(num)) > 0
@@ -63,6 +65,8 @@ public class DemoController extends BaseController {
             }
             stringBuilder.append("</body>\n" +
                     "</html>");
+
+            logger.info(stringBuilder.toString());
             return stringBuilder.toString();
         }else {
             String s = UUID.randomUUID().toString();

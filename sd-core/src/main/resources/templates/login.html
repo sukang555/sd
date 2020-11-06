@@ -20,7 +20,7 @@
         }
 
         body {
-            background: #1E9FFF;
+            background: #009688;
         }
 
         body:after {
@@ -63,7 +63,7 @@
         }
 
         .logo-title h1 {
-            color: #1E9FFF;
+            color: #009688;
             font-size: 25px;
             font-weight: bold;
         }
@@ -119,17 +119,17 @@
         <div class="layui-form login-form">
             <form class="layui-form" action="/authentication/form" method="post">
                 <div class="layui-form-item logo-title">
-                    <h1>LayuiMini后台登录</h1>
+                    <h1>后台登录</h1>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-username" for="username"></label>
                     <input type="text" name="username" lay-verify="required|account" placeholder="用户名或者邮箱"
-                           autocomplete="off" class="layui-input" value="admin">
+                           autocomplete="off" class="layui-input" value="">
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-password" for="password"></label>
                     <input type="password" name="password" lay-verify="required|password" placeholder="密码"
-                           autocomplete="off" class="layui-input" value="123456">
+                           autocomplete="off" class="layui-input" value="">
                 </div>
 
                 <div class="layui-form-item">
@@ -157,8 +157,8 @@
         // 粒子线条背景
         $(document).ready(function () {
             $('.layui-container').particleground({
-                dotColor: '#7ec7fd',
-                lineColor: '#7ec7fd'
+                dotColor: '#009688',
+                lineColor: '#009688'
             });
         });
 

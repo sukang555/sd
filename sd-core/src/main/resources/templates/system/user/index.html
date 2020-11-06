@@ -23,6 +23,11 @@
                 <input class="layui-input" name="userName" id="phone" autocomplete="off">
             </div>
             <button id="do_search" class="layui-btn" data-type="reload">搜索</button>
+
+            <button class="layui-btn open-popup popup-add" data-title="添加菜单" th:attr="data-url=@{/system/user-add}">
+                <i class="fa fa-plus"></i>
+                添加用户
+            </button>
         </div>
 
         <table id="user-list-table" class="layui-hide" lay-filter="userTable"></table>
@@ -37,7 +42,6 @@
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
 <script type="text/javascript">
@@ -59,7 +63,7 @@
                 return JSON.stringify(param);
             },
             cellMinWidth: 80 ,//全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            toolbar: true,
+            //toolbar: true,
             cols: [
                 [
                     {field:'userId', width:120, title: 'ID', fixed: 'left', sort: true},
