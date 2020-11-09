@@ -44,11 +44,11 @@ public class WebClientUtil {
             logger.error("创建webclient异常",e);
         }
 
-        SslContext finalSslContext = sslContext;
+        /*SslContext finalSslContext = sslContext;
         ClientHttpConnector httpConnector = new ReactorClientHttpConnector(opt -> {
-            opt.sslContext(finalSslContext);
-        });
-        webClient = WebClient.builder().clientConnector(httpConnector).build();
+            opt.(finalSslContext);
+        });*/
+        webClient = WebClient.builder().build();
     }
 
 

@@ -15,45 +15,43 @@
         <version>1.0.0</version>
     </parent>
 
-    <properties>
-
-    </properties>
-
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <profiles.active>dev</profiles.active>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>prd</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <profiles.active>prd</profiles.active>
-            </properties>
-        </profile>
-    </profiles>
-
-
     <dependencies>
         <!--项目依赖-->
         <dependency>
             <groupId>com.sd.config</groupId>
             <artifactId>sd-config</artifactId>
             <version>${sd.config}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>log4j</artifactId>
+                    <groupId>log4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+
 
         <!--spring核心依赖-->
         <dependency>
@@ -142,38 +140,24 @@
                 <includes>
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
+                    <include>**/*.yml</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>
 
-
-            <resource>
-                <directory>src/main/resources</directory>
-                <!--将config下的所有文件排除-->
-                <excludes>
-                    <exclude>config/**/*.*</exclude>
-                    <exclude>static/**</exclude>
-                </excludes>
-                <!--指定该目录下剩余的配置文件是否替换变量-->
-                <filtering>true</filtering>
-            </resource>
-
-
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>config/${profiles.active}/**/*.*</include>
                     <include>static/**</include>
                     <include>templates/**</include>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.yml</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>
         </resources>
 
-        <!--指定变量的来源文件-->
-        <filters>
-            <filter>src/main/resources/config/${profiles.active}/application-${profiles.active}.properties</filter>
-        </filters>
     </build>
 
 

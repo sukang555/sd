@@ -26,14 +26,14 @@ JAVA_OPT="${JAVA_OPT} -XX:MetaspaceSize=512m"
 JAVA_OPT="${JAVA_OPT} -Duser.timezone=GMT+8 -XX:+PrintCommandLineFlags"
 JAVA_OPT="${JAVA_OPT} -Xloggc:${PROJECT_DIR}/logs/gc.log"
 JAVA_OPT="${JAVA_OPT} -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${PROJECT_DIR}/logs"
-JAVA_OPT="${JAVA_OPT} -Dspring.config.location=${PROJECT_DIR}/config/application.properties"
+JAVA_OPT="${JAVA_OPT} -Dspring.profiles.active=${SPRING_PROFILE_ACTIVE}"
 
 JAVA_FINAL_OPT="${JAVA_MEM_OPTS} ${JAVA_OPT}"
 
 ##classpath 路径设置 包含lib文件夹和config文件夹
 CLASSPATH="${CLASSPATH}:${PROJECT_DIR}/config:${PROJECT_DIR}/lib/*"
 
-echo "当前启动项目的环境为： ${1}"
+echo "当前启动项目的环境为： ${SPRING_PROFILE_ACTIVE}"
 echo "项目启动的参数为： ${JAVA_FINAL_OPT}"
 echo "classpath路径为：${CLASSPATH}"
 

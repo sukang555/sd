@@ -11,3 +11,6 @@ CLASSPATH="${JAVA_HOME}/lib/tools.jar:${JAVA_HOME}/lib/dt.jar"
 export CLASSPATH
 
 echo "CLASSPATH: ${CLASSPATH}"
+
+
+export SPRING_PROFILE_ACTIVE="prd"

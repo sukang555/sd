@@ -4,7 +4,7 @@
 
     <property name="FILE_PATH" value ="../../logs"/>
     
-   	<appender name = "stdout" class = "ch.qos.logback.core.ConsoleAppender">
+   	<appender name = "console" class = "ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5p] [%thread] %caller{1}%m%n</pattern>
 			<charset>utf-8</charset>
@@ -12,7 +12,7 @@
 	</appender>
 	
 	
-	 <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	 <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
          <!--当前文件路径-->
         <file>${FILE_PATH}/sd.log</file>
         <!--滚动策略 (http://blog.csdn.net/wujianmin577/article/details/68922545)-->
@@ -31,12 +31,13 @@
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="stdout" />
-        <appender-ref ref="FILE" />
+        <appender-ref ref="console" />
+        <appender-ref ref="file" />
     </root>
 
-    <logger name="org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter" level="WARN">
-        <appender-ref ref="stdout"/>
+    <!--addtivity: 是否向上级logger传递打印信息-->
+    <logger name ="org.springframework.security.web.authentication" level="WARN" addtivity="false">
+        <appender-ref ref="console"/>
     </logger>
 
 </configuration>

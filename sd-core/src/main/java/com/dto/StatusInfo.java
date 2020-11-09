@@ -1,7 +1,5 @@
 package com.dto;
 
-import com.common.util.BeanUtil;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

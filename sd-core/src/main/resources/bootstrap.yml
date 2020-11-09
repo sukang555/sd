@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    consul:
+      host: 47.105.107.249
+      port: 8500
+      config:
+        enabled: true
+        prefix: config
+        data-key: data
+        default-context: sd
+        format: properties
+        profile-separator: '-'
+        watch:
+          enabled: true
+          delay: 100
+
+      discovery:
+        enabled: true
+        register: true
+        service-name: ${spring.application.name}
+        instance-id: ${spring.application.name}-${server.port}
+        health-check-url: http://47.105.107.249:18080/actuator/health

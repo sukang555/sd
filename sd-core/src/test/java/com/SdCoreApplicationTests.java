@@ -7,8 +7,7 @@ import com.component.ApplicationUtils;
 import com.component.BeanFacade;
 
 import com.component.RedisDistributedLock;
-import com.config.RabbitMqConfigTest;
-import com.config.RabbitMqConfigTest2;
+
 
 import com.service.ScheduleJobService;
 
@@ -22,12 +21,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -186,21 +184,5 @@ public class SdCoreApplicationTests {
 
 	}
 
-
-
-
-
-	@Test
-	public void contextLoads() {
-		RabbitMqConfigTest rabbitMqConfigTest = BeanFacade.getRabbitMqConfigTest();
-
-		System.out.println(rabbitMqConfigTest);
-
-		RabbitMqConfigTest2 rabbitMqConfigTest2 =
-				BeanFacade.getRabbitMqConfigTest2();
-
-		System.out.println(rabbitMqConfigTest2);
-
-	}
 
 }

@@ -24,9 +24,7 @@ import com.core.component.AbstractTest;
 import com.core.component.HelloAdvice;
 import com.core.component.HelloService;
 import com.util.WebClientUtil;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -210,7 +208,7 @@ public class DaliyTest extends AbstractTest {
     }
 
 
-    @Test
+    /*@Test
     public void main4(){
         try {
             ConnectionFactory factory = new ConnectionFactory();
@@ -237,7 +235,7 @@ public class DaliyTest extends AbstractTest {
         }
 
     }
-
+*/
 
 
     @Test

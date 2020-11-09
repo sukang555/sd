@@ -8,7 +8,6 @@ import com.dto.StatusInfo;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -32,8 +31,8 @@ public class DemoController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Resource
-    private RabbitTemplate rabbitTemplate;
+
+    //private RabbitTemplate rabbitTemplate;
 
     @GetMapping("/uuid/{num}")
     public String uuId(@PathVariable("num") String num) throws InterruptedException {
@@ -79,7 +78,7 @@ public class DemoController extends BaseController {
         String message = "{\"applyNo\":\"2021846\",\"code\":\"100000\"," +
                 "\"link\":\"REQUEST_FUNDS\",\"message\":\"success\"," +
                 "\"needSupply\":true} ";
-        rabbitTemplate.convertAndSend("sukang",message);
+        //rabbitTemplate.convertAndSend("sukang",message);
 
         return ResponseBean.ok("success");
     }
