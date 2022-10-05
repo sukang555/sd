@@ -41,7 +41,7 @@
         <guava.version>20.0</guava.version>
         <jetbrains.version>16.0.3</jetbrains.version>
 
-        <jackson.version>2.11.2</jackson.version>
+        <jackson.version>2.12.6.1</jackson.version>
         <slf4j.version>1.7.25</slf4j.version>
         <fast.json.version>1.2.70</fast.json.version>
         <common.io.version>2.5</common.io.version>
